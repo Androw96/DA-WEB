@@ -17,6 +17,7 @@
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = maxScroll > 0 ? Math.min(scrollTop / maxScroll, 1) : 0;
       progress.style.width = `${ratio * 100}%`;
+      document.body.style.setProperty("--da-scroll", ratio.toFixed(4));
       document.body.classList.toggle("da-scrolled", scrollTop > 20);
     };
 
@@ -36,6 +37,41 @@
 
     const targets = Array.from(document.querySelectorAll(revealTargets));
     targets.forEach((target) => target.classList.add("da-reveal"));
+
+    const modernCards = Array.from(
+      document.querySelectorAll(
+        [
+          ".woocommerce ul.products li.product",
+          ".elementor-widget-image-box .elementor-image-box-wrapper",
+          ".elementor-widget-icon-box .elementor-icon-box-wrapper",
+          ".atp-item",
+          ".bsg-item",
+        ].join(",")
+      )
+    );
+    modernCards.forEach((card, index) => {
+      card.classList.add("da-modern-card");
+      card.style.setProperty("--da-delay", `${Math.min(index * 45, 420)}ms`);
+    });
+
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      modernCards.forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = ((event.clientX - rect.left) / rect.width - 0.5) * 6;
+          const y = ((event.clientY - rect.top) / rect.height - 0.5) * -6;
+          card.style.setProperty("--da-tilt-x", `${x.toFixed(2)}deg`);
+          card.style.setProperty("--da-tilt-y", `${y.toFixed(2)}deg`);
+          card.classList.add("da-tilt-active");
+        });
+
+        card.addEventListener("pointerleave", () => {
+          card.classList.remove("da-tilt-active");
+          card.style.removeProperty("--da-tilt-x");
+          card.style.removeProperty("--da-tilt-y");
+        });
+      });
+    }
 
     if ("IntersectionObserver" in window) {
       const observer = new IntersectionObserver(
