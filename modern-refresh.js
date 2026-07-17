@@ -62,6 +62,60 @@
       document.body.appendChild(cta);
     }
 
+    const serviceCards = Array.from(
+      document.querySelectorAll(".elementor-widget-image-box")
+    ).filter((card) => {
+      const href = card.querySelector("a")?.getAttribute("href") || "";
+      const text = card.textContent || "";
+      return /fogaszat|implantacios-protetika|esztetikai-fogaszat|bernyomtatas/i.test(href + " " + text);
+    });
+    serviceCards.forEach((card) => card.classList.add("da-discipline-service"));
+
+    if (
+      document.body.classList.contains("home") &&
+      !document.querySelector(".da-discipline-switcher")
+    ) {
+      const anchor =
+        document.querySelector(".elementor-element-abbfed0") ||
+        document.querySelector(".dentart-slider") ||
+        document.querySelector(".entry-content");
+
+      if (anchor) {
+        const switcher = document.createElement("section");
+        switcher.className = "da-discipline-switcher da-reveal";
+        switcher.innerHTML = `
+          <div class="da-discipline-copy">
+            <p class="da-discipline-kicker">Két fókusz, egy precíz háttér</p>
+            <h2>Fogászat és fogtechnika új ritmusban</h2>
+            <p>Gyorsabb tájékozódás, erősebb vizuális belépő és tisztább út a szolgáltatások felé.</p>
+          </div>
+          <div class="da-discipline-grid">
+            <a class="da-discipline-card" href="/fogaszat/">
+              <img src="/wp-content/uploads/Esztetikai-fogaszat.png" alt="Fogászat">
+              <span class="da-discipline-content">
+                <span class="da-discipline-label">Pácienseknek</span>
+                <h3>Fogászat</h3>
+                <p>Esztétikai és implantációs megoldások egy átlátható belépőből.</p>
+                <span class="da-discipline-cta">Megnézem</span>
+              </span>
+            </a>
+            <a class="da-discipline-card" href="/fogtechnika/">
+              <img src="/wp-content/uploads/Implantacios-protetika.png" alt="Fogtechnika">
+              <span class="da-discipline-content">
+                <span class="da-discipline-label">Partnereknek</span>
+                <h3>Fogtechnika</h3>
+                <p>Digitális tervezés, protetika és gyártási háttér dinamikusabb struktúrában.</p>
+                <span class="da-discipline-cta">Belépek</span>
+              </span>
+            </a>
+          </div>
+        `;
+
+        anchor.insertAdjacentElement("beforebegin", switcher);
+        requestAnimationFrame(() => switcher.classList.add("is-visible"));
+      }
+    }
+
     const banner = document.querySelector(".floating-banner-wrapper");
     const bannerPanel = banner && banner.querySelector(".floating-banner-panel");
     const bannerButton = banner && banner.querySelector(".floating-banner-btn");
