@@ -1,0 +1,94 @@
+{
+  "downloaded": 0,
+  "skipped": 164,
+  "failed": [
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femlemez.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femmentes-potlas.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femmentes-potlasok.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femmentes-potlasok-I.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femmentes-megoldas.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Femmentes-potlas-boritokep.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Palyazatok-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Tabla-honlapra-1-e1768298820866.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Tabla-honlapra.jpg",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/GINOP-Plusz-2.1.3.-24-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Weboldal-logo-sav-2.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Weboldal-logo-sav-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Palyazatok.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/PSI-implantatum-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/PSI-implants-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Denture-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Model-Basic-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/Model-Basic-DTech-1.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/DTech-Model-Basic.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/3D-Resin-Model-Pro.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/3D-Resin-Model-Pro-D-Tech.png",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "url": "https://www.dentarttechnik.hu/wp-content/uploads/3D-Resin-D-Tech.png",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

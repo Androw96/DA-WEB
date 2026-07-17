@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dent-Art tartalomstúdió</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html">Dent-Art</a>
+      <nav class="nav" aria-label="Tartalomtípusok">
+        <a href="index.html">Weboldal</a>
+        <a href="#pages">Oldalak</a>
+        <a href="#products">Termékek</a>
+        <a href="#posts">Bejegyzések</a>
+        <a href="#media">Média</a>
+        <a href="#design">Design</a>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="search">
+          <input id="searchInput" type="search" placeholder="Keresés..." autocomplete="off">
+        </div>
+        <div id="list" class="item-list"></div>
+      </aside>
+
+      <section class="preview" id="preview">
+        <div class="empty">
+          <p>Válassz egy tartalmat balról.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

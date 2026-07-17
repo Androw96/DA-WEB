@@ -1,0 +1,182 @@
+/**
+Theme Name: dentarttechnik
+Author: dentarttechnik
+Author URI: http://dentarttechnik.hu/
+Description: Astra is the fastest, fully customizable & beautiful theme suitable for blogs, personal portfolios and business websites. It is very lightweight (less than 50KB on frontend) and offers unparalleled speed. Built with SEO in mind, Astra comes with schema.org code integrated so search engines will love your site. Astra offers plenty of sidebar options and widget areas giving you a full control for customizations. Furthermore, we have included special features and templates so feel free to choose any of your favorite page builder plugin to create pages flexibly. Some of the other features: # WooCommerce Ready # Responsive # Compatible with major plugins # Translation Ready # Extendible with premium addons # Regularly updated # Designed, Developed, Maintained & Supported by Brainstorm Force. Looking for a perfect base theme? Look no further. Astra is fast, fully customizable and beautiful theme!
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: dent-art-technik
+Template: astra
+*/
+
+/* Általános margók */
+section {
+  background: #fff;
+  margin-bottom: 2rem;
+}
+
+/* Slider */
+.main-banner-slider {
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+@media (max-width: 768px) {
+  .main-banner-slider {
+    height: 200px;
+  }
+}
+
+/* USP szekció */
+.usp-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.usp-section .info {
+  flex: 0 0 30%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #555;
+}
+.usp-section .usp-list {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.usp-section .usp-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.usp-section .usp-icon {
+  font-size: 1.8rem;
+  color: #472c1b;
+}
+.usp-section .usp-text {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+/* USP mobil */
+@media (max-width: 768px) {
+  .usp-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .usp-section .info {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+  .usp-section .usp-list {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+}
+
+/* Népszerű termékek */
+.popular-products-block {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+.popular-products-block .info {
+  flex: 0 0 30%;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+.popular-products-block .prod-slider {
+  flex: 1;
+}
+.popular-products-block .woocommerce ul.products {
+  display: flex;
+  gap: 1rem;
+}
+.popular-products-block .woocommerce ul.products li.product {
+  flex: 1 1 0;
+  max-width: calc((100% / 3) - (1.5rem / 3));
+}
+@media (max-width: 768px) {
+  .popular-products-block {
+    flex-direction: column;
+  }
+}
+
+/* Kiemelt képes blokk */
+.highlight-section {
+  display: flex;
+  gap: 1.5rem;
+}
+.highlight-item {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.highlight-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+.highlight-caption {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+.highlight-caption h3 {color: white;}
+@media (max-width: 768px) {
+  .highlight-section {
+    flex-direction: column;
+  }
+  .highlight-item {
+    height: 200px;
+  }
+}
+
+/* A címektorok vertikális középre igazítása */
+.popular-products-block .info,
+.usp-section .info,
+.latest-news .info,  /* ha van ilyen struktúra hírekhez is */
+.featured-products > h2,
+.top-products > h2,
+.latest-news > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* ha vízszintesen is középre szeretnéd */
+  text-align: left;
+}
+
+/* === Csak ezek kapnak fehér hátteret és paddingot === */
+.main-banner-slider,
+.usp-section,
+.popular-products-block,
+.highlight-section {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* === Egyéb section-ök ne kapjanak fehér hátteret === */
+section {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 2rem; /* ha margin kell */
+}
+
+
+
+img {
+  border-radius: 8px;
+}
+

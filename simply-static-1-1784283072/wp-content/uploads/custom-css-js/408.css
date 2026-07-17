@@ -1,0 +1,136 @@
+<!-- start Simple Custom CSS and JS -->
+<style type="text/css">
+.woocommerce-mini-cart__buttons {color: white;}
+
+.woocommerce ul.products li.product.desktop-align-left, .woocommerce-page ul.products li.product.desktop-align-left {
+    padding: 10px;
+    background-color: white;
+	border-radius: 10px !important;
+}
+
+/* Globális uppercase felülírása */
+h1, h2, h3, h4, h5, h6, 
+.entry-content :where(h1,h2,h3,h4,h5,h6), 
+.site-title, 
+.site-title a {
+    text-transform: none !important;
+}
+
+/* DentArt Technik - Kiemelt menüpont stílus */
+
+/* Alapvető kiemelt link stílus */
+.kiemelt-link {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    transition: all 0.3s ease !important;
+    margin: 0 4px !important;
+}
+
+/* Hover effekt */
+.kiemelt-link:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Aktív állapot */
+.kiemelt-link:active,
+.kiemelt-link.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(0) !important;
+}
+
+/* Alternatív verzió - ha lágyabb kiemelést szeretnél */
+.kiemelt-link.soft {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+}
+
+.kiemelt-link.soft:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Ha dropdown menü van a kiemelt elemben */
+.kiemelt-link .dropdown-arrow,
+.kiemelt-link .fa-chevron-down {
+    margin-left: 8px !important;
+    transition: transform 0.3s ease !important;
+}
+
+.kiemelt-link:hover .dropdown-arrow,
+.kiemelt-link:hover .fa-chevron-down {
+    transform: rotate(180deg) !important;
+}
+
+/* Responsív beállítások */
+@media (max-width: 768px) {
+    .kiemelt-link {
+        padding: 6px 12px !important;
+        margin: 0 2px !important;
+        border-radius: 4px !important;
+    }
+}
+
+/* Ha van szöveges kiemelés is szükséges */
+.kiemelt-link {
+    font-weight: 500 !important;
+}
+
+/* Fokuszálható elemekhez akadálymentesség */
+.kiemelt-link:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5) !important;
+    outline-offset: 2px !important;
+}
+
+/* Extra: Ha különleges kiemelést szeretnél */
+.kiemelt-link.special {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05)) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.kiemelt-link.special:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08)) !important;
+}
+
+/* WooCommerce terméklisták fotói */
+.woocommerce ul.products li.product img,
+.woocommerce-page ul.products li.product img {
+  border-radius: 0px;
+}
+
+/* Single product galéria képek */
+.woocommerce div.product .woocommerce-product-gallery__image img {
+  border-radius: 0px;
+}
+
+/* Számozott lapozó stílus */
+.custom-pagination {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  z-index: 99;
+}
+
+.custom-pagination span {
+  margin: 0 6px;
+}
+
+.custom-pagination span.active {
+  color: #fff;
+  border-right: 2px solid #aaa;
+  padding-right: 6px;
+}
+
+.woocommerce ul.products li.product .astra-shop-summary-wrap, .woocommerce-page ul.products li.product .astra-shop-summary-wrap {
+       padding: 0 !important;
+
+}</style>
+<!-- end Simple Custom CSS and JS -->

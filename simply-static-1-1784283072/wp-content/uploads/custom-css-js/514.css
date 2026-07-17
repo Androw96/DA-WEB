@@ -1,0 +1,196 @@
+<!-- start Simple Custom CSS and JS -->
+<style type="text/css">
+/* WooCommerce Two Products Shortcode CSS */
+/* Tedd be: Appearance → Customize → Additional CSS */
+
+/* Fő container - grid layout */
+.two-products-square-container,
+.elementor-element .two-products-square-container,
+.elementor-widget .two-products-square-container,
+.elementor-container .two-products-square-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 20px !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Termék item container */
+.product-square-item,
+.elementor-element .product-square-item,
+.elementor-widget .product-square-item,
+.elementor-container .product-square-item {
+    position: relative !important;
+    width: 100% !important;
+    
+    /* KÉPARÁNY BEÁLLÍTÁSA - válaszd ki az egyiket: */
+    aspect-ratio: 4/3 !important;    /* Ajánlott: klasszikus fénykép arány */
+    /* aspect-ratio: 1 !important;      Négyzet */
+    /* aspect-ratio: 3/2 !important;    35mm film arány */
+    /* aspect-ratio: 5/4 !important;    Kissé szélesebb mint négyzet */
+    /* aspect-ratio: 16/10 !important;  Laptop arány */
+    /* aspect-ratio: 3/4 !important;    Portré orientáció */
+    
+    overflow: hidden !important;
+    border-radius: 0px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+    margin: 0 !important;
+    background: #f0f0f0 !important;
+}
+
+/* Kép container */
+.product-square-item .product-image,
+.elementor-element .product-square-item .product-image,
+.elementor-widget .product-square-item .product-image,
+.elementor-container .product-square-item .product-image {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Kép link */
+.product-square-item .product-image a,
+.elementor-element .product-square-item .product-image a,
+.elementor-widget .product-square-item .product-image a,
+.elementor-container .product-square-item .product-image a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Termék kép */
+.product-square-item .product-image img,
+.elementor-element .product-square-item .product-image img,
+.elementor-widget .product-square-item .product-image img,
+.elementor-container .product-square-item .product-image img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* Hover effekt */
+.product-square-item:hover .product-image img,
+.elementor-element .product-square-item:hover .product-image img,
+.elementor-widget .product-square-item:hover .product-image img,
+.elementor-container .product-square-item:hover .product-image img {
+    transform: scale(1.05) !important;
+}
+
+/* Overlay szöveg container */
+.product-overlay-text,
+.elementor-element .product-overlay-text,
+.elementor-widget .product-overlay-text,
+.elementor-container .product-overlay-text {
+    position: absolute !important;
+    top: 20px !important;
+    right: 20px !important;
+    z-index: 100 !important;
+    text-align: right !important;
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8) !important;
+    pointer-events: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Fő szöveg (pl. "DOLOR 20%") */
+.product-overlay-text .main-text,
+.elementor-element .product-overlay-text .main-text,
+.elementor-widget .product-overlay-text .main-text,
+.elementor-container .product-overlay-text .main-text {
+    font-size: 2.5rem !important;
+    font-weight: 900 !important;
+    color: #00b085 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0.9 !important;
+    text-transform: uppercase !important;
+}
+
+/* Al-szöveg (pl. "INVENTORE VERITATIS") */
+.product-overlay-text .sub-text,
+.elementor-element .product-overlay-text .sub-text,
+.elementor-widget .product-overlay-text .sub-text,
+.elementor-container .product-overlay-text .sub-text {
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    letter-spacing: 2px !important;
+    margin: 5px 0 0 0 !important;
+    padding: 0 !important;
+    text-transform: uppercase !important;
+    opacity: 0.95 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .two-products-square-container,
+    .elementor-element .two-products-square-container,
+    .elementor-widget .two-products-square-container,
+    .elementor-container .two-products-square-container {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        margin: 15px 0 !important;
+    }
+    
+    .product-overlay-text .main-text,
+    .elementor-element .product-overlay-text .main-text,
+    .elementor-widget .product-overlay-text .main-text,
+    .elementor-container .product-overlay-text .main-text {
+        font-size: 2rem !important;
+    }
+    
+    .product-overlay-text .sub-text,
+    .elementor-element .product-overlay-text .sub-text,
+    .elementor-widget .product-overlay-text .sub-text,
+    .elementor-container .product-overlay-text .sub-text {
+        font-size: 0.8rem !important;
+    }
+    
+    .product-overlay-text,
+    .elementor-element .product-overlay-text,
+    .elementor-widget .product-overlay-text,
+    .elementor-container .product-overlay-text {
+        top: 15px !important;
+        right: 15px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-overlay-text .main-text,
+    .elementor-element .product-overlay-text .main-text,
+    .elementor-widget .product-overlay-text .main-text,
+    .elementor-container .product-overlay-text .main-text {
+        font-size: 1.5rem !important;
+    }
+    
+    .product-overlay-text .sub-text,
+    .elementor-element .product-overlay-text .sub-text,
+    .elementor-widget .product-overlay-text .sub-text,
+    .elementor-container .product-overlay-text .sub-text {
+        font-size: 0.7rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .product-overlay-text,
+    .elementor-element .product-overlay-text,
+    .elementor-widget .product-overlay-text,
+    .elementor-container .product-overlay-text {
+        top: 10px !important;
+        right: 10px !important;
+    }
+}</style>
+<!-- end Simple Custom CSS and JS -->

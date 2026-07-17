@@ -1,0 +1,44 @@
+/* NEW SETTINGS START */
+
+.cps-admin .uk-card-header .uk-navbar-item,
+.cps-admin .uk-card-footer .uk-navbar-item {
+	min-height: initial;
+}
+
+.cps-admin .uk-card-body .uk-nav a:focus {
+	box-shadow: none;
+}
+
+.cps-admin #hucommerce-modules .uk-grid > li {
+	width: 100%;
+	max-width: 400px;
+}
+
+.cps-admin #hucommerce-directory .directory-filter > li {
+	width: 100%;
+	max-width: 250px;
+}
+
+/* NEW SETTINGS END */
+
+.cps-admin {
+	margin-top: 20px;
+}
+
+/* UIkit */
+
+.uk-notification .uk-notification-message {
+	background: #000 !important;
+	text-align: center;
+	color: #999;
+}
+
+@media (min-width: 960px) {
+	.cps-admin .uk-form-horizontal .uk-form-label {
+		width: 400px;
+	}
+
+	.cps-admin .uk-form-horizontal .uk-form-controls {
+		margin-left: 415px;
+	}
+}

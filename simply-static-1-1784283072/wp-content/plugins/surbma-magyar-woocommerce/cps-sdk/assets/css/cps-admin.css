@@ -1,0 +1,492 @@
+body {
+	min-height: 100%;
+	height: auto;
+}
+
+#cps-admin-notification-placeholder.wrap,
+#cps-admin-notification-placeholder.wrap h1 {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.notice + .cps-admin {
+	margin-top: 10px;
+}
+
+.cps-admin .cps-alert {
+	border-width: 1px;
+	border-left-width: 5px;
+	border-style: solid;
+}
+
+.cps-admin pre {
+	background: #000;
+	white-space: pre-wrap;
+}
+
+.cps-admin #cps-header {
+	background: #fff;
+	margin: 0 0 20px -20px;
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+}
+
+.cps-admin .uk-navbar-container .uk-logo img {
+	width: 50px;
+	margin-right: 5px;
+	float: left;
+}
+
+.cps-admin .uk-navbar-container .uk-logo div {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 1.2;
+	text-transform: uppercase;
+}
+
+.cps-admin .uk-navbar-container .uk-logo div span {
+	display: block;
+	font-size: 10px;
+	text-transform: none;
+	font-weight: normal;
+}
+
+.cps-admin .uk-navbar-container .uk-navbar-item {
+	color: #000;
+}
+
+.cps-admin .uk-navbar-container .uk-navbar-nav > li {
+	margin: 0;
+}
+
+.cps-admin .uk-navbar-container .uk-navbar-nav > li > a {
+	color: #000;
+}
+
+.cps-admin .uk-navbar-container .uk-navbar-nav > li > a:hover {
+	color: #06c;
+}
+
+.cps-admin input[type=text].uk-input,
+.cps-admin input[type=search].uk-input,
+.cps-admin input[type=radio].uk-radio,
+.cps-admin input[type=tel].uk-input,
+.cps-admin input[type=time].uk-input,
+.cps-admin input[type=url].uk-input,
+.cps-admin input[type=week].uk-input,
+.cps-admin input[type=password].uk-input,
+.cps-admin input[type=checkbox].uk-checkbox,
+.cps-admin input[type=color].uk-input,
+.cps-admin input[type=date].uk-input,
+.cps-admin input[type=datetime].uk-input,
+.cps-admin input[type=datetime-local].uk-input,
+.cps-admin input[type=email].uk-input,
+.cps-admin input[type=month].uk-input,
+.cps-admin input[type=number].uk-input,
+.cps-admin select.uk-select,
+.cps-admin textarea.uk-textarea {
+	color: #666;
+	border: 1px solid #7e8993;
+	-webkit-transition: .2s ease-in-out;
+	transition: .2s ease-in-out;
+	-webkit-transition-property: color, background-color, border;
+	transition-property: color, background-color, border;
+	box-shadow: none;
+	max-width: none;
+}
+
+.cps-admin .uk-input:focus,
+.cps-admin .uk-select:focus,
+.cps-admin .uk-textarea:focus {
+	border-color: #1e87f0 !important;
+}
+
+.cps-admin input[type=number].uk-input {
+	height: 40px;
+}
+
+.cps-admin .uk-select {
+	padding: 0 10px;
+}
+
+.cps-admin .uk-text-meta {
+	font-size: .7rem;
+	margin-top: 5px;
+}
+
+.cps-admin .disabled,
+.cps-admin .disabled .uk-form-label,
+.cps-admin .disabled h4,
+.cps-admin .readonly,
+.cps-admin .readonly .uk-form-label,
+.cps-admin .readonly h4 {
+	color: #999;
+}
+
+.cps-admin .disabled input,
+.cps-admin .disabled select,
+.cps-admin .disabled textarea,
+.cps-admin .readonly input,
+.cps-admin .readonly select,
+.cps-admin .readonly textarea {
+	background-color: #fff;
+	border-color: #e5e5e5 !important;
+}
+
+.cps-admin .disabled label,
+.cps-admin .disabled .uk-form-label,
+.cps-admin .disabled .slider,
+.cps-admin .disabled input,
+.cps-admin .disabled textarea,
+.cps-admin .disabled select,
+.cps-admin .disabled button,
+.cps-admin :disabled,
+.cps-admin .readonly label,
+.cps-admin .readonly .uk-form-label,
+.cps-admin .readonly .slider,
+.cps-admin .readonly input,
+.cps-admin .readonly textarea,
+.cps-admin .readonly select,
+.cps-admin .readonly button,
+.cps-admin input:read-only,
+.cps-admin textarea:read-only {
+	cursor: not-allowed;
+}
+
+.cps-admin .switch-wrap {
+	overflow: hidden;
+	line-height: 26px;
+}
+
+
+/* The switch - the box around the slider */
+
+.cps-admin .switch {
+	position: relative;
+	display: inline-block;
+	width: 52px;
+	height: 26px;
+	float: right;
+}
+
+
+/* Hide default HTML checkbox */
+
+.cps-admin .switch input {
+	display: none;
+}
+
+
+/* The slider */
+
+.cps-admin .slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.cps-admin .slider:before {
+	position: absolute;
+	content: "";
+	height: 18px;
+	width: 18px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.cps-admin input:checked+.slider {
+	background-color: #1e87f0;
+}
+
+.cps-admin .disabled input+.slider,
+.cps-admin .disabled input:checked+.slider,
+.cps-admin .readonly input+.slider,
+.cps-admin .readonly input:checked+.slider {
+	opacity: .3;
+}
+
+.cps-admin input:focus+.slider {
+	box-shadow: 0 0 1px #1e87f0;
+}
+
+.cps-admin input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+
+/* Rounded sliders */
+
+.cps-admin .slider.round {
+	border-radius: 26px;
+}
+
+.cps-admin .slider.round:before {
+	border-radius: 50%;
+}
+
+
+/* WordPress Fixes */
+
+#wpbody-content {
+	padding-bottom: 0;
+}
+
+#wpfooter {
+	display: none;
+}
+
+
+/* Cookie Page */
+
+.cps-admin.cookie-page {
+	word-break: break-word;
+}
+
+/* Buttons */
+
+.cps-admin .uk-button,
+.cps-admin .uk-button .uk-button-large {
+	padding: 0 20px;
+}
+
+.cps-admin .facebook-button {
+	background: #3B5998;
+	position: relative;
+}
+
+.cps-admin .facebook-button:hover {
+	opacity: .8;
+}
+
+
+/* The new CPS admin */
+
+.cps-admin-2 .cps-settings-nav .uk-nav-header {
+	border-top: 1px solid #e5e5e5;
+	margin: 20px 0;
+	padding: 20px 0 0;
+}
+
+.cps-admin-2 .cps-settings-nav .uk-nav-header a,
+.cps-admin-2 .cps-settings-nav .uk-nav-divider a {
+	color: #333;
+	padding: 0;
+	pointer-events: none;
+}
+
+.cps-admin-2 .cps-settings-nav .uk-nav-divider {
+	margin: 20px 40px;
+	padding: 0;
+}
+
+.cps-admin-2 .cps-settings-nav li {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.cps-admin-2 .cps-settings-nav > li:not(.uk-nav-header):not(.uk-nav-divider):not(.cps-settings-subnav):hover,
+.cps-admin-2 .cps-settings-nav > li.uk-active {
+	background-color: #fafafa;
+	border-radius: 5px;
+}
+
+.cps-admin-2 .cps-settings-nav > li.uk-active {
+	border: 1px solid #1e87f0;
+}
+
+.cps-admin-2 .cps-settings-nav a.uk-offcanvas-close {
+	position: relative;
+	top: 0;
+	right: 0;
+}
+
+.cps-admin-2 #cps-settings-mobile-nav {
+	z-index: 99999;
+}
+
+.cps-admin-2 #cps-settings-mobile-nav .cps-settings-nav .uk-nav-header a {
+	color: #fff;
+}
+
+.cps-admin-2 .uk-subnav.uk-subnav-pill li a {
+	font-size: 12px;
+}
+
+.cps-admin-2 div.cps-form-module {
+	overflow: hidden;
+}
+
+.cps-admin-2 .cps-form-horizontal .uk-form-label {
+	width: 100%;
+	min-width: 150px;
+	max-width: calc(100% - 160px);
+	float: left;
+	margin: 0;
+}
+
+.cps-admin-2 .cps-form-horizontal .uk-form-controls {
+	width: 100%;
+	max-width: 150px;
+	float: right;
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-checkbox .uk-form-label {
+	max-width: calc(100% - 60px);
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-checkbox .uk-form-controls {
+	max-width: 52px;
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-horizontal-medium .uk-form-label {
+	max-width: calc(100% - 310px);
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-horizontal-medium .uk-form-controls {
+	max-width: 300px;
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-horizontal-large .uk-form-label {
+	max-width: calc(100% - 510px);
+}
+
+.cps-admin-2 .cps-form-horizontal.cps-form-horizontal-large .uk-form-controls {
+	max-width: 500px;
+}
+
+.cps-admin-2 .cps-form-fields > * {
+	overflow: hidden;
+	margin-bottom: 0;
+}
+
+.cps-admin-2 .cps-form-fields > .cps-form-text {
+	padding-top: 10px !important;
+}
+
+.cps-admin-2 .uk-button,
+.cps-admin-2 span[uk-toggle] {
+	cursor: pointer !important;
+}
+
+.cps-admin-2 span[uk-tooltip] {
+	cursor: help !important;
+}
+
+@media (max-width: 1199px) {
+	.cps--admin-2 #cps-settings-nav > li {
+		display: block !important;
+	}
+}
+
+.cps-admin-2 #cps-settings .uk-navbar-item,
+.cps-admin-2 #cps-settings .uk-navbar-nav > li > a,
+.cps-admin-2 #cps-settings .uk-navbar-toggle {
+	min-height: 30px;
+}
+
+.cps-admin-2 .uk-form-label,
+.cps-admin-2 .switch-wrap {
+	overflow: hidden;
+	line-height: 40px;
+	margin: 0;
+}
+
+.cps-admin-2 .uk-form-label span {
+	display: inline-block;
+	line-height: 1.6em;
+}
+
+.cps-admin-2 .switch-wrap {
+	margin-top: 7px;
+}
+
+.cps-admin-2 .cps-form-module .slider {
+	background-color: #f0506e;
+}
+
+.cps-admin-2 .cps-form-module input:checked+.slider {
+	background-color: #32d296;
+}
+
+.cps-admin-2 .uk-accordion > li {
+	margin: 0;
+}
+
+.cps-admin-2 .uk-accordion-title {
+	font-size: inherit;
+	text-transform: uppercase;
+	padding: 15px;
+}
+
+.cps-admin-2 .uk-accordion-title:hover {
+	background: #f8f8f8;
+}
+
+.cps-admin-2 .uk-open .uk-accordion-title {
+	background: #f8f8f8;
+	border: 1px solid #e5e5e5;
+	border-bottom: none;
+}
+
+.cps-admin-2 .uk-accordion-title:focus {
+	box-shadow: none;
+}
+
+.cps-admin-2 .uk-accordion-title .uk-badge {
+	vertical-align: bottom;
+	margin-left: 10px;
+}
+
+.cps-admin-2 .module-indicator {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.cps-admin-2 .module-indicator.module-on {
+	background: #32d296;
+}
+
+.cps-admin-2 .module-indicator.module-off {
+	background: #f0506e;
+}
+
+.cps-admin-2 .uk-accordion-content {
+	background: #f8f8f8;
+	border: 1px solid #e5e5e5;
+	border-top: none;
+	margin: 0 0 0 0 !important;
+	padding: 20px 20px 20px 39px;
+}
+
+.cps-admin-2 .cps-card {
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.cps-admin-2 .cps-button {
+	border-radius: 10px;
+}
+
+.cps-admin-2 .cps-more {
+	text-transform: none;
+}
+
+.cps-admin-2 #hucommerce-modules .uk-card-body .uk-label {
+	font-size: 12px;
+}

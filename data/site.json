@@ -1,0 +1,62 @@
+{
+  "site": {
+    "title": "Dent-Art",
+    "url": "https://www.dentarttechnik.hu",
+    "description": "",
+    "language": "hu",
+    "publishedAt": "Thu, 16 Jul 2026 06:27:06 +0000",
+    "baseSiteUrl": "https://www.dentarttechnik.hu",
+    "baseBlogUrl": "https://www.dentarttechnik.hu",
+    "wxrVersion": "1.2"
+  },
+  "counts": {
+    "acf-field": 2,
+    "acf-field-group": 1,
+    "attachment": 186,
+    "elementor_library": 1,
+    "nav_menu_item": 94,
+    "page": 34,
+    "post": 5,
+    "product": 37,
+    "product_variation": 1105,
+    "wp_font_face": 36,
+    "wp_font_family": 12,
+    "wp_global_styles": 1,
+    "wp_navigation": 1
+  },
+  "authors": [
+    {
+      "id": 1,
+      "login": "marketingsopron2@gmail.com",
+      "email": "marketingsopron2@gmail.com",
+      "displayName": "marketingsopron2",
+      "firstName": "",
+      "lastName": ""
+    },
+    {
+      "id": 3,
+      "login": "virag.karolina.admin",
+      "email": "virag.karolina@dentarttechnik.hu",
+      "displayName": "Karolina",
+      "firstName": "Karolina",
+      "lastName": "Brányi-Virág"
+    }
+  ],
+  "taxonomies": {
+    "category": 3,
+    "post_tag": 5,
+    "pa_teszt": 3,
+    "product_tag": 29,
+    "product_cat": 39,
+    "product_brand": 4,
+    "product_visibility": 9,
+    "product_type": 4,
+    "nav_menu": 4
+  },
+  "generatedFrom": "dent-art.WordPress.2026-07-16.xml",
+  "notes": [
+    "data/raw-items.json contains the full parsed WordPress item payload with all post meta.",
+    "content/* keeps original WordPress HTML fragments for direct redesign work.",
+    "public/media-manifest.json lists remote media URLs; run tools/download_media.py if local copies are needed."
+  ]
+}

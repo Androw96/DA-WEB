@@ -1,0 +1,191 @@
+/**
+Theme Name: dentarttechnik
+Author: dentarttechnik
+Author URI: http://dentarttechnik.hu/
+Description: Astra child theme styles recovered from the WordPress theme.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: dent-art-technik
+Template: astra
+*/
+
+section {
+  background: #fff;
+  margin-bottom: 2rem;
+}
+
+.main-banner-slider {
+  overflow: hidden;
+  position: relative;
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .main-banner-slider {
+    height: 200px;
+  }
+}
+
+.usp-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.usp-section .info {
+  flex: 0 0 30%;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.usp-section .usp-list {
+  flex: 1;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.usp-section .usp-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.usp-section .usp-icon {
+  font-size: 1.8rem;
+  color: #472c1b;
+}
+
+.usp-section .usp-text {
+  color: #333;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .usp-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .usp-section .info {
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+
+  .usp-section .usp-list {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+}
+
+.popular-products-block {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+.popular-products-block .info {
+  flex: 0 0 30%;
+  padding: 1rem;
+  background-color: #f9f9f9;
+}
+
+.popular-products-block .prod-slider {
+  flex: 1;
+}
+
+.popular-products-block .woocommerce ul.products {
+  display: flex;
+  gap: 1rem;
+}
+
+.popular-products-block .woocommerce ul.products li.product {
+  flex: 1 1 0;
+  max-width: calc((100% / 3) - (1.5rem / 3));
+}
+
+@media (max-width: 768px) {
+  .popular-products-block {
+    flex-direction: column;
+  }
+}
+
+.highlight-section {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.highlight-item {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.highlight-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.highlight-caption {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+
+.highlight-caption h3 {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .highlight-section {
+    flex-direction: column;
+  }
+
+  .highlight-item {
+    height: 200px;
+  }
+}
+
+.popular-products-block .info,
+.usp-section .info,
+.latest-news .info,
+.featured-products > h2,
+.top-products > h2,
+.latest-news > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+}
+
+.main-banner-slider,
+.usp-section,
+.popular-products-block,
+.highlight-section {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+section {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+img {
+  border-radius: 8px;
+}

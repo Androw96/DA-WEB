@@ -1,0 +1,242 @@
+.atp-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    margin: 40px 0;
+    padding: 0;
+    box-sizing: border-box;
+    clear: both;
+    overflow: visible; /* hidden helyett visible */
+    position: relative;
+    isolation: isolate;
+    z-index: 1;
+    min-height: auto; /* explicit min-height */
+}
+
+/* Új: Biztosítja, hogy a container után elegendő hely legyen */
+.atp-container::after {
+    content: "";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    height: 0;
+}
+
+
+@media (max-width: 768px) {
+    /* Látható clearfix elem */
+    .atp-container::after {
+        content: "";
+        display: block;
+        clear: both;
+        width: 100%;
+        height: 50px; /* Látható magasság */
+        visibility: hidden;
+    }
+}
+
+
+/* Új: Extra margin a következő elemnek */
+.atp-container + * {
+    margin-top: 30px !important;
+    clear: both;
+}
+
+.atp-item {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1; /* négyzet */
+    overflow: hidden;
+    margin: 0;
+    display: block;
+    background: #ffffff;
+}
+
+.atp-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 90% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}
+
+.atp-image a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-indent: -9999px;
+}
+
+.atp-image img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.atp-item:hover .atp-image {
+    transform: scale(1.05);
+}
+
+.atp-overlay-text {
+    position: absolute;
+    z-index: 2;
+    contain: layout;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Pozíciók */
+.atp-overlay-text.position-top-left { top: 20px; left: 20px; text-align: left; }
+.atp-overlay-text.position-top-center { top: 20px; left: 50%; transform: translateX(-50%); text-align: center; }
+.atp-overlay-text.position-top-right { top: 20px; right: 20px; text-align: right; }
+.atp-overlay-text.position-center-left { top: 50%; left: 20px; transform: translateY(-50%); text-align: left; }
+.atp-overlay-text.position-center-center { top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+.atp-overlay-text.position-center-right { top: 50%; right: 20px; transform: translateY(-50%); text-align: right; }
+.atp-overlay-text.position-bottom-left { bottom: 20px; left: 20px; text-align: left; }
+.atp-overlay-text.position-bottom-center { bottom: 20px; left: 50%; transform: translateX(-50%); text-align: center; }
+.atp-overlay-text.position-bottom-right { bottom: 20px; right: 20px; text-align: right; }
+
+.atp-main-text {
+    font-weight: 900;
+    color: #00b085;
+    margin: 0;
+    padding: 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+.atp-sub-text {
+    font-weight: 600;
+    color: white;
+    letter-spacing: 2px;
+    margin: 5px 0 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    opacity: 0.95;
+    font-size: 0.9rem;
+}
+
+
+
+/* Mobil optimalizáció */
+@media (max-width: 768px) {
+    .atp-container {
+        grid-template-columns: 1fr;
+        gap: 20px; /* növelt gap */
+        margin: 30px 0; /* explicit margin */
+        padding-bottom: 20px; /* alsó padding hozzáadva */
+        overflow: visible;
+        min-height: auto;
+    }
+    
+    /* Fix: Minden item után margin */
+    .atp-item {
+        margin: 0 0 20px 0;
+        max-width: 100%;
+        position: relative;
+        isolation: isolate;
+    }
+    
+    /* Fix: Utolsó item után extra margin */
+    .atp-item:last-child {
+        margin-bottom: 30px;
+    }
+    
+    /* Container után extra spacing */
+    .atp-container + * {
+        margin-top: 40px !important;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .atp-main-text {
+        font-size: 2rem;
+    }
+    
+    .atp-sub-text {
+        font-size: 0.8rem;
+    }
+    
+    /* Pozíció beállítások mobilra */
+    .atp-overlay-text.position-top-left,
+    .atp-overlay-text.position-top-center,
+    .atp-overlay-text.position-top-right { top: 15px; }
+    
+    .atp-overlay-text.position-bottom-left,
+    .atp-overlay-text.position-bottom-center,
+    .atp-overlay-text.position-bottom-right { bottom: 15px; }
+    
+    .atp-overlay-text.position-top-left,
+    .atp-overlay-text.position-center-left,
+    .atp-overlay-text.position-bottom-left { left: 15px; }
+    
+    .atp-overlay-text.position-top-right,
+    .atp-overlay-text.position-center-right,
+    .atp-overlay-text.position-bottom-right { right: 15px; }
+}
+
+@media (max-width: 480px) {
+    .atp-container {
+        margin: 20px 0 40px 0; /* alsó margin növelve */
+        padding-bottom: 30px;
+    }
+    
+    .atp-item {
+        margin: 0 0 25px 0; /* item közti távolság növelve */
+    }
+    
+    .atp-item:last-child {
+        margin-bottom: 0; /* utolsó item marginja */
+    }
+    
+    .atp-main-text {
+        font-size: 1.5rem;
+    }
+    
+    .atp-sub-text {
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+    
+    .atp-overlay-text.position-top-left,
+    .atp-overlay-text.position-top-center,
+    .atp-overlay-text.position-top-right { top: 10px; }
+    
+    .atp-overlay-text.position-bottom-left,
+    .atp-overlay-text.position-bottom-center,
+    .atp-overlay-text.position-bottom-right { bottom: 10px; }
+    
+    .atp-overlay-text.position-top-left,
+    .atp-overlay-text.position-center-left,
+    .atp-overlay-text.position-bottom-left { left: 10px; }
+    
+    .atp-overlay-text.position-top-right,
+    .atp-overlay-text.position-center-right,
+    .atp-overlay-text.position-bottom-right { right: 10px; }
+}
+
+/* Aspect ratio fallback */
+@supports not (aspect-ratio: 1/1) {
+    .atp-item {
+        height: 0;
+        padding-bottom: 100%; /* 1:1 négyzet */
+    }
+}
+
+
+

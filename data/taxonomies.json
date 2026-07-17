@@ -1,0 +1,615 @@
+{
+  "category": [
+    {
+      "id": 1,
+      "slug": "egyeb",
+      "parent": "",
+      "name": "Egyéb"
+    },
+    {
+      "id": 45,
+      "slug": "esemeny",
+      "parent": "",
+      "name": "Esemény"
+    },
+    {
+      "id": 43,
+      "slug": "kiallitas",
+      "parent": "",
+      "name": "Kiállítás"
+    }
+  ],
+  "post_tag": [
+    {
+      "id": 44,
+      "slug": "dental-world",
+      "name": "Dental World"
+    },
+    {
+      "id": 109,
+      "slug": "esemeny",
+      "name": "esemény"
+    },
+    {
+      "id": 46,
+      "slug": "exocad",
+      "name": "EXOCAD"
+    },
+    {
+      "id": 110,
+      "slug": "kreditpont",
+      "name": "kreditpont"
+    },
+    {
+      "id": 108,
+      "slug": "szakmai-nap",
+      "name": "szakmai nap"
+    }
+  ],
+  "pa_teszt": [
+    {
+      "id": 27,
+      "slug": "10cm",
+      "parent": "",
+      "name": "10cm"
+    },
+    {
+      "id": 30,
+      "slug": "12cm",
+      "parent": "",
+      "name": "12cm"
+    },
+    {
+      "id": 28,
+      "slug": "20cm",
+      "parent": "",
+      "name": "20cm"
+    }
+  ],
+  "product_tag": [
+    {
+      "id": 112,
+      "slug": "3d",
+      "parent": "",
+      "name": "3D"
+    },
+    {
+      "id": 26,
+      "slug": "cirkontomb",
+      "parent": "",
+      "name": "cirkontömb"
+    },
+    {
+      "id": 91,
+      "slug": "digitalis",
+      "parent": "",
+      "name": "Digitális"
+    },
+    {
+      "id": 41,
+      "slug": "double-layer",
+      "parent": "",
+      "name": "double layer"
+    },
+    {
+      "id": 81,
+      "slug": "esztetikai-fogaszat",
+      "parent": "",
+      "name": "esztétikai fogászat"
+    },
+    {
+      "id": 89,
+      "slug": "femlemez",
+      "parent": "",
+      "name": "Fémlemez"
+    },
+    {
+      "id": 90,
+      "slug": "femmentes",
+      "parent": "",
+      "name": "Fémmentes"
+    },
+    {
+      "id": 88,
+      "slug": "fogszabalyozo",
+      "parent": "",
+      "name": "Fogszabályozó"
+    },
+    {
+      "id": 76,
+      "slug": "furosablon",
+      "parent": "",
+      "name": "fúrósablon"
+    },
+    {
+      "id": 83,
+      "slug": "hejkeramia",
+      "parent": "",
+      "name": "Héjkerámia"
+    },
+    {
+      "id": 74,
+      "slug": "hid",
+      "parent": "",
+      "name": "híd"
+    },
+    {
+      "id": 73,
+      "slug": "implantatum",
+      "parent": "",
+      "name": "implantátum"
+    },
+    {
+      "id": 84,
+      "slug": "inlay",
+      "parent": "",
+      "name": "Inlay"
+    },
+    {
+      "id": 75,
+      "slug": "korona",
+      "parent": "",
+      "name": "korona"
+    },
+    {
+      "id": 111,
+      "slug": "lmf",
+      "parent": "",
+      "name": "LMF"
+    },
+    {
+      "id": 40,
+      "slug": "monolayer",
+      "parent": "",
+      "name": "monolayer"
+    },
+    {
+      "id": 87,
+      "slug": "mosolyrehabilitacio",
+      "parent": "",
+      "name": "Mosolyrehabilitáció"
+    },
+    {
+      "id": 42,
+      "slug": "multilayer",
+      "parent": "",
+      "name": "multilayer"
+    },
+    {
+      "id": 107,
+      "slug": "nyomtatas",
+      "parent": "",
+      "name": "nyomtatás"
+    },
+    {
+      "id": 85,
+      "slug": "onlay",
+      "parent": "",
+      "name": "Onlay"
+    },
+    {
+      "id": 39,
+      "slug": "pmma",
+      "parent": "",
+      "name": "pmma"
+    },
+    {
+      "id": 86,
+      "slug": "protetika",
+      "parent": "",
+      "name": "Protetika"
+    },
+    {
+      "id": 79,
+      "slug": "psi",
+      "parent": "",
+      "name": "PSI"
+    },
+    {
+      "id": 106,
+      "slug": "resin",
+      "parent": "",
+      "name": "resin"
+    },
+    {
+      "id": 78,
+      "slug": "subperiostealis",
+      "parent": "",
+      "name": "subperiostealis"
+    },
+    {
+      "id": 92,
+      "slug": "tervezes",
+      "parent": "",
+      "name": "Tervezés"
+    },
+    {
+      "id": 80,
+      "slug": "titanhalo",
+      "parent": "",
+      "name": "titánháló"
+    },
+    {
+      "id": 77,
+      "slug": "vagosablon",
+      "parent": "",
+      "name": "vágósablon"
+    },
+    {
+      "id": 82,
+      "slug": "veneers",
+      "parent": "",
+      "name": "Veneers"
+    }
+  ],
+  "product_cat": [
+    {
+      "id": 50,
+      "slug": "bernyomtatas-es-marastechnologia",
+      "parent": "",
+      "name": "Bérnyomtatás és marástechnológia"
+    },
+    {
+      "id": 25,
+      "slug": "cadcam",
+      "parent": "",
+      "name": "CAD/CAM"
+    },
+    {
+      "id": 29,
+      "slug": "cirkoniumdioxid",
+      "parent": "cadcam",
+      "name": "Cirkónium-dioxid"
+    },
+    {
+      "id": 68,
+      "slug": "digitalis-tervezes",
+      "parent": "bernyomtatas-es-marastechnologia",
+      "name": "Digitális tervezés"
+    },
+    {
+      "id": 15,
+      "slug": "egyeb",
+      "parent": "",
+      "name": "Egyéb"
+    },
+    {
+      "id": 48,
+      "slug": "esztetikai-fogaszat",
+      "parent": "",
+      "name": "Esztétikai fogászat"
+    },
+    {
+      "id": 61,
+      "slug": "hejkeramiak",
+      "parent": "esztetikai-fogaszat",
+      "name": "Héjkerámiák"
+    },
+    {
+      "id": 47,
+      "slug": "implantacios-protetika",
+      "parent": "",
+      "name": "Implantációs protetika"
+    },
+    {
+      "id": 51,
+      "slug": "implantatumra-epulo-koronak-es-hidak",
+      "parent": "implantacios-protetika",
+      "name": "Implantátumra épülő koronák és hidak"
+    },
+    {
+      "id": 62,
+      "slug": "inlay-onlay-betetek",
+      "parent": "esztetikai-fogaszat",
+      "name": "Inlay &amp; Onlay betétek"
+    },
+    {
+      "id": 49,
+      "slug": "kombinalt-munkak",
+      "parent": "",
+      "name": "Kombinált munkák"
+    },
+    {
+      "id": 60,
+      "slug": "koronak-es-hidak",
+      "parent": "esztetikai-fogaszat",
+      "name": "Koronák és hidak"
+    },
+    {
+      "id": 65,
+      "slug": "lathatatlan-fogszabalyozas",
+      "parent": "esztetikai-fogaszat",
+      "name": "Láthatatlan fogszabályozás"
+    },
+    {
+      "id": 72,
+      "slug": "marastechnologia",
+      "parent": "bernyomtatas-es-marastechnologia",
+      "name": "Marástechnológia"
+    },
+    {
+      "id": 38,
+      "slug": "multilayer",
+      "parent": "cirkoniumdioxid",
+      "name": "Multilayer"
+    },
+    {
+      "id": 93,
+      "slug": "palyazatok",
+      "parent": "",
+      "name": "Pályázatok"
+    },
+    {
+      "id": 31,
+      "slug": "pmma",
+      "parent": "cadcam",
+      "name": "PMMA"
+    },
+    {
+      "id": 37,
+      "slug": "preshaded",
+      "parent": "cirkoniumdioxid",
+      "name": "Preshaded"
+    },
+    {
+      "id": 63,
+      "slug": "protetika",
+      "parent": "esztetikai-fogaszat",
+      "name": "Protetika"
+    },
+    {
+      "id": 64,
+      "slug": "teljes-mosolyrehabilitacio",
+      "parent": "esztetikai-fogaszat",
+      "name": "Teljes mosolyrehabilitáció"
+    },
+    {
+      "id": 36,
+      "slug": "white",
+      "parent": "cirkoniumdioxid",
+      "name": "White"
+    },
+    {
+      "id": 35,
+      "slug": "3d",
+      "parent": "cirkoniumdioxid",
+      "name": "3D"
+    },
+    {
+      "id": 69,
+      "slug": "3d-nyomtatas",
+      "parent": "bernyomtatas-es-marastechnologia",
+      "name": "3D nyomtatás"
+    },
+    {
+      "id": 94,
+      "slug": "3d-resin",
+      "parent": "cadcam",
+      "name": "3D Resin"
+    },
+    {
+      "id": 52,
+      "slug": "all-on-4",
+      "parent": "implantacios-protetika",
+      "name": "All-on-4"
+    },
+    {
+      "id": 53,
+      "slug": "all-on-6",
+      "parent": "implantacios-protetika",
+      "name": "All-on-6"
+    },
+    {
+      "id": 58,
+      "slug": "csontpotlas",
+      "parent": "implantacios-protetika",
+      "name": "Csontpótlás"
+    },
+    {
+      "id": 34,
+      "slug": "doublelayerpmma",
+      "parent": "pmma",
+      "name": "Double Layer PMMA"
+    },
+    {
+      "id": 59,
+      "slug": "egyedi-titanhalok",
+      "parent": "csontpotlas",
+      "name": "Egyedi titánhálók"
+    },
+    {
+      "id": 54,
+      "slug": "egyeni-implantatumok",
+      "parent": "implantacios-protetika",
+      "name": "Egyéni implantátumok"
+    },
+    {
+      "id": 70,
+      "slug": "fem-nyomtatas-lmf",
+      "parent": "3d-nyomtatas",
+      "name": "Fém nyomtatás (LMF)"
+    },
+    {
+      "id": 67,
+      "slug": "femlemezes-kombinalt-potlasok",
+      "parent": "kombinalt-munkak",
+      "name": "Fémlemezes kombinált pótlások"
+    },
+    {
+      "id": 66,
+      "slug": "femmentes-kombinalt-potlasok",
+      "parent": "kombinalt-munkak",
+      "name": "Fémmentes kombinált pótlások"
+    },
+    {
+      "id": 71,
+      "slug": "fotopolimer-nyomtatas-msla",
+      "parent": "3d-nyomtatas",
+      "name": "Fotópolimer nyomtatás (MSLA)"
+    },
+    {
+      "id": 57,
+      "slug": "furo-es-vagosablonok",
+      "parent": "implantacios-protetika",
+      "name": "Fúró és vágósablonok"
+    },
+    {
+      "id": 32,
+      "slug": "monolayerpmma",
+      "parent": "pmma",
+      "name": "Monolayer PMMA"
+    },
+    {
+      "id": 33,
+      "slug": "multilayerpmma",
+      "parent": "pmma",
+      "name": "Multilayer PMMA"
+    },
+    {
+      "id": 56,
+      "slug": "psi",
+      "parent": "egyeni-implantatumok",
+      "name": "PSI"
+    },
+    {
+      "id": 55,
+      "slug": "subperiostealis-implantatumok",
+      "parent": "egyeni-implantatumok",
+      "name": "Subperiostealis implantátumok"
+    }
+  ],
+  "product_brand": [
+    {
+      "id": 23,
+      "slug": "bmg",
+      "parent": "",
+      "name": "BMG"
+    },
+    {
+      "id": 22,
+      "slug": "dentarttechnik",
+      "parent": "",
+      "name": "DentArtTechnik"
+    },
+    {
+      "id": 24,
+      "slug": "dtech",
+      "parent": "",
+      "name": "Dtech"
+    },
+    {
+      "id": 21,
+      "slug": "vsmile",
+      "parent": "",
+      "name": "Vsmile"
+    }
+  ],
+  "product_visibility": [
+    {
+      "id": 7,
+      "slug": "exclude-from-catalog",
+      "parent": "",
+      "name": "exclude-from-catalog"
+    },
+    {
+      "id": 6,
+      "slug": "exclude-from-search",
+      "parent": "",
+      "name": "exclude-from-search"
+    },
+    {
+      "id": 8,
+      "slug": "featured",
+      "parent": "",
+      "name": "featured"
+    },
+    {
+      "id": 9,
+      "slug": "outofstock",
+      "parent": "",
+      "name": "outofstock"
+    },
+    {
+      "id": 10,
+      "slug": "rated-1",
+      "parent": "",
+      "name": "rated-1"
+    },
+    {
+      "id": 11,
+      "slug": "rated-2",
+      "parent": "",
+      "name": "rated-2"
+    },
+    {
+      "id": 12,
+      "slug": "rated-3",
+      "parent": "",
+      "name": "rated-3"
+    },
+    {
+      "id": 13,
+      "slug": "rated-4",
+      "parent": "",
+      "name": "rated-4"
+    },
+    {
+      "id": 14,
+      "slug": "rated-5",
+      "parent": "",
+      "name": "rated-5"
+    }
+  ],
+  "product_type": [
+    {
+      "id": 5,
+      "slug": "external",
+      "parent": "",
+      "name": "external"
+    },
+    {
+      "id": 3,
+      "slug": "grouped",
+      "parent": "",
+      "name": "grouped"
+    },
+    {
+      "id": 2,
+      "slug": "simple",
+      "parent": "",
+      "name": "simple"
+    },
+    {
+      "id": 4,
+      "slug": "variable",
+      "parent": "",
+      "name": "variable"
+    }
+  ],
+  "nav_menu": [
+    {
+      "id": 18,
+      "slug": "footer",
+      "parent": "",
+      "name": "footer"
+    },
+    {
+      "id": 19,
+      "slug": "home",
+      "parent": "",
+      "name": "home"
+    },
+    {
+      "id": 20,
+      "slug": "info",
+      "parent": "",
+      "name": "info"
+    },
+    {
+      "id": 17,
+      "slug": "menu",
+      "parent": "",
+      "name": "menu"
+    }
+  ]
+}
