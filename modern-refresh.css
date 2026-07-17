@@ -176,6 +176,84 @@ header .custom-logo-link img {
   color: #fff !important;
 }
 
+.ast-button-wrap .menu-toggle.main-header-menu-toggle {
+  position: relative;
+  display: inline-grid !important;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  padding: 0 !important;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06)),
+    rgba(37, 24, 69, 0.36) !important;
+  box-shadow: 0 14px 28px rgba(9, 7, 21, 0.16);
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+.ast-button-wrap .menu-toggle.main-header-menu-toggle:hover,
+.ast-button-wrap .menu-toggle.main-header-menu-toggle:focus-visible {
+  border-color: rgba(255, 255, 255, 0.52) !important;
+  background:
+    linear-gradient(135deg, rgba(116, 168, 74, 0.34), rgba(255, 255, 255, 0.08)),
+    rgba(37, 24, 69, 0.44) !important;
+  box-shadow: 0 18px 34px rgba(9, 7, 21, 0.22);
+  transform: translateY(-1px);
+}
+
+.menu-toggle .mobile-menu-toggle-icon {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 16px;
+  background: linear-gradient(#fff, #fff) left 7px / 17px 2px no-repeat;
+  transition: background-size 140ms ease;
+}
+
+.menu-toggle .mobile-menu-toggle-icon::before,
+.menu-toggle .mobile-menu-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  transition: transform 180ms ease, top 180ms ease, opacity 140ms ease, width 180ms ease;
+}
+
+.menu-toggle .mobile-menu-toggle-icon::before {
+  top: 0;
+}
+
+.menu-toggle .mobile-menu-toggle-icon::after {
+  top: 14px;
+}
+
+.menu-toggle .mobile-menu-toggle-icon .ahfb-svg-iconset {
+  display: none !important;
+}
+
+.menu-toggle[aria-expanded="true"] .mobile-menu-toggle-icon::before,
+.ast-main-header-nav-open .menu-toggle .mobile-menu-toggle-icon::before {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .mobile-menu-toggle-icon,
+.ast-main-header-nav-open .menu-toggle .mobile-menu-toggle-icon {
+  background-size: 0 2px;
+}
+
+.menu-toggle[aria-expanded="true"] .mobile-menu-toggle-icon::after,
+.ast-main-header-nav-open .menu-toggle .mobile-menu-toggle-icon::after {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
 .elementor-section,
 .elementor-element.e-con,
 .site-main > article,
