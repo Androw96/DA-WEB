@@ -76,18 +76,23 @@ body.da-scrolled .site-header {
 .custom-logo-link {
   display: inline-flex;
   align-items: center;
-  min-height: 58px;
-  padding: 7px 12px;
+  min-height: 66px;
+  padding: 6px 10px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 14px 30px rgba(9, 7, 21, 0.22);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+    rgba(37, 24, 69, 0.24);
+  box-shadow: 0 14px 30px rgba(9, 7, 21, 0.16);
 }
 
 .site-logo-img img,
 header .custom-logo-link img {
-  width: 160px !important;
-  max-width: 160px !important;
+  display: block;
+  width: 210px !important;
+  max-width: 210px !important;
   height: auto !important;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.22)) saturate(1.08) contrast(1.08);
 }
 
 .ast-builder-grid-row {
@@ -802,14 +807,14 @@ input[type="submit"]:hover,
   }
 
   .custom-logo-link {
-    min-height: 50px;
-    padding: 6px 10px;
+    min-height: 58px;
+    padding: 5px 8px;
   }
 
   .site-logo-img img,
   header .custom-logo-link img {
-    width: 140px !important;
-    max-width: 140px !important;
+    width: 178px !important;
+    max-width: min(178px, 52vw) !important;
   }
 
   .ast-mobile-popup-drawer,
