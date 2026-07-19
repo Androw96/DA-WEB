@@ -1019,6 +1019,28 @@ input[type="submit"]:hover,
   color: var(--da-purple);
 }
 
+.da-service-focus-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.da-service-focus-names span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 7px 11px;
+  border: 1px solid rgba(64, 63, 130, 0.16);
+  border-radius: 999px;
+  background: rgba(64, 63, 130, 0.08);
+  color: var(--da-purple);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.1;
+  box-shadow: 0 8px 18px rgba(45, 39, 95, 0.06);
+}
+
 .da-page-hero {
   position: relative;
   display: grid;

@@ -70,6 +70,30 @@
         subtitle.textContent = labels[index % labels.length];
         heading.insertAdjacentElement("beforebegin", subtitle);
       });
+
+      const serviceFocus = document.querySelector(".elementor-element-abbfed0");
+      if (serviceFocus && !serviceFocus.querySelector(".da-service-focus-names")) {
+        const serviceNames = Array.from(
+          serviceFocus.querySelectorAll(".elementor-image-box-title a, .elementor-image-box-title")
+        )
+          .map((item) => item.textContent.trim())
+          .filter(Boolean);
+        const uniqueServiceNames = Array.from(new Set(serviceNames)).slice(0, 6);
+        const headingWidget = serviceFocus.querySelector(".elementor-widget-heading");
+        if (headingWidget && uniqueServiceNames.length) {
+          const productNames = document.createElement("div");
+          productNames.className = "da-service-focus-names da-reveal is-visible";
+          productNames.innerHTML = uniqueServiceNames
+            .map((name) => `<span>${name}</span>`)
+            .join("");
+          headingWidget.insertAdjacentElement("beforeend", productNames);
+
+          const subtitle = headingWidget.querySelector(".da-component-subtitle");
+          if (subtitle) {
+            subtitle.textContent = `Szolgáltatási fókusz: ${uniqueServiceNames.join(" / ")}`;
+          }
+        }
+      }
     }
 
     const modernCards = Array.from(
