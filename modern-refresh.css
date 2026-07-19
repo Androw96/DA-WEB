@@ -143,29 +143,6 @@ header .custom-logo-link img {
   transform: translateY(-1px);
 }
 
-.main-header-menu > .menu-item > .menu-link[href$="/fogaszat/index.html"],
-.main-header-menu > .menu-item > .menu-link[href$="/fogtechnika/index.html"] {
-  position: relative;
-  overflow: hidden;
-  border: 0 !important;
-  background: transparent;
-}
-
-.main-header-menu > .menu-item > .menu-link[href$="/fogaszat/index.html"]::before,
-.main-header-menu > .menu-item > .menu-link[href$="/fogtechnika/index.html"]::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.26), transparent);
-  transform: translateX(-140%);
-  transition: transform 520ms ease;
-}
-
-.main-header-menu > .menu-item:hover > .menu-link[href$="/fogaszat/index.html"]::before,
-.main-header-menu > .menu-item:hover > .menu-link[href$="/fogtechnika/index.html"]::before {
-  transform: translateX(140%);
-}
-
 .ast-builder-menu-1 .sub-menu,
 .main-header-menu .sub-menu {
   border: 0 !important;
@@ -1057,6 +1034,132 @@ input[type="submit"]:hover,
     linear-gradient(135deg, var(--da-purple-deep), var(--da-purple));
   color: #fff;
   box-shadow: 0 28px 72px rgba(45, 39, 95, 0.28);
+}
+
+body.da-dentistry-page .entry-header,
+body.da-lab-page .entry-header {
+  display: none;
+}
+
+body.da-dentistry-page .da-page-hero,
+body.da-lab-page .da-page-hero {
+  margin-top: 0;
+}
+
+body.da-dentistry-page .site-main > article,
+body.da-lab-page .site-main > article {
+  padding-top: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.da-dentistry-page .entry-content,
+body.da-lab-page .entry-content {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto 44px;
+  padding: 24px !important;
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 46px rgba(45, 39, 95, 0.08);
+}
+
+body.da-dentistry-page .entry-content > p:first-of-type,
+body.da-lab-page .entry-content > p:first-of-type,
+body.da-dentistry-page .entry-content blockquote,
+body.da-lab-page .entry-content blockquote {
+  margin-bottom: 18px;
+  padding: 16px 18px;
+  border-left: 5px solid var(--da-purple);
+  border-radius: 8px;
+  background: rgba(64, 63, 130, 0.08);
+  color: var(--da-ink);
+}
+
+body.da-dentistry-page .entry-content > h4,
+body.da-lab-page .entry-content > h4 {
+  margin: 28px 0 16px;
+  color: var(--da-purple);
+  font-size: clamp(22px, 3vw, 34px);
+}
+
+body.da-dentistry-page .entry-content > ul,
+body.da-lab-page .entry-content > ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+body.da-dentistry-page .entry-content > ul > li,
+body.da-lab-page .entry-content > ul > li {
+  position: relative;
+  overflow: hidden;
+  min-height: 150px;
+  padding: 18px;
+  border: 1px solid rgba(64, 63, 130, 0.14);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(0, 176, 133, 0.12), transparent 34%),
+    linear-gradient(180deg, #fff, rgba(247, 248, 245, 0.96));
+  box-shadow: 0 14px 34px rgba(45, 39, 95, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+body.da-dentistry-page .entry-content > ul > li::after,
+body.da-lab-page .entry-content > ul > li::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  bottom: -18px;
+  width: 78px;
+  height: 78px;
+  border-radius: 999px;
+  background: rgba(64, 63, 130, 0.08);
+  transition: transform 240ms ease, background 240ms ease;
+}
+
+body.da-dentistry-page .entry-content > ul > li:hover,
+body.da-lab-page .entry-content > ul > li:hover {
+  transform: translateY(-7px);
+  border-color: rgba(64, 63, 130, 0.3);
+  box-shadow: 0 22px 54px rgba(45, 39, 95, 0.14);
+}
+
+body.da-dentistry-page .entry-content > ul > li:hover::after,
+body.da-lab-page .entry-content > ul > li:hover::after {
+  background: rgba(0, 176, 133, 0.15);
+  transform: scale(1.2);
+}
+
+body.da-dentistry-page .entry-content > ul > li > strong,
+body.da-lab-page .entry-content > ul > li > strong,
+body.da-dentistry-page .entry-content > ul > li > a > strong,
+body.da-lab-page .entry-content > ul > li > a > strong {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--da-purple);
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+body.da-dentistry-page .entry-content > ul ul,
+body.da-lab-page .entry-content > ul ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+body.da-dentistry-page .entry-content > ul ul li,
+body.da-lab-page .entry-content > ul ul li {
+  margin-bottom: 6px;
+}
+
+body.da-dentistry-page .entry-content a,
+body.da-lab-page .entry-content a {
+  color: var(--da-purple);
+  font-weight: 700;
 }
 
 .da-page-hero::before {
