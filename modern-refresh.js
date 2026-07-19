@@ -8,6 +8,21 @@
   };
 
   ready(() => {
+    const path = window.location.pathname.replace(/\/index\.html$/, "/");
+    const isHome = document.body.classList.contains("home") || path === "/" || path.endsWith("/simply-static-1-1784283072/");
+    const pageType = (() => {
+      if (path.includes("/fogaszat/")) return "dentistry";
+      if (path.includes("/fogtechnika/")) return "lab";
+      if (path.includes("/ajanlatkeres/")) return "quote";
+      if (path.includes("/hirek/")) return "news";
+      if (path.includes("/palyazatok/")) return "grants";
+      return "";
+    })();
+
+    if (pageType) {
+      document.body.classList.add(`da-${pageType}-page`);
+    }
+
     const progress = document.createElement("div");
     progress.className = "da-scroll-progress";
     document.body.appendChild(progress);
@@ -37,6 +52,25 @@
 
     const targets = Array.from(document.querySelectorAll(revealTargets));
     targets.forEach((target) => target.classList.add("da-reveal"));
+
+    if (isHome) {
+      const labels = [
+        "Belépési pont",
+        "Szolgáltatási fókusz",
+        "Gyors útvonalak",
+        "Friss tartalom",
+        "Kapcsolódó ajánlatok",
+      ];
+      document.querySelectorAll(".elementor-widget-heading h2.elementor-heading-title").forEach((heading, index) => {
+        const widget = heading.closest(".elementor-widget-heading");
+        if (!widget || widget.querySelector(".da-component-subtitle")) return;
+        widget.classList.add("da-component-heading");
+        const subtitle = document.createElement("p");
+        subtitle.className = "da-component-subtitle";
+        subtitle.textContent = labels[index % labels.length];
+        heading.insertAdjacentElement("beforebegin", subtitle);
+      });
+    }
 
     const modernCards = Array.from(
       document.querySelectorAll(
@@ -150,6 +184,141 @@
         anchor.insertAdjacentElement("beforebegin", switcher);
         requestAnimationFrame(() => switcher.classList.add("is-visible"));
       }
+    }
+
+    let pageLastInserted = null;
+    const insertAfterHeader = (node) => {
+      const header =
+        document.querySelector(".entry-header") ||
+        document.querySelector(".site-main > article") ||
+        document.querySelector(".entry-content");
+      const anchor = pageLastInserted || header;
+      if (anchor) {
+        anchor.insertAdjacentElement("afterend", node);
+        pageLastInserted = node;
+      }
+    };
+
+    const createHero = ({ kicker, title, text, stats }) => {
+      const hero = document.createElement("section");
+      hero.className = "da-page-hero da-reveal";
+      hero.innerHTML = `
+        <div class="da-page-hero-copy">
+          <p class="da-section-kicker">${kicker}</p>
+          <h1>${title}</h1>
+          <p>${text}</p>
+        </div>
+        <div class="da-page-hero-panel">
+          ${stats.map((stat) => `
+            <div class="da-page-hero-stat">
+              <strong>${stat.value}</strong>
+              <span>${stat.label}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+      return hero;
+    };
+
+    const createPanelGrid = (className, panels) => {
+      const grid = document.createElement("section");
+      grid.className = `${className} da-reveal`;
+      grid.innerHTML = panels.map((panel) => `
+        <article class="da-modern-panel">
+          <h3>${panel.title}</h3>
+          <p>${panel.text}</p>
+        </article>
+      `).join("");
+      return grid;
+    };
+
+    if (pageType === "dentistry" && !document.querySelector(".da-page-hero")) {
+      insertAfterHeader(createHero({
+        kicker: "Fogászat",
+        title: "Precíz ellátás modern ritmusban",
+        text: "Átlátható, pácienseknek szóló belépő esztétikai, implantációs és digitális fogászati megoldásokhoz.",
+        stats: [
+          { value: "01", label: "diagnózis" },
+          { value: "02", label: "tervezés" },
+          { value: "03", label: "mosoly" },
+        ],
+      }));
+      insertAfterHeader(createPanelGrid("da-service-modern-grid", [
+        { title: "Esztétikai fókusz", text: "Vizuálisan tisztább út a mosolyrehabilitációs és héjkerámia megoldások felé." },
+        { title: "Implantációs háttér", text: "Komplex esetekhez rendezettebb, szakmai belépő és erősebb bizalomépítés." },
+        { title: "Digitális kapcsolat", text: "A fogtechnikai háttér nem rejtve marad, hanem értékként jelenik meg a páciensútban." },
+      ]));
+    }
+
+    if (pageType === "lab" && !document.querySelector(".da-page-hero")) {
+      insertAfterHeader(createHero({
+        kicker: "Fogtechnika",
+        title: "Laborháttér látványosabb rendszerben",
+        text: "A CAD/CAM, implantációs protetika, nyomtatás és gyártási folyamatok modernebb, komponens alapú bemutatást kapnak.",
+        stats: [
+          { value: "CAD", label: "tervezés" },
+          { value: "CAM", label: "gyártás" },
+          { value: "3D", label: "technológia" },
+        ],
+      }));
+      insertAfterHeader(createPanelGrid("da-service-modern-grid", [
+        { title: "Gyártási pontosság", text: "A technológiai szolgáltatások erősebb, prémiumabb kártyarendszerben jelennek meg." },
+        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány." },
+        { title: "Anyag és folyamat", text: "A termékkategóriák mögé kerül egy modernebb szakmai narratíva és vizuális ritmus." },
+      ]));
+    }
+
+    if (pageType === "quote" && !document.querySelector(".da-workflow")) {
+      const workflow = document.createElement("section");
+      workflow.className = "da-workflow da-reveal";
+      workflow.innerHTML = `
+        <p class="da-section-kicker">Ajánlatkérési folyamat</p>
+        <h2>Gyorsabb út a pontos ajánlatig</h2>
+        <div class="da-workflow-steps">
+          <article class="da-workflow-step"><b>1</b><h3>Kapcsolat</h3><p>Megérkezik az igény, a csapat beazonosítja a feladat típusát.</p></article>
+          <article class="da-workflow-step"><b>2</b><h3>Adatok</h3><p>A szükséges fájlok, kérdések és határidők egy helyre kerülnek.</p></article>
+          <article class="da-workflow-step"><b>3</b><h3>Tervezés</h3><p>A szakmai háttér kiválasztja a megfelelő technológiát és munkamenetet.</p></article>
+          <article class="da-workflow-step"><b>4</b><h3>Ajánlat</h3><p>Átlátható válasz érkezik, követhető következő lépéssel.</p></article>
+        </div>
+      `;
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      if (entry) entry.insertAdjacentElement("afterbegin", workflow);
+    }
+
+    if (pageType === "news" && !document.querySelector(".da-page-hero")) {
+      insertAfterHeader(createHero({
+        kicker: "Hírek",
+        title: "Szakmai impulzusok egy helyen",
+        text: "Események, kurzusok, technológiai újdonságok és Dent-Art aktualitások élőbb, magazinosabb keretben.",
+        stats: [
+          { value: "News", label: "aktualitás" },
+          { value: "Event", label: "esemény" },
+          { value: "Lab", label: "szakmai háttér" },
+        ],
+      }));
+      insertAfterHeader(createPanelGrid("da-news-modern-grid", [
+        { title: "Események", text: "Kiemeltebb belépő szakmai napokhoz, kiállításokhoz és kurzusokhoz." },
+        { title: "Technológia", text: "A labor és digitális gyártás hírei modernebb, gyorsan szkennelhető formában." },
+        { title: "Közösség", text: "A Dent-Art jelenléte kevésbé statikus, inkább élő szakmai történetként működik." },
+      ]));
+    }
+
+    if (pageType === "grants" && !document.querySelector(".da-page-hero")) {
+      insertAfterHeader(createHero({
+        kicker: "Pályázatok",
+        title: "Fejlesztések átláthatóbb felületen",
+        text: "A támogatási és beruházási tartalmak rendezettebb, bizalomépítőbb, projektkártyás vizuális rendszert kapnak.",
+        stats: [
+          { value: "ERP", label: "digitalizáció" },
+          { value: "R&D", label: "fejlesztés" },
+          { value: "Lab", label: "kapacitás" },
+        ],
+      }));
+      insertAfterHeader(createPanelGrid("da-grant-modern-grid", [
+        { title: "Digitális fejlesztés", text: "ERP, CRM és folyamatoptimalizálás egy érthetőbb fejlesztési narratívában." },
+        { title: "Innováció", text: "Szoftveres és fogtechnikai fejlesztések kiemeltebb szakmai hangsúllyal." },
+        { title: "Kapacitásbővítés", text: "Beruházások, eszközök és telephelyfejlesztés rendezettebb olvasási ritmussal." },
+      ]));
     }
 
     const banner = document.querySelector(".floating-banner-wrapper");
