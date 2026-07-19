@@ -68,27 +68,19 @@ a,
 .site-header,
 .ast-primary-header-bar,
 .main-header-bar {
-  background:
-    radial-gradient(circle at 14% 10%, rgba(116, 168, 74, 0.18), transparent 28%),
-    linear-gradient(135deg, var(--da-purple-deep) 0%, var(--da-purple) 56%, #172039 100%) !important;
+  background: linear-gradient(135deg, var(--da-purple-deep) 0%, var(--da-purple) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
   backdrop-filter: blur(18px);
   box-shadow: 0 16px 42px rgba(27, 20, 58, 0.26);
 }
 
 .site-header {
-  overflow: hidden;
+  overflow: visible;
   transition: box-shadow 220ms ease, transform 220ms ease, background 220ms ease;
 }
 
 .site-header::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(115deg, transparent 12%, rgba(255, 255, 255, 0.12), transparent 32%);
-  opacity: 0.5;
-  transform: translateX(calc(-120% + (var(--da-scroll) * 55%)));
+  content: none;
 }
 
 body.da-scrolled .site-header {
@@ -103,7 +95,7 @@ body.da-scrolled .site-header {
 .custom-logo-link {
   display: inline-flex;
   align-items: center;
-  min-height: 64px;
+  min-height: 60px;
   padding: 0;
   border-radius: 0;
   background: transparent !important;
@@ -113,11 +105,11 @@ body.da-scrolled .site-header {
 .site-logo-img img,
 header .custom-logo-link img {
   display: block;
-  width: 232px !important;
-  max-width: 232px !important;
+  width: 200px !important;
+  max-width: 200px !important;
   height: auto !important;
   object-fit: contain;
-  filter: brightness(0) invert(1) drop-shadow(0 10px 18px rgba(0, 0, 0, 0.24)) !important;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.22)) !important;
 }
 
 .ast-builder-grid-row {
@@ -1039,9 +1031,9 @@ input[type="submit"]:hover,
 
   .site-logo-img img,
   header .custom-logo-link img {
-    width: 186px !important;
-    max-width: min(186px, 54vw) !important;
-    filter: brightness(0) invert(1) drop-shadow(0 8px 14px rgba(0, 0, 0, 0.24)) !important;
+    width: 150px !important;
+    max-width: min(150px, 48vw) !important;
+    filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.22)) !important;
   }
 
   .ast-mobile-popup-drawer,
