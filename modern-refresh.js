@@ -16,6 +16,8 @@
       if (path.includes("/ajanlatkeres/")) return "quote";
       if (path.includes("/hirek/")) return "news";
       if (path.includes("/palyazatok/")) return "grants";
+      if (path.includes("/szolgaltatasok/")) return "services";
+      if (path.includes("/rolunk/")) return "about";
       return "";
     })();
 
@@ -56,7 +58,7 @@
     if (isHome) {
       const labels = [
         "Belépési pont",
-        "Szolgáltatási fókusz",
+        "Kiemelt ajánlatok",
         "Gyors útvonalak",
         "Friss tartalom",
         "Kapcsolódó ajánlatok",
@@ -70,30 +72,6 @@
         subtitle.textContent = labels[index % labels.length];
         heading.insertAdjacentElement("beforebegin", subtitle);
       });
-
-      const serviceFocus = document.querySelector(".elementor-element-abbfed0");
-      if (serviceFocus && !serviceFocus.querySelector(".da-service-focus-names")) {
-        const serviceNames = Array.from(
-          serviceFocus.querySelectorAll(".elementor-image-box-title a, .elementor-image-box-title")
-        )
-          .map((item) => item.textContent.trim())
-          .filter(Boolean);
-        const uniqueServiceNames = Array.from(new Set(serviceNames)).slice(0, 6);
-        const headingWidget = serviceFocus.querySelector(".elementor-widget-heading");
-        if (headingWidget && uniqueServiceNames.length) {
-          const productNames = document.createElement("div");
-          productNames.className = "da-service-focus-names da-reveal is-visible";
-          productNames.innerHTML = uniqueServiceNames
-            .map((name) => `<span>${name}</span>`)
-            .join("");
-          headingWidget.insertAdjacentElement("beforeend", productNames);
-
-          const subtitle = headingWidget.querySelector(".da-component-subtitle");
-          if (subtitle) {
-            subtitle.textContent = `Szolgáltatási fókusz: ${uniqueServiceNames.join(" / ")}`;
-          }
-        }
-      }
     }
 
     const modernCards = Array.from(
@@ -152,7 +130,7 @@
       const cta = document.createElement("a");
       cta.className = "da-floating-cta";
       cta.href = "/ajanlatkeres/";
-      cta.innerHTML = "<span>+</span> Ajánlatkérés";
+      cta.textContent = "Ajánlatkérés";
       document.body.appendChild(cta);
     }
 
@@ -164,51 +142,6 @@
       return /fogaszat|implantacios-protetika|esztetikai-fogaszat|bernyomtatas/i.test(href + " " + text);
     });
     serviceCards.forEach((card) => card.classList.add("da-discipline-service"));
-
-    if (
-      document.body.classList.contains("home") &&
-      !document.querySelector(".da-discipline-switcher")
-    ) {
-      const anchor =
-        document.querySelector(".elementor-element-abbfed0") ||
-        document.querySelector(".dentart-slider") ||
-        document.querySelector(".entry-content");
-
-      if (anchor) {
-        const switcher = document.createElement("section");
-        switcher.className = "da-discipline-switcher da-reveal";
-        switcher.innerHTML = `
-          <div class="da-discipline-copy">
-            <p class="da-discipline-kicker">Két fókusz, egy precíz háttér</p>
-            <h2>Fogászat és fogtechnika új ritmusban</h2>
-            <p>Gyorsabb tájékozódás, erősebb vizuális belépő és tisztább út a szolgáltatások felé.</p>
-          </div>
-          <div class="da-discipline-grid">
-            <a class="da-discipline-card" href="/fogaszat/">
-              <img src="/wp-content/uploads/Esztetikai-fogaszat.png" alt="Fogászat">
-              <span class="da-discipline-content">
-                <span class="da-discipline-label">Pácienseknek</span>
-                <h3>Fogászat</h3>
-                <p>Esztétikai és implantációs megoldások egy átlátható belépőből.</p>
-                <span class="da-discipline-cta">Megnézem</span>
-              </span>
-            </a>
-            <a class="da-discipline-card" href="/fogtechnika/">
-              <img src="/wp-content/uploads/Implantacios-protetika.png" alt="Fogtechnika">
-              <span class="da-discipline-content">
-                <span class="da-discipline-label">Partnereknek</span>
-                <h3>Fogtechnika</h3>
-                <p>Digitális tervezés, protetika és gyártási háttér dinamikusabb struktúrában.</p>
-                <span class="da-discipline-cta">Belépek</span>
-              </span>
-            </a>
-          </div>
-        `;
-
-        anchor.insertAdjacentElement("beforebegin", switcher);
-        requestAnimationFrame(() => switcher.classList.add("is-visible"));
-      }
-    }
 
     const activateInserted = (node) => {
       requestAnimationFrame(() => node.classList.add("is-visible"));
@@ -308,10 +241,10 @@
         <p class="da-section-kicker">Ajánlatkérési folyamat</p>
         <h2>Gyorsabb út a pontos ajánlatig</h2>
         <div class="da-workflow-steps">
-          <article class="da-workflow-step"><b>1</b><h3>Kapcsolat</h3><p>Megérkezik az igény, a csapat beazonosítja a feladat típusát.</p></article>
-          <article class="da-workflow-step"><b>2</b><h3>Adatok</h3><p>A szükséges fájlok, kérdések és határidők egy helyre kerülnek.</p></article>
-          <article class="da-workflow-step"><b>3</b><h3>Tervezés</h3><p>A szakmai háttér kiválasztja a megfelelő technológiát és munkamenetet.</p></article>
-          <article class="da-workflow-step"><b>4</b><h3>Ajánlat</h3><p>Átlátható válasz érkezik, követhető következő lépéssel.</p></article>
+          <a class="da-workflow-step" href="#wpforms-27-field_1"><b>1</b><h3>Kapcsolat</h3><p>Megérkezik az igény, a csapat beazonosítja a feladat típusát.</p><span>Adatok megadása</span></a>
+          <a class="da-workflow-step" href="#wpforms-27-field_3"><b>2</b><h3>Adatok</h3><p>A szükséges fájlok, kérdések és határidők egy helyre kerülnek.</p><span>Üzenet írása</span></a>
+          <a class="da-workflow-step" href="#wpforms-27-field_5"><b>3</b><h3>Tervezés</h3><p>A szakmai háttér kiválasztja a megfelelő technológiát és munkamenetet.</p><span>Fájl csatolása</span></a>
+          <a class="da-workflow-step" href="#wpforms-submit-27"><b>4</b><h3>Ajánlat</h3><p>Átlátható válasz érkezik, követhető következő lépéssel.</p><span>Küldés</span></a>
         </div>
       `;
       const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
@@ -357,6 +290,227 @@
       ]));
     }
 
+    const getStoredJson = (key, fallback) => {
+      try {
+        return JSON.parse(localStorage.getItem(key) || "null") || fallback;
+      } catch (error) {
+        return fallback;
+      }
+    };
+
+    const formatPrice = (value) => {
+      const raw = Array.isArray(value) ? value[0] : value;
+      const number = Number(String(raw || "").replace(/[^\d.-]/g, ""));
+      if (!Number.isFinite(number) || number <= 0) return "Ár érdeklődésre";
+      return `${new Intl.NumberFormat("hu-HU").format(number)} Ft`;
+    };
+
+    const pageSlug = path.split("/").filter(Boolean).pop() || "fooldal";
+    const pageOverrides = getStoredJson("dentart_page_overrides", {});
+    const override = pageOverrides[pageSlug] || (isHome && pageOverrides.fooldal);
+    if (override) {
+      const title = document.querySelector(".entry-title");
+      const content = document.querySelector(".entry-content");
+      if (title && override.title) title.textContent = override.title;
+      if (content && override.contentHtml) content.innerHTML = override.contentHtml;
+    }
+
+    const serviceFocusSection = document.querySelector(".elementor-element-abbfed0");
+    if (serviceFocusSection) {
+      serviceFocusSection.remove();
+    }
+    document.querySelectorAll(".da-service-focus-names, .da-discipline-switcher").forEach((node) => node.remove());
+
+    const ensureServicesSubmenu = () => {
+      const serviceItems = Array.from(document.querySelectorAll(".menu-item")).filter((item) => {
+        const linkText = item.querySelector(":scope > a .menu-text, :scope > a")?.textContent?.trim() || "";
+        return linkText === "Szolgáltatások";
+      });
+      const submenuItems = [
+        ["Fogászat", "/fogaszat/"],
+        ["Fogtechnika", "/fogtechnika/"],
+        ["Ajánlatkérés", "/ajanlatkeres/"],
+        ["Kurzusok", "/kurzusok/"],
+      ];
+      serviceItems.forEach((item) => {
+        let submenu = item.querySelector(":scope > ul.sub-menu");
+        if (!submenu) {
+          submenu = document.createElement("ul");
+          submenu.className = "sub-menu da-filled-services-submenu";
+          item.appendChild(submenu);
+        }
+        if (!submenu.querySelector("a")) {
+          submenu.innerHTML = submenuItems.map(([label, href]) => (
+            `<li class="menu-item menu-item-type-custom"><a class="menu-link" href="${href}">${label}</a></li>`
+          )).join("");
+        }
+      });
+    };
+    ensureServicesSubmenu();
+
+    const renderSocialLinks = () => {
+      if (document.querySelector(".da-social-links")) return;
+      const social = document.createElement("nav");
+      social.className = "da-social-links";
+      social.setAttribute("aria-label", "Dent-Art social");
+      social.innerHTML = `
+        <a href="https://www.instagram.com/dentarttechnik/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/profile.php?id=61583350573056" target="_blank" rel="noopener">Facebook</a>
+      `;
+      const footer = document.querySelector(".site-footer") || document.body;
+      footer.appendChild(social);
+    };
+    renderSocialLinks();
+
+    const renderAdminShortcut = () => {
+      const nav = document.querySelector(".main-header-menu, .primary-nav");
+      if (!nav || nav.querySelector('a[href="/admin.html"]')) return;
+      const link = document.createElement("a");
+      link.className = "menu-link da-admin-shortcut";
+      link.href = "/admin.html";
+      link.textContent = "Admin";
+      const menuItem = document.createElement("li");
+      menuItem.className = "menu-item menu-item-type-custom";
+      menuItem.appendChild(link);
+      if (nav.tagName.toLowerCase() === "ul") {
+        nav.appendChild(menuItem);
+      } else {
+        nav.appendChild(link);
+      }
+    };
+    renderAdminShortcut();
+
+    const renderAdminPosts = () => {
+      if (pageType !== "news" || document.querySelector(".da-admin-posts")) return;
+      const posts = getStoredJson("dentart_blog_posts", []);
+      if (!posts.length) return;
+      const grid = document.createElement("section");
+      grid.className = "da-admin-posts da-reveal is-visible";
+      grid.innerHTML = `
+        <p class="da-section-kicker">Friss blogposztok</p>
+        <h2>Adminból hozzáadott hírek</h2>
+        <div class="da-admin-post-grid">
+          ${posts.map((post) => `
+            <article class="da-admin-post-card">
+              ${post.image ? `<img src="${post.image}" alt="">` : ""}
+              <span>${post.date || ""}</span>
+              <h3>${post.title || "Új hír"}</h3>
+              <p>${post.excerpt || ""}</p>
+            </article>
+          `).join("")}
+        </div>
+      `;
+      const anchor = document.querySelector(".site-main") || document.querySelector(".entry-content");
+      if (anchor) anchor.appendChild(grid);
+    };
+    renderAdminPosts();
+
+    const renderRandomProducts = async () => {
+      if (!isHome || document.querySelector(".da-random-products")) return;
+      const whySection = document.querySelector(".elementor-element-1f5b655");
+      if (!whySection) return;
+      const originalGrid = whySection.querySelector(".elementor-element-f5e004e");
+      if (originalGrid) originalGrid.style.display = "none";
+      try {
+        const response = await fetch("/data/products.json");
+        const products = await response.json();
+        const usable = products.filter((product) => (
+          product.status === "publish" &&
+          product.title &&
+          (product.price || product.regularPrice || product.salePrice) &&
+          product.images &&
+          product.images.length
+        ));
+        const shuffled = usable.sort(() => Math.random() - 0.5).slice(0, 3);
+        if (!shuffled.length) return;
+        const panel = document.createElement("section");
+        panel.className = "da-random-products da-reveal is-visible";
+        panel.innerHTML = `
+          <div class="da-random-products-head">
+            <p class="da-section-kicker">Aktuális ajánlatok</p>
+            <h3>Véletlenszerűen kiemelt termékek</h3>
+          </div>
+          <div class="da-random-product-grid">
+            ${shuffled.map((product) => {
+              const image = product.images[0];
+              const imageSrc = image.attachedFile ? `/wp-content/uploads/${image.attachedFile}` : `/${image.localUrl || ""}`;
+              return `
+                <a class="da-random-product-card" href="/termek/${product.slug}/">
+                  <img src="${imageSrc}" alt="${product.title}">
+                  <strong>${product.title}</strong>
+                  <span>${formatPrice(product.salePrice || product.price || product.regularPrice)}</span>
+                </a>
+              `;
+            }).join("")}
+          </div>
+        `;
+        const anchor = whySection.querySelector(".elementor-widget-heading") || whySection;
+        anchor.insertAdjacentElement("afterend", panel);
+      } catch (error) {
+        console.warn("Dent-Art product highlight failed", error);
+      }
+    };
+    renderRandomProducts();
+
+    const renderCourseInterest = () => {
+      const isCoursePage = path.includes("/kurzusok/exocad-kezdo/") || path.includes("/kurzusok/exocad-halado/");
+      if (!isCoursePage || document.querySelector(".da-course-interest")) return;
+      const courseName = path.includes("halado") ? "EXOCAD Haladó" : "EXOCAD Kezdő";
+      const panel = document.createElement("section");
+      panel.className = "da-course-interest";
+      panel.innerHTML = `
+        <p class="da-section-kicker">Betelt kurzus esetén</p>
+        <h2>${courseName}: érdeklődöm</h2>
+        <p>Ha a kurzus betelt, add le az adataidat. Statikus preview-ban az érdeklődés mentésre kerül ebben a böngészőben, és előkészít egy emailt az info@dentarttechnik.hu címre.</p>
+        <form>
+          <input name="name" type="text" placeholder="Név" required>
+          <input name="email" type="email" placeholder="Email cím" required>
+          <button type="submit">Érdeklődöm</button>
+        </form>
+      `;
+      panel.querySelector("form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = Object.fromEntries(new FormData(event.currentTarget).entries());
+        const subscribers = getStoredJson("dentart_course_subscribers", []);
+        subscribers.push({ ...data, course: courseName, createdAt: new Date().toISOString() });
+        localStorage.setItem("dentart_course_subscribers", JSON.stringify(subscribers));
+        window.location.href = `mailto:info@dentarttechnik.hu?subject=${encodeURIComponent(courseName + " érdeklődés")}&body=${encodeURIComponent(`Név: ${data.name}\nEmail: ${data.email}\nKurzus: ${courseName}`)}`;
+      });
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      if (entry) entry.appendChild(panel);
+    };
+    renderCourseInterest();
+
+    const renderAboutTeam = () => {
+      if (!path.includes("/rolunk/") || document.querySelector(".da-team-section")) return;
+      const team = document.createElement("section");
+      team.className = "da-team-section da-reveal is-visible";
+      team.innerHTML = `
+        <div class="da-team-intro">
+          <p class="da-section-kicker">Vezetőség</p>
+          <h2>Emberek a Dent-Art-Technik mögött</h2>
+          <p>A több évtizedes szakmai múlt mögé arcokat és felelősségi köröket teszünk, hogy a cég ne csak hosszú szövegként, hanem élő csapatként jelenjen meg.</p>
+        </div>
+        <div class="da-team-grid">
+          <article>
+            <img src="/wp-content/uploads/2025-300x250.png" alt="Dr. Kónya János">
+            <span>Cégvezető</span>
+            <h3>Dr. Kónya János</h3>
+            <p>Alapítói szemlélet, szakmai irány és innovációs háttér.</p>
+          </article>
+          <article>
+            <img src="/wp-content/uploads/DentArtTechnik.png" alt="Tóth Csilla">
+            <span>Cégvezető</span>
+            <h3>Tóth Csilla</h3>
+            <p>Működés, partnerkapcsolatok és szervezeti fókusz.</p>
+          </article>
+        </div>
+      `;
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      if (entry) entry.insertAdjacentElement("afterbegin", team);
+    };
+    renderAboutTeam();
+
     const banner = document.querySelector(".floating-banner-wrapper");
     const bannerPanel = banner && banner.querySelector(".floating-banner-panel");
     const bannerButton = banner && banner.querySelector(".floating-banner-btn");
@@ -373,19 +527,21 @@
       };
 
       const closeBanner = () => {
-        setAlpineOpen(false);
-        banner.classList.remove("da-banner-open");
-        bannerPanel.style.display = "none";
-        bannerButton.style.display = "inline-flex";
-        sessionStorage.setItem("floatingBannerClosed", "true");
+        setAlpineOpen(true);
+        banner.classList.add("da-banner-open", "da-banner-compact");
+        bannerPanel.style.display = "";
+        bannerButton.style.display = "none";
+        sessionStorage.setItem("floatingBannerCompact", "true");
       };
 
       const openBanner = () => {
         setAlpineOpen(true);
         banner.classList.add("da-banner-open");
+        banner.classList.remove("da-banner-compact");
         bannerPanel.style.display = "";
         bannerButton.style.display = "none";
         sessionStorage.removeItem("floatingBannerClosed");
+        sessionStorage.removeItem("floatingBannerCompact");
       };
 
       bannerClose.addEventListener("click", (event) => {
@@ -407,7 +563,7 @@
         banner.classList.remove("da-banner-hover");
       });
 
-      if (sessionStorage.getItem("floatingBannerClosed") === "true") {
+      if (sessionStorage.getItem("floatingBannerCompact") === "true") {
         closeBanner();
       } else {
         openBanner();

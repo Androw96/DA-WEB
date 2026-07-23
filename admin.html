@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dent-Art admin</title>
+    <link rel="stylesheet" href="/admin-panel.css">
+  </head>
+  <body>
+    <header class="admin-topbar">
+      <a href="/" aria-label="Vissza a weboldalra">Dent-Art-Technik</a>
+      <nav aria-label="Admin navigáció">
+        <a href="/">Weboldal</a>
+        <a href="/hirek/">Hírek</a>
+        <a href="/ajanlatkeres/">Ajánlatkérés</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-hero">
+        <p>Tartalomkezelő</p>
+        <h1>Oldalszövegek és hírek szerkesztése</h1>
+        <span>A statikus preview-ban a mentések ebben a böngészőben élnek. Az export gombbal vihetők tovább éles rendszerbe.</span>
+      </section>
+
+      <section class="admin-layout">
+        <aside class="admin-sidebar">
+          <h2>Oldalak</h2>
+          <div id="pageList" class="admin-page-list"></div>
+        </aside>
+
+        <section class="admin-editor">
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Oldalszöveg</p>
+                <h2 id="editorName">Válassz oldalt</h2>
+              </div>
+              <button id="resetPage" type="button">Visszaállítás</button>
+            </div>
+            <label>
+              Cím
+              <input id="pageTitle" type="text" placeholder="Oldal címe">
+            </label>
+            <label>
+              Tartalom HTML
+              <textarea id="pageContent" rows="16" placeholder="<p>Szöveg...</p>"></textarea>
+            </label>
+            <div class="admin-actions">
+              <button id="savePage" type="button">Oldal mentése</button>
+              <a id="openPage" href="/" target="_blank" rel="noopener">Megnyitás</a>
+            </div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Blog / hírek</p>
+                <h2>Új poszt hozzáadása</h2>
+              </div>
+            </div>
+            <form id="postForm" class="admin-form">
+              <input name="title" type="text" placeholder="Hír címe" required>
+              <input name="date" type="date" required>
+              <input name="image" type="url" placeholder="Kép URL">
+              <textarea name="excerpt" rows="4" placeholder="Rövid bevezető" required></textarea>
+              <button type="submit">Hír mentése</button>
+            </form>
+            <div id="postList" class="admin-card-list"></div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Kurzus érdeklődők</p>
+                <h2>Feliratkozók</h2>
+              </div>
+            </div>
+            <div id="subscriberList" class="admin-card-list"></div>
+          </div>
+
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Export</p>
+                <h2>Mentett tartalmak</h2>
+              </div>
+              <button id="exportData" type="button">JSON export</button>
+            </div>
+            <textarea id="exportBox" rows="8" readonly></textarea>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/admin-panel.js" defer></script>
+  </body>
+</html>

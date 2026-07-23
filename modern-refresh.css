@@ -887,12 +887,12 @@ input[type="submit"]:hover,
   right: 18px !important;
   bottom: 82px !important;
   left: auto !important;
-  width: min(460px, calc(100vw - 36px)) !important;
-  max-width: min(460px, calc(100vw - 36px)) !important;
+  width: min(280px, calc(100vw - 28px)) !important;
+  max-width: min(280px, calc(100vw - 28px)) !important;
   overflow: visible !important;
   border-radius: 8px !important;
   background: #fff !important;
-  box-shadow: 0 22px 58px rgba(37, 24, 69, 0.28) !important;
+  box-shadow: 0 16px 38px rgba(37, 24, 69, 0.24) !important;
   transform: none !important;
   pointer-events: auto;
 }
@@ -919,6 +919,17 @@ input[type="submit"]:hover,
   display: inline-flex !important;
 }
 
+.floating-banner-wrapper.da-banner-compact .floating-banner-panel {
+  width: 148px !important;
+  max-width: 148px !important;
+}
+
+.floating-banner-wrapper.da-banner-compact .floating-banner-close {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(0.9);
+}
+
 .floating-banner-panel a {
   display: block;
   overflow: hidden;
@@ -930,6 +941,8 @@ input[type="submit"]:hover,
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
+  filter: contrast(1.08) saturate(1.06);
+  image-rendering: auto;
 }
 
 .floating-banner-close {
@@ -1020,10 +1033,15 @@ input[type="submit"]:hover,
 }
 
 .da-service-focus-names {
-  display: flex;
+  display: none !important;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 12px;
+}
+
+.home .elementor-element-abbfed0,
+.da-discipline-switcher {
+  display: none !important;
 }
 
 .da-service-focus-names span {
@@ -1432,6 +1450,314 @@ body.da-grants-page .entry-content h5.cim {
   color: var(--da-purple);
 }
 
+body.da-news-page .post-thumb,
+body.da-news-page .post-thumb-img-content,
+body.da-news-page .ast-blog-featured-section,
+.blog .post-thumb,
+.blog .post-thumb-img-content,
+.blog .ast-blog-featured-section {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background:
+    linear-gradient(135deg, rgba(64, 63, 130, 0.08), rgba(0, 176, 133, 0.08)),
+    #f7f8fb;
+}
+
+body.da-news-page .post-thumb img,
+body.da-news-page .post-thumb-img-content img,
+body.da-news-page .ast-blog-featured-section img,
+body.da-news-page article.post img.wp-post-image,
+.blog .post-thumb img,
+.blog .post-thumb-img-content img,
+.blog .ast-blog-featured-section img {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  padding: 10px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+body.da-news-page .entry-content,
+body.da-news-page .site-main {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(0, 176, 133, 0.08), transparent 30%),
+    radial-gradient(circle at 88% 12%, rgba(64, 63, 130, 0.1), transparent 34%);
+}
+
+.da-random-products {
+  width: min(1120px, calc(100% - 32px));
+  margin: 18px auto 26px;
+  padding: 22px;
+  border: 1px solid rgba(64, 63, 130, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 248, 255, 0.95)),
+    #fff;
+  box-shadow: 0 20px 54px rgba(45, 39, 95, 0.11);
+}
+
+.da-random-products-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.da-random-products-head h3 {
+  margin: 0;
+  color: var(--da-purple);
+  font-size: clamp(23px, 3vw, 34px);
+}
+
+.da-random-product-grid,
+.da-admin-post-grid,
+.da-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.da-random-product-card,
+.da-admin-post-card,
+.da-team-grid article {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(45, 39, 95, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.da-random-product-card {
+  display: grid;
+  grid-template-rows: 180px auto auto;
+  padding: 12px;
+  color: var(--da-ink);
+  text-decoration: none;
+}
+
+.da-random-product-card:hover,
+.da-admin-post-card:hover,
+.da-team-grid article:hover {
+  transform: translateY(-6px);
+  border-color: rgba(64, 63, 130, 0.3);
+  box-shadow: 0 22px 54px rgba(45, 39, 95, 0.14);
+}
+
+.da-random-product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.da-random-product-card strong {
+  margin-top: 12px;
+  color: var(--da-purple);
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.da-random-product-card span {
+  margin-top: 6px;
+  color: var(--da-green);
+  font-weight: 900;
+}
+
+.da-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto 24px;
+}
+
+.da-social-links a,
+.da-workflow-step span,
+.da-course-interest button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: var(--da-purple);
+  color: #fff !important;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.main-header-menu .da-admin-shortcut,
+.primary-nav .da-admin-shortcut {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #fff !important;
+}
+
+.da-admin-posts,
+.da-course-interest,
+.da-team-section {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto;
+}
+
+.da-admin-post-card {
+  padding: 14px;
+}
+
+.da-admin-post-card img,
+.da-team-grid article img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f7f8fb;
+}
+
+.da-admin-post-card span,
+.da-team-grid article span {
+  display: inline-flex;
+  margin-top: 12px;
+  color: var(--da-green);
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.da-admin-post-card h3,
+.da-team-grid article h3 {
+  margin: 8px 0;
+  color: var(--da-purple);
+}
+
+.da-course-interest {
+  padding: 24px;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(64, 63, 130, 0.96), rgba(45, 39, 95, 0.96)),
+    var(--da-purple);
+  color: #fff;
+  box-shadow: 0 24px 64px rgba(45, 39, 95, 0.18);
+}
+
+.da-course-interest h2,
+.da-course-interest p {
+  color: #fff;
+}
+
+.da-course-interest form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.da-course-interest input,
+body.da-quote-page .wpforms-container input,
+body.da-quote-page .wpforms-container textarea,
+body.da-quote-page .wpforms-container select {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgba(64, 63, 130, 0.18) !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  box-shadow: 0 10px 26px rgba(45, 39, 95, 0.06);
+}
+
+.da-team-section {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.22fr);
+  gap: 18px;
+  align-items: stretch;
+  padding: 22px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(0, 176, 133, 0.14), transparent 30%),
+    linear-gradient(135deg, #fff, #f7f8ff);
+}
+
+.da-team-intro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.da-team-intro h2 {
+  margin: 0 0 12px;
+  color: var(--da-purple);
+}
+
+.da-team-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.da-team-grid article {
+  padding: 12px;
+}
+
+body.da-services-page .entry-content {
+  width: min(1120px, calc(100% - 32px));
+  margin: 28px auto 48px;
+  padding: 26px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(0, 176, 133, 0.16), transparent 30%),
+    linear-gradient(135deg, var(--da-purple-deep), var(--da-purple));
+  box-shadow: 0 24px 64px rgba(45, 39, 95, 0.22);
+}
+
+body.da-services-page .entry-content,
+body.da-services-page .entry-content p,
+body.da-services-page .entry-content li,
+body.da-services-page .entry-content h1,
+body.da-services-page .entry-content h2,
+body.da-services-page .entry-content h3,
+body.da-services-page .entry-content a {
+  color: #fff;
+}
+
+body.da-quote-page .wpforms-container {
+  width: min(860px, calc(100% - 32px));
+  margin: 20px auto 54px !important;
+  padding: 24px !important;
+  border: 1px solid rgba(64, 63, 130, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 248, 255, 0.96)),
+    #fff;
+  box-shadow: 0 22px 56px rgba(45, 39, 95, 0.12);
+}
+
+body.da-quote-page .wpforms-container .wpforms-submit,
+body.da-quote-page .wpforms-container button[type="submit"] {
+  min-height: 48px;
+  border-radius: 999px !important;
+  background: var(--da-green) !important;
+  color: #fff !important;
+  font-weight: 900 !important;
+  box-shadow: 0 14px 28px rgba(0, 176, 133, 0.22);
+}
+
+.da-workflow-step {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.da-workflow-step span {
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
 @keyframes daFlowLine {
   from {
     background-position: 0 0;
@@ -1532,9 +1858,30 @@ body.da-grants-page .entry-content h5.cim {
   .da-service-modern-grid,
   .da-news-modern-grid,
   .da-grant-modern-grid,
+  .da-random-product-grid,
+  .da-admin-post-grid,
+  .da-team-grid,
   .da-workflow-steps {
     grid-template-columns: 1fr;
     width: min(100% - 24px, 720px);
+  }
+
+  .da-random-products,
+  .da-admin-posts,
+  .da-course-interest,
+  .da-team-section,
+  body.da-services-page .entry-content {
+    width: min(100% - 24px, 720px);
+  }
+
+  .da-random-products-head,
+  .da-team-section {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .da-course-interest form {
+    grid-template-columns: 1fr;
   }
 
   .da-workflow {
@@ -1584,8 +1931,13 @@ body.da-grants-page .entry-content h5.cim {
   .floating-banner-panel {
     right: 12px !important;
     bottom: 68px !important;
-    width: min(260px, calc(100vw - 24px)) !important;
-    max-width: min(260px, calc(100vw - 24px)) !important;
+    width: min(220px, calc(100vw - 24px)) !important;
+    max-width: min(220px, calc(100vw - 24px)) !important;
+  }
+
+  .floating-banner-wrapper.da-banner-compact .floating-banner-panel {
+    width: 118px !important;
+    max-width: 118px !important;
   }
 
   .floating-banner-panel.floating-banner-panel-right,
