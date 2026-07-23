@@ -137,6 +137,9 @@
       cta.textContent = "Ajánlatkérés";
       cta.setAttribute("aria-label", "Ajánlatkérés");
     });
+    document.querySelectorAll('a[href*="/ajanlatkeres"], a[href*="ajanlatkeres"]').forEach((link) => {
+      link.classList.add("da-quote-menu-link");
+    });
 
     const serviceCards = Array.from(
       document.querySelectorAll(".elementor-widget-image-box")
@@ -386,6 +389,7 @@
           ["Fizetés", "/fizetes/"],
           ["Impresszum", "/impresszum/"],
           ["Kapcsolat", "/kapcsolat/"],
+          ["Ajánlatkérés", "/ajanlatkeres/"],
           ["Pályázatok", "/palyazatok/"],
         ];
         const currentTexts = Array.from(infoMenu.querySelectorAll("a")).map((link) => link.textContent.trim());
@@ -393,12 +397,64 @@
           if (currentTexts.includes(label)) return;
           const item = document.createElement("li");
           item.className = "menu-item menu-item-type-custom da-footer-info-item";
-          item.innerHTML = `<a class="menu-link" href="${href}">${label}</a>`;
+          item.innerHTML = `<a class="menu-link${href.includes("ajanlatkeres") ? " da-quote-menu-link" : ""}" href="${href}">${label}</a>`;
           infoMenu.appendChild(item);
         });
       }
+
+      const copyright = document.querySelector(".site-footer .ast-footer-copyright");
+      if (copyright && !copyright.querySelector(".da-footer-credit")) {
+        const legacyWeb = Array.from(copyright.querySelectorAll("p")).find((paragraph) => /Web:/i.test(paragraph.textContent || ""));
+        if (legacyWeb) legacyWeb.remove();
+        const credit = document.createElement("p");
+        credit.className = "da-footer-credit";
+        credit.innerHTML = `
+          <span>Web:</span>
+          <img src="/wp-content/uploads/Weboldal-logo-sav.png" alt="D.A-Tech">
+          <span class="da-footer-slash">/</span>
+          <a href="https://www.xkreativ.hu/" target="_blank" rel="noopener">Xkreativ</a>
+        `;
+        copyright.appendChild(credit);
+      }
     };
     enhanceFooter();
+
+    const renderPaymentPage = () => {
+      if (!path.includes("/fizetes/") || document.querySelector(".da-payment-info")) return;
+      const entry = document.querySelector(".entry-content");
+      if (!entry) return;
+      entry.innerHTML = `
+        <section class="da-payment-info da-reveal is-visible">
+          <p class="da-section-kicker">Fizetési információk</p>
+          <h2>Átlátható, előre egyeztetett fizetési folyamat</h2>
+          <p>A Dent-Art-Techniknél a fizetés módja a megrendelés típusához, a szolgáltatás jellegéhez és az előzetesen egyeztetett feltételekhez igazodik. Célunk, hogy a rendelés leadása után a partner pontosan tudja, mikor és milyen módon történik a kiegyenlítés.</p>
+          <div class="da-payment-grid">
+            <article>
+              <span>01</span>
+              <h3>Előzetes egyeztetés</h3>
+              <p>Egyedi fogtechnikai munkák és szolgáltatások esetén a fizetési feltételeket az ajánlatban vagy a visszaigazolásban rögzítjük.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Banki átutalás</h3>
+              <p>Céges partnereink számára a leggyakoribb fizetési mód a számla alapján történő banki átutalás.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Webshop rendelés</h3>
+              <p>Termékvásárlásnál a rendelési folyamatban megjelenő fizetési és szállítási feltételek az irányadók.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Kérdés esetén</h3>
+              <p>Ha bizonytalan a fizetési módban vagy számlázási adatokban, kollégáink segítenek a rendelés véglegesítése előtt.</p>
+            </article>
+          </div>
+          <a class="da-payment-cta" href="/kapcsolat/">Kapcsolatfelvétel</a>
+        </section>
+      `;
+    };
+    renderPaymentPage();
 
     const renderAdminShortcut = () => {
       const nav = document.querySelector(".main-header-menu, .primary-nav");
