@@ -352,19 +352,53 @@
     };
     ensureServicesSubmenu();
 
-    const renderSocialLinks = () => {
-      if (document.querySelector(".da-social-links")) return;
-      const social = document.createElement("nav");
-      social.className = "da-social-links";
-      social.setAttribute("aria-label", "Dent-Art social");
-      social.innerHTML = `
-        <a href="https://www.instagram.com/dentarttechnik/" target="_blank" rel="noopener">Instagram</a>
-        <a href="https://www.facebook.com/profile.php?id=61583350573056" target="_blank" rel="noopener">Facebook</a>
+    const enhanceFooter = () => {
+      document.querySelectorAll(".da-social-links").forEach((node) => node.remove());
+
+      const socialMarkup = `
+        <span>Kövessen minket:</span>
+        <a class="da-footer-social-icon" href="https://www.facebook.com/profile.php?id=61583350573056" target="_blank" rel="noopener" aria-label="Facebook">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i><span class="da-visually-hidden">Facebook</span>
+        </a>
+        <a class="da-footer-social-icon" href="https://www.instagram.com/dentarttechnik/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fab fa-instagram" aria-hidden="true"></i><span class="da-visually-hidden">Instagram</span>
+        </a>
+        <a class="da-footer-social-icon" href="https://www.youtube.com/@Dentarttechnik92" target="_blank" rel="noopener" aria-label="YouTube">
+          <i class="fab fa-youtube" aria-hidden="true"></i><span class="da-visually-hidden">YouTube</span>
+        </a>
       `;
-      const footer = document.querySelector(".site-footer") || document.body;
-      footer.appendChild(social);
+
+      const followParagraph = Array.from(document.querySelectorAll(".site-footer p")).find((paragraph) => (
+        /kövess|kövessen/i.test(paragraph.textContent || "")
+      ));
+      if (followParagraph) {
+        followParagraph.classList.add("da-footer-social-row");
+        followParagraph.innerHTML = socialMarkup;
+      }
+
+      const infoMenu = document.querySelector(".site-footer .menu-info-container .menu, .site-footer nav[aria-label='Információk'] .menu");
+      if (infoMenu) {
+        const infoItems = [
+          ["Általános szerződési feltételek", "/altalanos-szerzodesi-feltetelek/"],
+          ["Adatkezelési tájékoztató", "/adatkezeles/"],
+          ["Cookie tájékoztató", "/cookie-tajekoztato/"],
+          ["Szállítás", "/szallitas/"],
+          ["Fizetés", "/fizetes/"],
+          ["Impresszum", "/impresszum/"],
+          ["Kapcsolat", "/kapcsolat/"],
+          ["Pályázatok", "/palyazatok/"],
+        ];
+        const currentTexts = Array.from(infoMenu.querySelectorAll("a")).map((link) => link.textContent.trim());
+        infoItems.forEach(([label, href]) => {
+          if (currentTexts.includes(label)) return;
+          const item = document.createElement("li");
+          item.className = "menu-item menu-item-type-custom da-footer-info-item";
+          item.innerHTML = `<a class="menu-link" href="${href}">${label}</a>`;
+          infoMenu.appendChild(item);
+        });
+      }
     };
-    renderSocialLinks();
+    enhanceFooter();
 
     const renderAdminShortcut = () => {
       const nav = document.querySelector(".main-header-menu, .primary-nav");
