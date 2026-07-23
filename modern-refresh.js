@@ -133,6 +133,10 @@
       cta.textContent = "Ajánlatkérés";
       document.body.appendChild(cta);
     }
+    document.querySelectorAll(".da-floating-cta").forEach((cta) => {
+      cta.textContent = "Ajánlatkérés";
+      cta.setAttribute("aria-label", "Ajánlatkérés");
+    });
 
     const serviceCards = Array.from(
       document.querySelectorAll(".elementor-widget-image-box")
