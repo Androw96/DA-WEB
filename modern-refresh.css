@@ -2095,6 +2095,16 @@ body.da-quote-page .wpforms-container button[type="submit"] {
   box-shadow: 0 14px 28px rgba(0, 176, 133, 0.22);
 }
 
+body.da-quote-page .da-form-success {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 176, 133, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 176, 133, 0.1);
+  color: #08745c;
+  font-weight: 800;
+}
+
 .da-workflow-step {
   color: #fff !important;
   text-decoration: none !important;

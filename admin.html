@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dent-Art admin</title>
-    <link rel="stylesheet" href="/admin-panel.css?v=3">
+    <link rel="stylesheet" href="/admin-panel.css?v=4">
   </head>
   <body>
     <header class="admin-topbar">
@@ -34,17 +34,25 @@
       <section class="admin-hero">
         <p>Tartalomkezelő</p>
         <h1>Oldalszövegek és hírek szerkesztése</h1>
-        <span>A statikus preview-ban a mentések ebben a böngészőben élnek. Az export gombbal vihetők tovább éles rendszerbe.</span>
+        <span>Egyszerű szerkesztőfelület: oldalak, hírek, ajánlatkérések és kurzus érdeklődők egy helyen.</span>
+        <nav class="admin-section-nav" aria-label="Admin aloldalak">
+          <a href="#adminPages">Oldalak</a>
+          <a href="#adminNews">Hírek</a>
+          <a id="quoteNavLink" href="#adminQuotes">Ajánlatkérések <span id="quoteNewBadge" class="admin-new-badge" hidden>Új</span></a>
+          <a href="#adminCourses">Kurzus érdeklődők</a>
+        </nav>
       </section>
 
       <section class="admin-layout">
         <aside class="admin-sidebar">
           <h2>Oldalak</h2>
+          <label class="admin-search-label" for="pageSearch">Oldal keresése</label>
+          <input id="pageSearch" class="admin-page-search" type="search" placeholder="Írd be az oldal nevét">
           <div id="pageList" class="admin-page-list"></div>
         </aside>
 
         <section class="admin-editor">
-          <div class="admin-panel">
+          <div id="adminPages" class="admin-panel">
             <div class="admin-panel-head">
               <div>
                 <p>Oldalszöveg</p>
@@ -59,14 +67,14 @@
             <div class="admin-text-editor">
               <div class="admin-text-editor-head">
                 <h3>Szerkeszthető szövegek</h3>
-                <span>HTML-kód helyett a weboldalon látható szövegrészeket módosítod.</span>
+                <span>Csak a látogatóknak szóló szövegek jelennek meg, technikai részek nélkül.</span>
               </div>
               <div id="textFieldList" class="admin-text-field-list"></div>
             </div>
             <div class="admin-preview-panel">
               <div class="admin-text-editor-head">
-                <h3>Előnézet</h3>
-                <span>Mentés előtt itt látod a szöveges tartalom összeállítását.</span>
+                <h3>Gyors ellenőrzés</h3>
+                <span>Mentés előtt itt átfutható, hogyan áll össze a szöveg.</span>
               </div>
               <div id="pagePreview" class="admin-page-preview"></div>
             </div>
@@ -76,24 +84,38 @@
             </div>
           </div>
 
-          <div class="admin-panel">
+          <div id="adminNews" class="admin-panel">
             <div class="admin-panel-head">
               <div>
                 <p>Blog / hírek</p>
-                <h2>Új poszt hozzáadása</h2>
+                <h2 id="postEditorTitle">Hír hozzáadása</h2>
               </div>
             </div>
             <form id="postForm" class="admin-form">
+              <input name="id" type="hidden">
               <input name="title" type="text" placeholder="Hír címe" required>
               <input name="date" type="date" required>
               <input name="image" type="url" placeholder="Kép URL">
               <textarea name="excerpt" rows="4" placeholder="Rövid bevezető" required></textarea>
-              <button type="submit">Hír mentése</button>
+              <div class="admin-form-actions">
+                <button id="postSubmitButton" type="submit">Hír mentése</button>
+                <button id="cancelPostEdit" class="admin-secondary-button" type="button" hidden>Mégsem</button>
+              </div>
             </form>
             <div id="postList" class="admin-card-list"></div>
           </div>
 
-          <div class="admin-panel">
+          <div id="adminQuotes" class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Ajánlatkérések</p>
+                <h2>Beérkezett ajánlatkérések <span id="quoteNewBadgeInline" class="admin-new-badge" hidden>Új</span></h2>
+              </div>
+            </div>
+            <div id="quoteRequestList" class="admin-card-list"></div>
+          </div>
+
+          <div id="adminCourses" class="admin-panel">
             <div class="admin-panel-head">
               <div>
                 <p>Kurzus érdeklődők</p>
@@ -103,20 +125,15 @@
             <div id="subscriberList" class="admin-card-list"></div>
           </div>
 
-          <div class="admin-panel">
-            <div class="admin-panel-head">
-              <div>
-                <p>Export</p>
-                <h2>Mentett tartalmak</h2>
-              </div>
-              <button id="exportData" type="button">JSON export</button>
-            </div>
-            <textarea id="exportBox" rows="8" readonly></textarea>
-          </div>
+          <details class="admin-panel admin-advanced">
+            <summary>Technikai mentés szakembernek</summary>
+            <button id="exportData" type="button">Mentési csomag megjelenítése</button>
+            <textarea id="exportBox" rows="8" readonly hidden></textarea>
+          </details>
         </section>
       </section>
     </main>
 
-    <script src="/admin-panel.js?v=3" defer></script>
+    <script src="/admin-panel.js?v=4" defer></script>
   </body>
 </html>

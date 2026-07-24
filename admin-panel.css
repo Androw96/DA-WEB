@@ -158,6 +158,42 @@ body {
   color: var(--muted);
 }
 
+.admin-section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.admin-section-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(64, 63, 130, 0.08);
+  color: var(--purple);
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.admin-new-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 22px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+}
+
 .admin-layout {
   display: grid;
   grid-template-columns: 290px minmax(0, 1fr);
@@ -185,6 +221,20 @@ body {
   font-size: 18px;
 }
 
+.admin-search-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.admin-page-search {
+  margin-bottom: 12px;
+  background: #fff;
+}
+
 .admin-page-list {
   display: grid;
   gap: 8px;
@@ -196,7 +246,9 @@ body {
 .admin-actions button,
 .admin-actions a,
 .admin-panel-head button,
-.admin-form button {
+.admin-form button,
+.admin-card-actions button,
+.admin-advanced button {
   min-height: 42px;
   border: 0;
   border-radius: 999px;
@@ -370,16 +422,26 @@ textarea {
 .admin-actions button,
 .admin-actions a,
 .admin-panel-head button,
-.admin-form button {
+.admin-form button,
+.admin-card-actions button,
+.admin-advanced button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 16px;
 }
 
-.admin-panel-head button {
+.admin-panel-head button,
+.admin-secondary-button {
   background: rgba(64, 63, 130, 0.1);
   color: var(--purple);
+}
+
+.admin-form-actions,
+.admin-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .admin-card-list {
@@ -404,6 +466,71 @@ textarea {
   font-size: 13px;
 }
 
+.admin-news-card {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 14px;
+}
+
+.admin-news-card img {
+  width: 112px;
+  height: 92px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.admin-news-card p,
+.admin-quote-card p {
+  margin: 8px 0 12px;
+}
+
+.admin-quote-card {
+  display: grid;
+  gap: 12px;
+}
+
+.admin-quote-card.is-new {
+  border-color: rgba(0, 176, 133, 0.44);
+  box-shadow: inset 4px 0 0 var(--green);
+}
+
+.admin-quote-card dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.admin-quote-card dl div {
+  display: grid;
+  gap: 2px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.admin-quote-card dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.admin-quote-card dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+.admin-advanced {
+  gap: 12px;
+}
+
+.admin-advanced summary {
+  color: var(--purple);
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
 @media (max-width: 860px) {
   .admin-layout {
     grid-template-columns: 1fr;
@@ -417,5 +544,14 @@ textarea {
     align-items: flex-start;
     flex-direction: column;
     padding: 16px;
+  }
+
+  .admin-news-card {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-news-card img {
+    width: 100%;
+    height: 180px;
   }
 }

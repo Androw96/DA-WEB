@@ -553,6 +553,59 @@
     };
     renderCourseInterest();
 
+    const captureQuoteRequests = () => {
+      if (pageType !== "quote") return;
+      const form = document.querySelector("#wpforms-form-27, .wpforms-form, .entry-content form");
+      if (!form || form.dataset.daQuoteCapture === "true") return;
+      form.dataset.daQuoteCapture = "true";
+
+      const getFieldLabel = (field) => {
+        if (field.id) {
+          const label = document.querySelector(`label[for="${field.id}"]`);
+          if (label) return label.textContent.trim();
+        }
+        return field.getAttribute("aria-label") || field.placeholder || field.name || "Adat";
+      };
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const fields = Array.from(form.querySelectorAll("input, textarea, select"))
+          .filter((field) => !["hidden", "submit", "button"].includes(field.type))
+          .map((field) => {
+            const value = field.type === "file"
+              ? Array.from(field.files || []).map((file) => file.name).join(", ")
+              : field.value;
+            return {
+              label: getFieldLabel(field).replace(/\*/g, "").trim(),
+              value: String(value || "").trim(),
+            };
+          })
+          .filter((field) => field.value);
+
+        const requests = getStoredJson("dentart_quote_requests", []);
+        const nameField = fields.find((field) => /név|name/i.test(field.label));
+        requests.unshift({
+          id: Date.now(),
+          status: "new",
+          name: nameField?.value || "Új ajánlatkérés",
+          fields,
+          createdAt: new Date().toISOString(),
+          source: "Ajánlatkérés oldal",
+        });
+        localStorage.setItem("dentart_quote_requests", JSON.stringify(requests));
+
+        let notice = form.querySelector(".da-form-success");
+        if (!notice) {
+          notice = document.createElement("p");
+          notice.className = "da-form-success";
+          form.appendChild(notice);
+        }
+        notice.textContent = "Köszönjük, az ajánlatkérés mentésre került.";
+        form.reset();
+      });
+    };
+    captureQuoteRequests();
+
     const renderAboutTeam = () => {
       if (!path.includes("/rolunk/") || document.querySelector(".da-team-section")) return;
       const team = document.createElement("section");
