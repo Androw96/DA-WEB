@@ -1885,12 +1885,6 @@ body.da-news-page .site-main {
   text-decoration: none;
 }
 
-.main-header-menu .da-admin-shortcut,
-.primary-nav .da-admin-shortcut {
-  background: rgba(255, 255, 255, 0.12) !important;
-  color: #fff !important;
-}
-
 .da-admin-posts,
 .da-course-interest,
 .da-team-section {

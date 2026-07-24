@@ -1,4 +1,7 @@
 (function () {
+  const ADMIN_ACCESS_KEY = "dentart-admin-2026";
+  const ADMIN_AUTH_STORAGE_KEY = "dentart_admin_authenticated";
+
   const storage = {
     get(key, fallback) {
       try {
@@ -29,10 +32,42 @@
   const subscriberList = document.querySelector("#subscriberList");
   const exportData = document.querySelector("#exportData");
   const exportBox = document.querySelector("#exportBox");
+  const adminGate = document.querySelector("#adminGate");
+  const adminShell = document.querySelector("#adminShell");
+  const adminLoginForm = document.querySelector("#adminLoginForm");
+  const adminAccessKey = document.querySelector("#adminAccessKey");
+  const adminLoginError = document.querySelector("#adminLoginError");
 
   const getOverrides = () => storage.get("dentart_page_overrides", {});
   const getPosts = () => storage.get("dentart_blog_posts", []);
   const getSubscribers = () => storage.get("dentart_course_subscribers", []);
+
+  const showAdmin = () => {
+    if (adminGate) adminGate.hidden = true;
+    if (adminShell) adminShell.hidden = false;
+  };
+
+  const initAdmin = () => {
+    fetch("/data/pages.json")
+      .then((response) => response.json())
+      .then((pages) => {
+        state.pages = [
+          {
+            title: "Főoldal",
+            slug: "fooldal",
+            contentHtml: "<p>A főoldal WordPress/Elementor exportból épül, itt rövid bevezető szövegeket érdemes tárolni.</p>",
+          },
+          ...pages.filter((page) => page.status === "publish"),
+        ];
+        selectPage(state.pages[0].slug);
+        renderPosts();
+        renderSubscribers();
+        renderExport();
+      })
+      .catch(() => {
+        pageList.innerHTML = '<div class="admin-card"><span>Nem sikerült betölteni az oldalakat.</span></div>';
+      });
+  };
 
   const pageUrl = (page) => {
     if (!page || page.slug === "fooldal") return "/";
@@ -148,23 +183,22 @@
     exportBox.select();
   });
 
-  fetch("/data/pages.json")
-    .then((response) => response.json())
-    .then((pages) => {
-      state.pages = [
-        {
-          title: "Főoldal",
-          slug: "fooldal",
-          contentHtml: "<p>A főoldal WordPress/Elementor exportból épül, itt rövid bevezető szövegeket érdemes tárolni.</p>",
-        },
-        ...pages.filter((page) => page.status === "publish"),
-      ];
-      selectPage(state.pages[0].slug);
-      renderPosts();
-      renderSubscribers();
-      renderExport();
-    })
-    .catch(() => {
-      pageList.innerHTML = '<div class="admin-card"><span>Nem sikerült betölteni az oldalakat.</span></div>';
-    });
+  adminLoginForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (adminAccessKey.value.trim() !== ADMIN_ACCESS_KEY) {
+      adminLoginError.textContent = "Hibás kulcs. Próbáld újra.";
+      adminAccessKey.select();
+      return;
+    }
+    sessionStorage.setItem(ADMIN_AUTH_STORAGE_KEY, "true");
+    showAdmin();
+    initAdmin();
+  });
+
+  if (sessionStorage.getItem(ADMIN_AUTH_STORAGE_KEY) === "true") {
+    showAdmin();
+    initAdmin();
+  } else {
+    adminAccessKey?.focus();
+  }
 })();

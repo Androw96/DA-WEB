@@ -456,24 +456,6 @@
     };
     renderPaymentPage();
 
-    const renderAdminShortcut = () => {
-      const nav = document.querySelector(".main-header-menu, .primary-nav");
-      if (!nav || nav.querySelector('a[href="/admin.html"]')) return;
-      const link = document.createElement("a");
-      link.className = "menu-link da-admin-shortcut";
-      link.href = "/admin.html";
-      link.textContent = "Admin";
-      const menuItem = document.createElement("li");
-      menuItem.className = "menu-item menu-item-type-custom";
-      menuItem.appendChild(link);
-      if (nav.tagName.toLowerCase() === "ul") {
-        nav.appendChild(menuItem);
-      } else {
-        nav.appendChild(link);
-      }
-    };
-    renderAdminShortcut();
-
     const renderAdminPosts = () => {
       if (pageType !== "news" || document.querySelector(".da-admin-posts")) return;
       const posts = getStoredJson("dentart_blog_posts", []);

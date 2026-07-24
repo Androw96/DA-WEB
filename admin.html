@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dent-Art admin</title>
-    <link rel="stylesheet" href="/admin-panel.css">
+    <link rel="stylesheet" href="/admin-panel.css?v=2">
   </head>
   <body>
     <header class="admin-topbar">
@@ -16,7 +16,21 @@
       </nav>
     </header>
 
-    <main class="admin-shell">
+    <section id="adminGate" class="admin-gate" aria-labelledby="adminGateTitle">
+      <form id="adminLoginForm" class="admin-gate-card">
+        <p>Védett admin felület</p>
+        <h1 id="adminGateTitle">Belépési kulcs szükséges</h1>
+        <span>Az admin oldal csak közvetlen linken és kulccsal érhető el.</span>
+        <label>
+          Admin kulcs
+          <input id="adminAccessKey" type="password" autocomplete="current-password" placeholder="Írd be a kulcsot" required>
+        </label>
+        <button type="submit">Belépés</button>
+        <small id="adminLoginError" role="status" aria-live="polite"></small>
+      </form>
+    </section>
+
+    <main id="adminShell" class="admin-shell" hidden>
       <section class="admin-hero">
         <p>Tartalomkezelő</p>
         <h1>Oldalszövegek és hírek szerkesztése</h1>
@@ -93,6 +107,6 @@
       </section>
     </main>
 
-    <script src="/admin-panel.js" defer></script>
+    <script src="/admin-panel.js?v=2" defer></script>
   </body>
 </html>
