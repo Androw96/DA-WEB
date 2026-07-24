@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dent-Art admin</title>
-    <link rel="stylesheet" href="/admin-panel.css?v=4">
+    <link rel="stylesheet" href="/admin-panel.css?v=5">
   </head>
   <body>
     <header class="admin-topbar">
@@ -97,6 +97,7 @@
               <input name="date" type="date" required>
               <input name="image" type="url" placeholder="Kép URL">
               <textarea name="excerpt" rows="4" placeholder="Rövid bevezető" required></textarea>
+              <textarea name="content" rows="7" placeholder="Hír teljes szövege"></textarea>
               <div class="admin-form-actions">
                 <button id="postSubmitButton" type="submit">Hír mentése</button>
                 <button id="cancelPostEdit" class="admin-secondary-button" type="button" hidden>Mégsem</button>
@@ -134,6 +135,6 @@
       </section>
     </main>
 
-    <script src="/admin-panel.js?v=4" defer></script>
+    <script src="/admin-panel.js?v=5" defer></script>
   </body>
 </html>

@@ -312,6 +312,19 @@
       return `${new Intl.NumberFormat("hu-HU").format(number)} Ft`;
     };
 
+    const escapeHtml = (value) => String(value || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+    const plainToHtml = (value) => String(value || "")
+      .split(/\n{2,}/)
+      .map((paragraph) => paragraph.trim())
+      .filter(Boolean)
+      .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
+      .join("\n");
+
     const pageSlug = path.split("/").filter(Boolean).pop() || "fooldal";
     const pageOverrides = getStoredJson("dentart_page_overrides", {});
     const override = pageOverrides[pageSlug] || (isHome && pageOverrides.fooldal);
@@ -456,9 +469,50 @@
     };
     renderPaymentPage();
 
+    const applyPostOverrides = async () => {
+      const savedPosts = getStoredJson("dentart_blog_posts", []);
+      const wordpressOverrides = savedPosts.filter((post) => post.source === "wordpress");
+      if (!wordpressOverrides.length) return;
+
+      if (pageType === "news") {
+        wordpressOverrides.forEach((post) => {
+          const article = document.querySelector(`#post-${post.originalId}`);
+          if (!article) return;
+          if (post.deletedAt) {
+            article.remove();
+            return;
+          }
+          const titleLink = article.querySelector(".entry-title a, h2 a, h3 a");
+          const image = article.querySelector("img.wp-post-image, .post-thumb img");
+          if (titleLink && post.title) titleLink.textContent = post.title;
+          if (image && post.image) {
+            image.src = post.image;
+            image.removeAttribute("srcset");
+            image.alt = post.title || "";
+          }
+        });
+        return;
+      }
+
+      try {
+        const response = await fetch("/data/posts.json");
+        const originalPosts = await response.json();
+        const currentPost = originalPosts.find((post) => post.slug === pageSlug);
+        const overridePost = currentPost && wordpressOverrides.find((post) => Number(post.originalId) === Number(currentPost.id));
+        if (!overridePost || overridePost.deletedAt) return;
+        const title = document.querySelector(".entry-title");
+        const content = document.querySelector(".entry-content");
+        if (title && overridePost.title) title.textContent = overridePost.title;
+        if (content) content.innerHTML = overridePost.contentHtml || plainToHtml(overridePost.content);
+      } catch (error) {
+        console.warn("Dent-Art post override failed", error);
+      }
+    };
+    applyPostOverrides();
+
     const renderAdminPosts = () => {
       if (pageType !== "news" || document.querySelector(".da-admin-posts")) return;
-      const posts = getStoredJson("dentart_blog_posts", []);
+      const posts = getStoredJson("dentart_blog_posts", []).filter((post) => post.source !== "wordpress" && !post.deletedAt);
       if (!posts.length) return;
       const grid = document.createElement("section");
       grid.className = "da-admin-posts da-reveal is-visible";
@@ -468,10 +522,10 @@
         <div class="da-admin-post-grid">
           ${posts.map((post) => `
             <article class="da-admin-post-card">
-              ${post.image ? `<img src="${post.image}" alt="">` : ""}
-              <span>${post.date || ""}</span>
-              <h3>${post.title || "Új hír"}</h3>
-              <p>${post.excerpt || ""}</p>
+              ${post.image ? `<img src="${escapeHtml(post.image)}" alt="">` : ""}
+              <span>${escapeHtml(post.date || "")}</span>
+              <h3>${escapeHtml(post.title || "Új hír")}</h3>
+              <p>${escapeHtml(post.excerpt || post.content || "")}</p>
             </article>
           `).join("")}
         </div>

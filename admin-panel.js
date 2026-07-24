@@ -17,6 +17,7 @@
 
   const state = {
     pages: [],
+    originalPosts: [],
     selected: null,
     currentHtml: "",
     pageSearch: "",
@@ -60,6 +61,70 @@
     .replace(/"/g, "&quot;");
 
   const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
+
+  const plainToHtml = (value) => String(value || "")
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
+    .join("\n");
+
+  const getPostImage = (post) => {
+    if (post.image) return post.image;
+    if (post.featuredMedia?.localUrl) return `/${post.featuredMedia.localUrl}`;
+    if (post.featuredMedia?.attachedFile) return `/wp-content/uploads/${post.featuredMedia.attachedFile}`;
+    if (post.featuredMedia?.url) return post.featuredMedia.url;
+    return "";
+  };
+
+  const postIntro = (post) => normalizeText(post.excerpt || post.contentText || post.content || "").slice(0, 220);
+
+  const normalizeImportedPost = (post) => ({
+    id: `wp-${post.id}`,
+    originalId: post.id,
+    source: "wordpress",
+    title: post.title || "Hír",
+    slug: post.slug || "",
+    date: String(post.postDate || "").slice(0, 10),
+    image: getPostImage(post),
+    excerpt: postIntro(post),
+    content: normalizeText(post.contentText || ""),
+    contentHtml: post.contentHtml || "",
+    createdAt: post.publishedAt || post.postDate || "",
+  });
+
+  const getEditablePosts = () => {
+    const saved = getPosts();
+    const savedById = new Map(saved.map((post) => [String(post.id), post]));
+    const originals = state.originalPosts
+      .filter((post) => post.status === "publish")
+      .map(normalizeImportedPost)
+      .map((post) => savedById.get(String(post.id)) || post)
+      .filter((post) => !post.deletedAt);
+    const custom = saved.filter((post) => !post.source || post.source !== "wordpress").filter((post) => !post.deletedAt);
+    return [...custom, ...originals].sort((a, b) => String(b.date || b.createdAt || "").localeCompare(String(a.date || a.createdAt || "")));
+  };
+
+  const saveEditablePost = (data) => {
+    const saved = getPosts();
+    const normalized = {
+      ...data,
+      id: data.id || Date.now(),
+      excerpt: data.excerpt || normalizeText(data.content).slice(0, 220),
+      contentHtml: data.content ? plainToHtml(data.content) : data.contentHtml || "",
+      updatedAt: new Date().toISOString(),
+    };
+    const index = saved.findIndex((post) => String(post.id) === String(normalized.id));
+    if (index >= 0) {
+      saved[index] = { ...saved[index], ...normalized };
+    } else {
+      saved.unshift({
+        ...normalized,
+        createdAt: new Date().toISOString(),
+      });
+    }
+    storage.set("dentart_blog_posts", saved);
+  };
 
   const isCodeLikeText = (value) => {
     const text = normalizeText(value);
@@ -171,10 +236,13 @@
   };
 
   const initAdmin = () => {
-    fetch("/data/pages.json")
-      .then((response) => response.json())
-      .then((pages) => {
+    Promise.all([
+      fetch("/data/pages.json").then((response) => response.json()),
+      fetch("/data/posts.json").then((response) => response.json()).catch(() => []),
+    ])
+      .then(([pages, posts]) => {
         state.pages = pages.filter((page) => page.status === "publish");
+        state.originalPosts = posts;
         selectPage(state.pages.find((page) => page.slug === "fooldal")?.slug || state.pages[0]?.slug);
         renderPosts();
         renderQuoteRequests();
@@ -238,13 +306,13 @@
   };
 
   const renderPosts = () => {
-    const posts = getPosts();
+    const posts = getEditablePosts();
     postList.innerHTML = posts.length ? posts.map((post) => `
       <article class="admin-card admin-news-card">
         ${post.image ? `<img src="${escapeHtml(post.image)}" alt="">` : ""}
         <div>
           <strong>${escapeHtml(post.title || "Új hír")}</strong>
-          <span>${escapeHtml(post.date || "")}</span>
+          <span>${post.source === "wordpress" ? "Eredeti hír" : "Admin hír"} · ${escapeHtml(post.date || "")}</span>
           <p>${escapeHtml(post.excerpt || "")}</p>
           <div class="admin-card-actions">
             <button type="button" data-edit-post="${post.id}">Szerkesztés</button>
@@ -359,24 +427,12 @@
   postForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = Object.fromEntries(new FormData(postForm).entries());
-    const posts = getPosts();
-    if (data.id) {
-      const index = posts.findIndex((post) => String(post.id) === String(data.id));
-      if (index >= 0) {
-        posts[index] = {
-          ...posts[index],
-          ...data,
-          updatedAt: new Date().toISOString(),
-        };
-      }
-    } else {
-      posts.unshift({
-        ...data,
-        id: Date.now(),
-        createdAt: new Date().toISOString(),
-      });
-    }
-    storage.set("dentart_blog_posts", posts);
+    const existing = data.id ? getEditablePosts().find((post) => String(post.id) === String(data.id)) : null;
+    saveEditablePost({
+      ...existing,
+      ...data,
+      source: existing?.source || "admin",
+    });
     resetPostEditor();
     renderPosts();
     renderExport();
@@ -385,7 +441,7 @@
   postList.addEventListener("click", (event) => {
     const editButton = event.target.closest("[data-edit-post]");
     const deleteButton = event.target.closest("[data-delete-post]");
-    const posts = getPosts();
+    const posts = getEditablePosts();
     if (editButton) {
       const post = posts.find((item) => String(item.id) === String(editButton.dataset.editPost));
       if (!post) return;
@@ -394,13 +450,19 @@
       postForm.elements.date.value = post.date || "";
       postForm.elements.image.value = post.image || "";
       postForm.elements.excerpt.value = post.excerpt || "";
+      postForm.elements.content.value = post.content || "";
       postEditorTitle.textContent = "Hír szerkesztése";
       postSubmitButton.textContent = "Módosítás mentése";
       cancelPostEdit.hidden = false;
       postForm.scrollIntoView({ behavior: "smooth", block: "center" });
     }
     if (deleteButton) {
-      storage.set("dentart_blog_posts", posts.filter((item) => String(item.id) !== String(deleteButton.dataset.deletePost)));
+      const post = posts.find((item) => String(item.id) === String(deleteButton.dataset.deletePost));
+      if (post?.source === "wordpress") {
+        saveEditablePost({ ...post, deletedAt: new Date().toISOString() });
+      } else {
+        storage.set("dentart_blog_posts", getPosts().filter((item) => String(item.id) !== String(deleteButton.dataset.deletePost)));
+      }
       resetPostEditor();
       renderPosts();
       renderExport();
