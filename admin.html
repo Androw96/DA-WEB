@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dent-Art admin</title>
-    <link rel="stylesheet" href="/admin-panel.css?v=2">
+    <link rel="stylesheet" href="/admin-panel.css?v=3">
   </head>
   <body>
     <header class="admin-topbar">
@@ -56,10 +56,20 @@
               Cím
               <input id="pageTitle" type="text" placeholder="Oldal címe">
             </label>
-            <label>
-              Tartalom HTML
-              <textarea id="pageContent" rows="16" placeholder="<p>Szöveg...</p>"></textarea>
-            </label>
+            <div class="admin-text-editor">
+              <div class="admin-text-editor-head">
+                <h3>Szerkeszthető szövegek</h3>
+                <span>HTML-kód helyett a weboldalon látható szövegrészeket módosítod.</span>
+              </div>
+              <div id="textFieldList" class="admin-text-field-list"></div>
+            </div>
+            <div class="admin-preview-panel">
+              <div class="admin-text-editor-head">
+                <h3>Előnézet</h3>
+                <span>Mentés előtt itt látod a szöveges tartalom összeállítását.</span>
+              </div>
+              <div id="pagePreview" class="admin-page-preview"></div>
+            </div>
             <div class="admin-actions">
               <button id="savePage" type="button">Oldal mentése</button>
               <a id="openPage" href="/" target="_blank" rel="noopener">Megnyitás</a>
@@ -107,6 +117,6 @@
       </section>
     </main>
 
-    <script src="/admin-panel.js?v=2" defer></script>
+    <script src="/admin-panel.js?v=3" defer></script>
   </body>
 </html>
