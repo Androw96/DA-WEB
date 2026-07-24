@@ -24,6 +24,9 @@
     if (pageType) {
       document.body.classList.add(`da-${pageType}-page`);
     }
+    if (isHome) {
+      document.body.classList.add("da-home-page");
+    }
 
     const progress = document.createElement("div");
     progress.className = "da-scroll-progress";
@@ -474,9 +477,13 @@
       const wordpressOverrides = savedPosts.filter((post) => post.source === "wordpress");
       if (!wordpressOverrides.length) return;
 
-      if (pageType === "news") {
+      if (pageType === "news" || isHome) {
         wordpressOverrides.forEach((post) => {
-          const article = document.querySelector(`#post-${post.originalId}`);
+          const article = pageType === "news"
+            ? document.querySelector(`#post-${post.originalId}`)
+            : Array.from(document.querySelectorAll(".blog-special-grid .bsg-post")).find((card) => (
+              card.querySelector(`a[href*="${post.slug}"]`)
+            ));
           if (!article) return;
           if (post.deletedAt) {
             article.remove();
@@ -484,7 +491,9 @@
           }
           const titleLink = article.querySelector(".entry-title a, h2 a, h3 a");
           const image = article.querySelector("img.wp-post-image, .post-thumb img");
+          const excerpt = article.querySelector(".bsg-excerpt");
           if (titleLink && post.title) titleLink.textContent = post.title;
+          if (excerpt && (post.excerpt || post.content)) excerpt.textContent = post.excerpt || post.content.slice(0, 180);
           if (image && post.image) {
             image.src = post.image;
             image.removeAttribute("srcset");
