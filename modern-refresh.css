@@ -1833,6 +1833,7 @@ body.da-news-page .ast-blog-featured-section,
   overflow: hidden;
   border-radius: 8px 8px 0 0;
   background:
+    radial-gradient(circle at 18% 12%, rgba(0, 176, 133, 0.12), transparent 32%),
     linear-gradient(135deg, rgba(64, 63, 130, 0.08), rgba(0, 176, 133, 0.08)),
     #f7f8fb;
 }
@@ -1850,16 +1851,16 @@ body.da-news-page article.post img.wp-post-image,
   width: 100% !important;
   height: 100% !important;
   max-height: none !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   object-position: center !important;
-  padding: 0;
+  padding: 12px;
   border-radius: 0;
   background: transparent;
   transition: transform 360ms ease;
 }
 
 body.da-news-page .ast-article-post:hover img.wp-post-image {
-  transform: scale(1.055);
+  transform: scale(1.025);
 }
 
 body.da-news-page .ast-row article.post:first-child .ast-blog-featured-section,
@@ -1881,7 +1882,7 @@ body.da-news-page .ast-row article.post:first-child img.wp-post-image {
   width: 100% !important;
   height: 100% !important;
   min-height: 100% !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
 }
 
 body.da-news-page .entry-title,
