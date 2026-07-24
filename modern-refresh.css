@@ -1694,16 +1694,76 @@ body.da-lab-page .entry-content a {
   font-size: 14px;
 }
 
+body.da-news-page .site-content {
+  background:
+    radial-gradient(circle at 8% 6%, rgba(0, 176, 133, 0.12), transparent 28%),
+    radial-gradient(circle at 90% 4%, rgba(64, 63, 130, 0.16), transparent 32%),
+    linear-gradient(180deg, #fff 0%, #f7f8fb 54%, #fff 100%);
+}
+
+body.da-news-page .site-content > .ast-container {
+  display: block !important;
+  width: min(1220px, calc(100% - 32px));
+  max-width: none;
+  padding: 54px 0 74px;
+}
+
+body.da-news-page .content-area.primary {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.da-news-page #secondary {
+  display: none !important;
+}
+
+body.da-news-page .site-main {
+  position: relative;
+  background: transparent;
+}
+
+body.da-news-page .site-main::before {
+  content: "Hírek";
+  display: block;
+  margin: 0 0 10px;
+  color: var(--da-green);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+body.da-news-page .site-main::after {
+  content: "Szakmai események, képzések és friss Dent-Art-Technik hírek egy helyen.";
+  display: block;
+  max-width: 760px;
+  margin: 0 0 34px;
+  color: var(--da-purple);
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 900;
+  line-height: 1.03;
+}
+
+body.da-news-page .ast-row {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
 .blog .ast-article-post,
 .archive .ast-article-post,
 body.da-news-page .ast-article-post,
 body.da-news-page article.post {
+  display: flex;
+  min-width: 0;
   overflow: hidden;
-  border: 1px solid rgba(64, 63, 130, 0.12);
+  border: 1px solid rgba(64, 63, 130, 0.14);
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 16px 42px rgba(45, 39, 95, 0.08);
-  transition: transform 220ms ease, box-shadow 220ms ease;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 48px rgba(45, 39, 95, 0.1);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .blog .ast-article-post:hover,
@@ -1711,7 +1771,29 @@ body.da-news-page article.post {
 body.da-news-page .ast-article-post:hover,
 body.da-news-page article.post:hover {
   transform: translateY(-8px);
-  box-shadow: 0 24px 62px rgba(45, 39, 95, 0.14);
+  border-color: rgba(64, 63, 130, 0.32);
+  box-shadow: 0 28px 70px rgba(45, 39, 95, 0.18);
+}
+
+body.da-news-page .ast-row article.post:first-child {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(135deg, rgba(64, 63, 130, 0.97), rgba(45, 39, 95, 0.98)),
+    var(--da-purple);
+}
+
+body.da-news-page .ast-article-inner,
+body.da-news-page .post-content {
+  display: flex !important;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+body.da-news-page .ast-row article.post:first-child .post-content {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+  align-items: center;
 }
 
 body.da-grants-page .entry-content > p,
@@ -1743,9 +1825,10 @@ body.da-news-page .ast-blog-featured-section,
 .blog .post-thumb,
 .blog .post-thumb-img-content,
 .blog .ast-blog-featured-section {
+  position: relative;
   display: grid;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16 / 10;
   place-items: center;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
@@ -1761,21 +1844,153 @@ body.da-news-page article.post img.wp-post-image,
 .blog .post-thumb img,
 .blog .post-thumb-img-content img,
 .blog .ast-blog-featured-section img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
   width: 100% !important;
   height: 100% !important;
   max-height: none !important;
-  object-fit: contain !important;
+  object-fit: cover !important;
   object-position: center !important;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 0;
+  border-radius: 0;
   background: transparent;
+  transition: transform 360ms ease;
 }
 
-body.da-news-page .entry-content,
-body.da-news-page .site-main {
-  background:
-    radial-gradient(circle at 12% 0%, rgba(0, 176, 133, 0.08), transparent 30%),
-    radial-gradient(circle at 88% 12%, rgba(64, 63, 130, 0.1), transparent 34%);
+body.da-news-page .ast-article-post:hover img.wp-post-image {
+  transform: scale(1.055);
+}
+
+body.da-news-page .ast-row article.post:first-child .ast-blog-featured-section,
+body.da-news-page .ast-row article.post:first-child .post-thumb,
+body.da-news-page .ast-row article.post:first-child .post-thumb-img-content {
+  position: relative;
+  grid-column: 1;
+  grid-row: 1 / span 5;
+  min-height: 420px;
+  height: 100%;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+
+body.da-news-page .ast-row article.post:first-child img.wp-post-image {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+}
+
+body.da-news-page .entry-title,
+body.da-news-page .entry-header,
+body.da-news-page .ast-excerpt-container,
+body.da-news-page .read-more {
+  margin-right: 24px !important;
+  margin-left: 24px !important;
+}
+
+body.da-news-page .post-content > .entry-content {
+  display: none !important;
+}
+
+body.da-news-page .entry-title {
+  margin-top: 24px !important;
+  margin-bottom: 10px !important;
+}
+
+body.da-news-page .entry-title a {
+  color: var(--da-purple) !important;
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: 900;
+  line-height: 1.08;
+  text-decoration: none;
+}
+
+body.da-news-page .ast-row article.post:first-child .entry-title,
+body.da-news-page .ast-row article.post:first-child .entry-header,
+body.da-news-page .ast-row article.post:first-child .ast-excerpt-container,
+body.da-news-page .ast-row article.post:first-child .read-more {
+  grid-column: 2;
+  margin-right: 30px !important;
+  margin-left: 30px !important;
+}
+
+body.da-news-page .ast-row article.post:first-child .entry-title {
+  margin-top: 36px !important;
+}
+
+body.da-news-page .ast-row article.post:first-child .entry-title a {
+  color: #fff !important;
+  font-size: clamp(30px, 4vw, 52px);
+}
+
+body.da-news-page .entry-meta,
+body.da-news-page .entry-meta * {
+  color: var(--da-purple) !important;
+}
+
+body.da-news-page .cat-links a {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0, 176, 133, 0.12);
+  color: var(--da-purple) !important;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+}
+
+body.da-news-page .ast-row article.post:first-child .cat-links a {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff !important;
+}
+
+body.da-news-page .ast-excerpt-container {
+  flex: 1;
+}
+
+body.da-news-page .ast-excerpt-container p {
+  display: -webkit-box;
+  margin-bottom: 0;
+  overflow: hidden;
+  color: #4d5368;
+  font-size: 15px;
+  line-height: 1.62;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+body.da-news-page .ast-row article.post:first-child .ast-excerpt-container p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 16px;
+  -webkit-line-clamp: 7;
+}
+
+body.da-news-page .read-more {
+  margin-top: 20px !important;
+  margin-bottom: 26px !important;
+}
+
+body.da-news-page .read-more a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 11px 16px;
+  border: 1px solid rgba(0, 176, 133, 0.26);
+  border-radius: 999px;
+  background: var(--da-green);
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgba(0, 176, 133, 0.2);
 }
 
 .elementor-element-1f5b655,
@@ -2486,6 +2701,36 @@ body.da-quote-page .da-form-success {
     aspect-ratio: 16 / 9 !important;
   }
 
+  body.da-news-page .site-content > .ast-container {
+    width: min(100% - 24px, 720px);
+    padding-top: 32px;
+    padding-bottom: 54px;
+  }
+
+  body.da-news-page .ast-row {
+    grid-template-columns: 1fr;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .post-content {
+    grid-template-columns: 1fr;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .ast-blog-featured-section,
+  body.da-news-page .ast-row article.post:first-child .post-thumb,
+  body.da-news-page .ast-row article.post:first-child .post-thumb-img-content {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .entry-title,
+  body.da-news-page .ast-row article.post:first-child .entry-header,
+  body.da-news-page .ast-row article.post:first-child .ast-excerpt-container,
+  body.da-news-page .ast-row article.post:first-child .read-more {
+    grid-column: auto;
+  }
+
   .da-workflow {
     width: min(100% - 24px, 720px);
     padding: 16px;
@@ -2626,6 +2871,41 @@ body.da-quote-page .da-form-success {
 
   body.da-home-page .blog-special-grid .bsg-post:first-child .bsg-title a,
   body.da-home-page .blog-special-grid .bsg-post:first-child .bsg-excerpt {
+    color: var(--da-purple) !important;
+  }
+
+  body.da-news-page .site-main::after {
+    margin-bottom: 24px;
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  body.da-news-page .entry-title,
+  body.da-news-page .entry-header,
+  body.da-news-page .ast-excerpt-container,
+  body.da-news-page .read-more,
+  body.da-news-page .ast-row article.post:first-child .entry-title,
+  body.da-news-page .ast-row article.post:first-child .entry-header,
+  body.da-news-page .ast-row article.post:first-child .ast-excerpt-container,
+  body.da-news-page .ast-row article.post:first-child .read-more {
+    margin-right: 18px !important;
+    margin-left: 18px !important;
+  }
+
+  body.da-news-page .ast-row article.post:first-child {
+    background: #fff;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .entry-title a {
+    color: var(--da-purple) !important;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .ast-excerpt-container p {
+    color: #4d5368;
+    -webkit-line-clamp: 5;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .cat-links a {
+    background: rgba(0, 176, 133, 0.12);
     color: var(--da-purple) !important;
   }
 

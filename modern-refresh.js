@@ -52,6 +52,7 @@
       ".woocommerce ul.products li.product",
       ".atp-item",
       ".bsg-item",
+      ".ast-archive-post",
       ".site-footer .widget",
     ].join(",");
 
@@ -262,24 +263,6 @@
         entry.insertAdjacentElement("afterbegin", workflow);
         activateInserted(workflow);
       }
-    }
-
-    if (pageType === "news" && !document.querySelector(".da-page-hero")) {
-      insertAfterHeader(createHero({
-        kicker: "Hírek",
-        title: "Szakmai impulzusok egy helyen",
-        text: "Események, kurzusok, technológiai újdonságok és Dent-Art aktualitások élőbb, magazinosabb keretben.",
-        stats: [
-          { value: "News", label: "aktualitás" },
-          { value: "Event", label: "esemény" },
-          { value: "Lab", label: "szakmai háttér" },
-        ],
-      }));
-      insertAfterHeader(createPanelGrid("da-news-modern-grid", [
-        { title: "Események", text: "Kiemeltebb belépő szakmai napokhoz, kiállításokhoz és kurzusokhoz." },
-        { title: "Technológia", text: "A labor és digitális gyártás hírei modernebb, gyorsan szkennelhető formában." },
-        { title: "Közösség", text: "A Dent-Art jelenléte kevésbé statikus, inkább élő szakmai történetként működik." },
-      ]));
     }
 
     if (pageType === "grants" && !document.querySelector(".da-page-hero")) {
