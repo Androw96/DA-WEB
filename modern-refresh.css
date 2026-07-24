@@ -1778,10 +1778,65 @@ body.da-news-page .site-main {
     radial-gradient(circle at 88% 12%, rgba(64, 63, 130, 0.1), transparent 34%);
 }
 
+.elementor-element-1f5b655,
+.usp-section {
+  display: grid !important;
+  width: min(1200px, calc(100% - 32px));
+  margin: 34px auto !important;
+  padding: 28px !important;
+  overflow: visible !important;
+  border: 1px solid rgba(64, 63, 130, 0.14);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(64, 63, 130, 0.08), rgba(0, 176, 133, 0.08)),
+    #fff !important;
+  box-shadow: 0 20px 54px rgba(45, 39, 95, 0.1);
+}
+
+.elementor-element-1f5b655 .elementor-widget-heading,
+.usp-section .info {
+  margin-bottom: 18px;
+}
+
+.elementor-element-1f5b655 .elementor-widget-heading h2,
+.usp-section .info {
+  color: var(--da-purple) !important;
+  font-size: clamp(25px, 3vw, 36px) !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+}
+
+.elementor-element-1f5b655 .elementor-element-f5e004e,
+.usp-section .usp-list {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.elementor-element-1f5b655 .elementor-icon-box-wrapper,
+.usp-section .usp-list li {
+  min-height: 160px;
+  padding: 20px !important;
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 30px rgba(45, 39, 95, 0.08);
+}
+
+.elementor-element-1f5b655 .elementor-icon-box-title,
+.usp-section .usp-text strong {
+  color: var(--da-purple) !important;
+  font-weight: 900 !important;
+}
+
 .da-random-products {
-  width: min(1120px, calc(100% - 32px));
-  margin: 18px auto 26px;
-  padding: 22px;
+  width: min(1200px, calc(100% - 32px));
+  clear: both;
+  margin: 34px auto;
+  padding: 26px;
   border: 1px solid rgba(64, 63, 130, 0.14);
   border-radius: 8px;
   background:
@@ -1791,20 +1846,25 @@ body.da-news-page .site-main {
 }
 
 .da-random-products-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 16px;
+  display: block;
+  margin-bottom: 20px;
 }
 
+.da-random-products-head h2,
 .da-random-products-head h3 {
   margin: 0;
   color: var(--da-purple);
-  font-size: clamp(23px, 3vw, 34px);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.08;
 }
 
-.da-random-product-grid,
+.da-random-product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
 .da-admin-post-grid,
 .da-team-grid {
   display: grid;
@@ -1826,8 +1886,10 @@ body.da-news-page .site-main {
 
 .da-random-product-card {
   display: grid;
-  grid-template-rows: 180px auto auto;
-  padding: 12px;
+  grid-template-rows: 220px auto auto;
+  min-width: 0;
+  min-height: 100%;
+  padding: 14px;
   color: var(--da-ink);
   text-decoration: none;
 }
@@ -1842,11 +1904,15 @@ body.da-news-page .site-main {
 
 .da-random-product-card img {
   width: 100%;
-  height: 180px;
+  height: 220px;
+  min-height: 220px;
+  max-height: 220px;
   object-fit: contain;
-  padding: 10px;
+  padding: 14px;
   border-radius: 8px;
-  background: #f8fafc;
+  background:
+    linear-gradient(135deg, rgba(64, 63, 130, 0.045), rgba(0, 176, 133, 0.05)),
+    #f8fafc;
 }
 
 .da-random-product-card strong {
@@ -2158,12 +2224,25 @@ body.da-quote-page .wpforms-container button[type="submit"] {
   .da-service-modern-grid,
   .da-news-modern-grid,
   .da-grant-modern-grid,
-  .da-random-product-grid,
   .da-admin-post-grid,
   .da-team-grid,
   .da-workflow-steps {
     grid-template-columns: 1fr;
     width: min(100% - 24px, 720px);
+  }
+
+  .da-random-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .elementor-element-1f5b655,
+  .usp-section {
+    width: min(100% - 24px, 720px);
+  }
+
+  .elementor-element-1f5b655 .elementor-element-f5e004e,
+  .usp-section .usp-list {
+    grid-template-columns: 1fr;
   }
 
   .da-random-products,
@@ -2305,5 +2384,19 @@ body.da-quote-page .wpforms-container button[type="submit"] {
 
   .da-payment-grid article {
     min-height: auto;
+  }
+
+  .da-random-product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .da-random-product-card {
+    grid-template-rows: 230px auto auto;
+  }
+
+  .da-random-product-card img {
+    height: 230px;
+    min-height: 230px;
+    max-height: 230px;
   }
 }

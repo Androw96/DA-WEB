@@ -57,11 +57,11 @@
 
     if (isHome) {
       const labels = [
-        "Belépési pont",
-        "Kiemelt ajánlatok",
-        "Gyors útvonalak",
-        "Friss tartalom",
-        "Kapcsolódó ajánlatok",
+        "Szakmai fókusz",
+        "Előnyök",
+        "Bemutatkozás",
+        "Termékkínálat",
+        "Hírek",
       ];
       document.querySelectorAll(".elementor-widget-heading h2.elementor-heading-title").forEach((heading, index) => {
         const widget = heading.closest(".elementor-widget-heading");
@@ -483,10 +483,8 @@
 
     const renderRandomProducts = async () => {
       if (!isHome || document.querySelector(".da-random-products")) return;
-      const whySection = document.querySelector(".elementor-element-1f5b655");
+      const whySection = document.querySelector(".elementor-element-1f5b655") || document.querySelector(".usp-section");
       if (!whySection) return;
-      const originalGrid = whySection.querySelector(".elementor-element-f5e004e");
-      if (originalGrid) originalGrid.style.display = "none";
       try {
         const response = await fetch("/data/products.json");
         const products = await response.json();
@@ -497,14 +495,13 @@
           product.images &&
           product.images.length
         ));
-        const shuffled = usable.sort(() => Math.random() - 0.5).slice(0, 3);
+        const shuffled = usable.sort(() => Math.random() - 0.5).slice(0, 4);
         if (!shuffled.length) return;
         const panel = document.createElement("section");
         panel.className = "da-random-products da-reveal is-visible";
         panel.innerHTML = `
           <div class="da-random-products-head">
-            <p class="da-section-kicker">Aktuális ajánlatok</p>
-            <h3>Véletlenszerűen kiemelt termékek</h3>
+            <h2>Termékeink</h2>
           </div>
           <div class="da-random-product-grid">
             ${shuffled.map((product) => {
@@ -520,8 +517,7 @@
             }).join("")}
           </div>
         `;
-        const anchor = whySection.querySelector(".elementor-widget-heading") || whySection;
-        anchor.insertAdjacentElement("afterend", panel);
+        whySection.insertAdjacentElement("afterend", panel);
       } catch (error) {
         console.warn("Dent-Art product highlight failed", error);
       }
