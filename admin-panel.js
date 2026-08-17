@@ -15,6 +15,8 @@
     },
   };
 
+  const localPath = (path) => new URL(path.replace(/^\//, ""), window.location.href).href;
+
   const state = {
     pages: [],
     originalPosts: [],
@@ -273,9 +275,9 @@
 
   const initAdmin = () => {
     Promise.all([
-      fetch("/data/pages.json").then((response) => response.json()),
-      fetch("/data/posts.json").then((response) => response.json()).catch(() => []),
-      fetch("/data/products.json").then((response) => response.json()).catch(() => []),
+      fetch(localPath("data/pages.json")).then((response) => response.json()),
+      fetch(localPath("data/posts.json")).then((response) => response.json()).catch(() => []),
+      fetch(localPath("data/products.json")).then((response) => response.json()).catch(() => []),
     ])
       .then(([pages, posts, products]) => {
         state.pages = pages.filter((page) => page.status === "publish");
