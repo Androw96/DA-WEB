@@ -273,6 +273,17 @@
     if (adminShell) adminShell.hidden = false;
   };
 
+  const renderAdminLoadError = () => {
+    const serverAdminUrl = "http://127.0.0.1:4178/admin.html";
+    pageList.innerHTML = `
+      <div class="admin-card admin-load-error">
+        <span>Nem sikerült betölteni az oldalakat.</span>
+        <small>Az admin tartalma helyi szerveren keresztül töltődik be megbízhatóan.</small>
+        <a href="${serverAdminUrl}">Admin megnyitása helyi szerveren</a>
+      </div>
+    `;
+  };
+
   const initAdmin = () => {
     Promise.all([
       fetch(localPath("data/pages.json")).then((response) => response.json()),
@@ -292,7 +303,7 @@
         renderExport();
       })
       .catch(() => {
-        pageList.innerHTML = '<div class="admin-card"><span>Nem sikerült betölteni az oldalakat.</span></div>';
+        renderAdminLoadError();
       });
   };
 

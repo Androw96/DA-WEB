@@ -466,6 +466,36 @@ textarea {
   font-size: 13px;
 }
 
+.admin-load-error {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-load-error span {
+  color: var(--purple);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.admin-load-error small {
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.admin-load-error a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--purple);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
 .admin-news-card {
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr);
