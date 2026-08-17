@@ -38,6 +38,8 @@
         <nav class="admin-section-nav" aria-label="Admin aloldalak">
           <a href="#adminPages">Oldalak</a>
           <a href="#adminNews">Hírek</a>
+          <a href="#adminProducts">Termékeink</a>
+          <a href="#adminCourseEditor">Kurzusok</a>
           <a id="quoteNavLink" href="#adminQuotes">Ajánlatkérések <span id="quoteNewBadge" class="admin-new-badge" hidden>Új</span></a>
           <a href="#adminCourses">Kurzus érdeklődők</a>
         </nav>
@@ -106,6 +108,51 @@
             <div id="postList" class="admin-card-list"></div>
           </div>
 
+          <div id="adminProducts" class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Termékeink</p>
+                <h2 id="productEditorTitle">Termék szerkesztése</h2>
+              </div>
+            </div>
+            <form id="productForm" class="admin-form">
+              <input name="id" type="hidden">
+              <input name="title" type="text" placeholder="Termék neve" required>
+              <input name="price" type="text" placeholder="Ár vagy ár megjegyzés">
+              <input name="image" type="url" placeholder="Kép URL">
+              <textarea name="shortDescription" rows="4" placeholder="Rövid leírás"></textarea>
+              <div class="admin-form-actions">
+                <button id="productSubmitButton" type="submit">Termék mentése</button>
+                <button id="cancelProductEdit" class="admin-secondary-button" type="button" hidden>Mégsem</button>
+              </div>
+            </form>
+            <div id="productList" class="admin-card-list"></div>
+          </div>
+
+          <div id="adminCourseEditor" class="admin-panel">
+            <div class="admin-panel-head">
+              <div>
+                <p>Kurzusok</p>
+                <h2 id="courseEditorTitle">Kurzus szöveg szerkesztése</h2>
+              </div>
+            </div>
+            <form id="courseForm" class="admin-form">
+              <select name="id" required>
+                <option value="EXOCAD Kezdő">EXOCAD Kezdő</option>
+                <option value="EXOCAD Haladó">EXOCAD Haladó</option>
+                <option value="Cirkónium mesterfokon">Cirkónium mesterfokon</option>
+                <option value="Kurzusaink">Kurzusaink oldal</option>
+              </select>
+              <input name="title" type="text" placeholder="Megjelenő cím" required>
+              <input name="status" type="text" placeholder="Státusz, pl. Betelt / Érdeklődöm">
+              <textarea name="description" rows="5" placeholder="Érdeklődési szöveg"></textarea>
+              <div class="admin-form-actions">
+                <button type="submit">Kurzus mentése</button>
+              </div>
+            </form>
+            <div id="courseList" class="admin-card-list"></div>
+          </div>
+
           <div id="adminQuotes" class="admin-panel">
             <div class="admin-panel-head">
               <div>
@@ -135,6 +182,6 @@
       </section>
     </main>
 
-    <script src="/admin-panel.js?v=5" defer></script>
+    <script src="/admin-panel.js?v=6" defer></script>
   </body>
 </html>

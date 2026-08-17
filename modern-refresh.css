@@ -2214,6 +2214,15 @@ body.da-home-page .elementor-element-0228bba {
     linear-gradient(180deg, #fff 0%, #f7f8fb 100%) !important;
 }
 
+body.home .elementor-element-abbef0e,
+body.home .elementor-element-e368abc,
+body.home .blog-special-grid .bsg-custom,
+body.da-home-page .elementor-element-abbef0e,
+body.da-home-page .elementor-element-e368abc,
+body.da-home-page .blog-special-grid .bsg-custom {
+  display: none !important;
+}
+
 body.da-home-page .elementor-element-d2bed48 {
   padding-top: 54px !important;
 }

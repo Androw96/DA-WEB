@@ -18,6 +18,7 @@
   const state = {
     pages: [],
     originalPosts: [],
+    products: [],
     selected: null,
     currentHtml: "",
     pageSearch: "",
@@ -41,6 +42,13 @@
   const quoteNewBadge = document.querySelector("#quoteNewBadge");
   const quoteNewBadgeInline = document.querySelector("#quoteNewBadgeInline");
   const subscriberList = document.querySelector("#subscriberList");
+  const productForm = document.querySelector("#productForm");
+  const productList = document.querySelector("#productList");
+  const productEditorTitle = document.querySelector("#productEditorTitle");
+  const productSubmitButton = document.querySelector("#productSubmitButton");
+  const cancelProductEdit = document.querySelector("#cancelProductEdit");
+  const courseForm = document.querySelector("#courseForm");
+  const courseList = document.querySelector("#courseList");
   const exportData = document.querySelector("#exportData");
   const exportBox = document.querySelector("#exportBox");
   const adminGate = document.querySelector("#adminGate");
@@ -53,6 +61,8 @@
   const getPosts = () => storage.get("dentart_blog_posts", []);
   const getQuoteRequests = () => storage.get("dentart_quote_requests", []);
   const getSubscribers = () => storage.get("dentart_course_subscribers", []);
+  const getProductOverrides = () => storage.get("dentart_product_overrides", {});
+  const getCourseOverrides = () => storage.get("dentart_course_overrides", {});
 
   const escapeHtml = (value) => String(value || "")
     .replace(/&/g, "&amp;")
@@ -78,6 +88,32 @@
   };
 
   const postIntro = (post) => normalizeText(post.excerpt || post.contentText || post.content || "").slice(0, 220);
+
+  const formatProductPrice = (product) => {
+    const raw = product.price || product.salePrice || product.regularPrice || "";
+    const value = Array.isArray(raw) ? raw[0] : raw;
+    if (!value) return "";
+    const number = Number(String(value).replace(/[^\d.-]/g, ""));
+    return Number.isFinite(number) && number > 0 ? `${new Intl.NumberFormat("hu-HU").format(number)} Ft` : String(value);
+  };
+
+  const productImage = (product) => {
+    if (product.image) return product.image;
+    const image = product.images?.[0];
+    if (!image) return "";
+    if (image.attachedFile) return `/wp-content/uploads/${image.attachedFile}`;
+    if (image.localUrl) return `/${image.localUrl}`;
+    return image.url || "";
+  };
+
+  const editableProducts = () => {
+    const overrides = getProductOverrides();
+    return state.products
+      .filter((product) => product.status === "publish" && product.title)
+      .map((product) => ({ ...product, ...(overrides[String(product.id)] || {}) }))
+      .filter((product) => !product.deletedAt)
+      .sort((a, b) => String(a.title).localeCompare(String(b.title), "hu"));
+  };
 
   const normalizeImportedPost = (post) => ({
     id: `wp-${post.id}`,
@@ -239,12 +275,16 @@
     Promise.all([
       fetch("/data/pages.json").then((response) => response.json()),
       fetch("/data/posts.json").then((response) => response.json()).catch(() => []),
+      fetch("/data/products.json").then((response) => response.json()).catch(() => []),
     ])
-      .then(([pages, posts]) => {
+      .then(([pages, posts, products]) => {
         state.pages = pages.filter((page) => page.status === "publish");
         state.originalPosts = posts;
+        state.products = products;
         selectPage(state.pages.find((page) => page.slug === "fooldal")?.slug || state.pages[0]?.slug);
         renderPosts();
+        renderProducts();
+        renderCourses();
         renderQuoteRequests();
         renderSubscribers();
         renderExport();
@@ -323,6 +363,52 @@
     `).join("") : '<div class="admin-card"><span>Még nincs adminból hozzáadott hír.</span></div>';
   };
 
+  const renderProducts = () => {
+    if (!productList) return;
+    const products = editableProducts();
+    productList.innerHTML = products.length ? products.map((product) => `
+      <article class="admin-card admin-news-card">
+        ${productImage(product) ? `<img src="${escapeHtml(productImage(product))}" alt="">` : ""}
+        <div>
+          <strong>${escapeHtml(product.title || "Termék")}</strong>
+          <span>${escapeHtml(formatProductPrice(product) || "Ár nincs megadva")}</span>
+          <p>${escapeHtml(normalizeText(product.shortDescription || product.shortDescriptionHtml || product.descriptionText || "").slice(0, 180))}</p>
+          <div class="admin-card-actions">
+            <button type="button" data-edit-product="${product.id}">Szerkesztés</button>
+            <button class="admin-secondary-button" type="button" data-reset-product="${product.id}">Visszaállítás</button>
+          </div>
+        </div>
+      </article>
+    `).join("") : '<div class="admin-card"><span>Nincs szerkeszthető termék.</span></div>';
+  };
+
+  const renderCourses = () => {
+    if (!courseList) return;
+    const overrides = getCourseOverrides();
+    const ids = ["EXOCAD Kezdő", "EXOCAD Haladó", "Cirkónium mesterfokon", "Kurzusaink"];
+    courseList.innerHTML = ids.map((id) => {
+      const course = overrides[id] || { title: id, status: "", description: "" };
+      return `
+        <article class="admin-card">
+          <strong>${escapeHtml(course.title || id)}</strong>
+          <span>${escapeHtml(course.status || "Érdeklődési lehetőség aktív")}</span>
+          <p>${escapeHtml(course.description || "Alapértelmezett érdeklődési szöveg.")}</p>
+          <div class="admin-card-actions">
+            <button type="button" data-edit-course="${escapeHtml(id)}">Szerkesztés</button>
+          </div>
+        </article>
+      `;
+    }).join("");
+  };
+
+  const resetProductEditor = () => {
+    productForm?.reset();
+    if (productForm?.elements.id) productForm.elements.id.value = "";
+    if (productEditorTitle) productEditorTitle.textContent = "Termék szerkesztése";
+    if (productSubmitButton) productSubmitButton.textContent = "Termék mentése";
+    if (cancelProductEdit) cancelProductEdit.hidden = true;
+  };
+
   const resetPostEditor = () => {
     postForm.reset();
     postForm.elements.id.value = "";
@@ -373,6 +459,8 @@
     const payload = {
       pageOverrides: getOverrides(),
       blogPosts: getPosts(),
+      productOverrides: getProductOverrides(),
+      courseOverrides: getCourseOverrides(),
       quoteRequests: getQuoteRequests(),
       courseSubscribers: getSubscribers(),
       exportedAt: new Date().toISOString(),
@@ -471,6 +559,82 @@
 
   cancelPostEdit?.addEventListener("click", () => {
     resetPostEditor();
+  });
+
+  productForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(productForm).entries());
+    if (!data.id) return;
+    const overrides = getProductOverrides();
+    overrides[String(data.id)] = {
+      ...(overrides[String(data.id)] || {}),
+      title: data.title.trim(),
+      price: data.price.trim(),
+      image: data.image.trim(),
+      shortDescription: data.shortDescription.trim(),
+      updatedAt: new Date().toISOString(),
+    };
+    storage.set("dentart_product_overrides", overrides);
+    resetProductEditor();
+    renderProducts();
+    renderExport();
+  });
+
+  productList?.addEventListener("click", (event) => {
+    const editButton = event.target.closest("[data-edit-product]");
+    const resetButton = event.target.closest("[data-reset-product]");
+    if (editButton) {
+      const product = editableProducts().find((item) => String(item.id) === String(editButton.dataset.editProduct));
+      if (!product) return;
+      productForm.elements.id.value = product.id;
+      productForm.elements.title.value = product.title || "";
+      productForm.elements.price.value = formatProductPrice(product);
+      productForm.elements.image.value = productImage(product);
+      productForm.elements.shortDescription.value = normalizeText(product.shortDescription || product.shortDescriptionHtml || product.descriptionText || "");
+      productEditorTitle.textContent = "Termék szerkesztése";
+      productSubmitButton.textContent = "Módosítás mentése";
+      cancelProductEdit.hidden = false;
+      productForm.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    if (resetButton) {
+      const overrides = getProductOverrides();
+      delete overrides[String(resetButton.dataset.resetProduct)];
+      storage.set("dentart_product_overrides", overrides);
+      resetProductEditor();
+      renderProducts();
+      renderExport();
+    }
+  });
+
+  cancelProductEdit?.addEventListener("click", () => {
+    resetProductEditor();
+  });
+
+  courseForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const data = Object.fromEntries(new FormData(courseForm).entries());
+    const overrides = getCourseOverrides();
+    overrides[data.id] = {
+      title: data.title.trim() || data.id,
+      status: data.status.trim(),
+      description: data.description.trim(),
+      updatedAt: new Date().toISOString(),
+    };
+    storage.set("dentart_course_overrides", overrides);
+    renderCourses();
+    renderExport();
+  });
+
+  courseList?.addEventListener("click", (event) => {
+    const editButton = event.target.closest("[data-edit-course]");
+    if (!editButton) return;
+    const id = editButton.dataset.editCourse;
+    const course = getCourseOverrides()[id] || { title: id, status: "", description: "" };
+    courseForm.elements.id.value = id;
+    courseForm.elements.title.value = course.title || id;
+    courseForm.elements.status.value = course.status || "";
+    courseForm.elements.description.value = course.description || "";
+    courseForm.scrollIntoView({ behavior: "smooth", block: "center" });
   });
 
   quoteRequestList?.addEventListener("click", (event) => {

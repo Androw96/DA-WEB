@@ -76,6 +76,24 @@
         subtitle.textContent = labels[index % labels.length];
         heading.insertAdjacentElement("beforebegin", subtitle);
       });
+
+      document.querySelectorAll(".blog-special-grid img[srcset]").forEach((image) => {
+        const candidates = image.srcset.split(",")
+          .map((candidate) => {
+            const parts = candidate.trim().split(/\s+/);
+            return {
+              url: parts[0],
+              width: Number((parts[1] || "").replace("w", "")) || 0,
+            };
+          })
+          .filter((candidate) => candidate.url);
+        const largest = candidates.sort((a, b) => b.width - a.width)[0];
+        if (largest) {
+          image.src = largest.url;
+          image.sizes = "(min-width: 922px) 680px, 100vw";
+          image.setAttribute("data-da-hires", "true");
+        }
+      });
     }
 
     const modernCards = Array.from(
@@ -249,8 +267,8 @@
       const workflow = document.createElement("section");
       workflow.className = "da-workflow da-reveal";
       workflow.innerHTML = `
-        <p class="da-section-kicker">Ajánlatkérési folyamat</p>
-        <h2>Gyorsabb út a pontos ajánlatig</h2>
+        <p class="da-section-kicker">Munkafolyamat</p>
+        <h2>Hogyan dolgozunk együtt</h2>
         <div class="da-workflow-steps">
           <a class="da-workflow-step" href="#wpforms-27-field_1"><b>1</b><h3>Kapcsolat</h3><p>Megérkezik az igény, a csapat beazonosítja a feladat típusát.</p><span>Adatok megadása</span></a>
           <a class="da-workflow-step" href="#wpforms-27-field_3"><b>2</b><h3>Adatok</h3><p>A szükséges fájlok, kérdések és határidők egy helyre kerülnek.</p><span>Üzenet írása</span></a>
@@ -260,7 +278,7 @@
       `;
       const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
       if (entry) {
-        entry.insertAdjacentElement("afterbegin", workflow);
+        entry.appendChild(workflow);
         activateInserted(workflow);
       }
     }
@@ -311,6 +329,20 @@
       .map((paragraph) => `<p>${escapeHtml(paragraph).replace(/\n/g, "<br>")}</p>`)
       .join("\n");
 
+    const removeClosestSection = (node) => {
+      const section = node?.closest(".e-parent") || node?.closest("section, article, .elementor-element");
+      if (section) section.remove();
+    };
+
+    const isLoggedIn = () => (
+      document.body.classList.contains("logged-in") ||
+      Boolean(window.astraAddon?.is_logged_in) ||
+      Boolean(window.wp?.data)
+    );
+
+    const getProductOverrides = () => getStoredJson("dentart_product_overrides", {});
+    const getCourseOverrides = () => getStoredJson("dentart_course_overrides", {});
+
     const pageSlug = path.split("/").filter(Boolean).pop() || "fooldal";
     const pageOverrides = getStoredJson("dentart_page_overrides", {});
     const override = pageOverrides[pageSlug] || (isHome && pageOverrides.fooldal);
@@ -323,9 +355,31 @@
 
     const serviceFocusSection = document.querySelector(".elementor-element-abbfed0");
     if (serviceFocusSection) {
-      serviceFocusSection.remove();
+      const heading = serviceFocusSection.querySelector("h1, h2, h3");
+      if (heading) heading.textContent = "Szolgáltatásaink";
     }
     document.querySelectorAll(".da-service-focus-names, .da-discipline-switcher").forEach((node) => node.remove());
+
+    if (isHome) {
+      document.querySelectorAll(".atp-item").forEach((item) => {
+        const text = `${item.textContent || ""} ${item.querySelector(".atp-image")?.getAttribute("title") || ""} ${item.querySelector("a")?.getAttribute("href") || ""}`;
+        if (/cirkont[oö]mb|cirk[oó]nium/i.test(text)) item.remove();
+      });
+      document.querySelectorAll(".atp-container").forEach((container) => {
+        if (!container.querySelector(".atp-item")) removeClosestSection(container);
+      });
+
+      document.querySelectorAll("h1, h2, h3").forEach((heading) => {
+        const text = heading.textContent.trim();
+        if (/^TOP term[eé]kek$/i.test(text)) removeClosestSection(heading);
+        if (/^Hírek$/i.test(text)) heading.textContent = "Aktuális szakmai híreink";
+      });
+
+      document.querySelectorAll(".blog-special-grid .bsg-custom").forEach((card) => card.remove());
+      document.querySelectorAll(".blog-special-grid .bsg-custom-headline").forEach((headline) => {
+        if (/Érdekesnek találta cikkeinket/i.test(headline.textContent || "")) headline.remove();
+      });
+    }
 
     const ensureServicesSubmenu = () => {
       const serviceItems = Array.from(document.querySelectorAll(".menu-item")).filter((item) => {
@@ -414,6 +468,16 @@
           <a href="https://www.xkreativ.hu/" target="_blank" rel="noopener">Xkreativ</a>
         `;
         copyright.appendChild(credit);
+      }
+
+      if (!isLoggedIn()) {
+        document.querySelectorAll(".site-footer a, #ast-desktop-header a, #ast-mobile-header a").forEach((link) => {
+          const label = (link.textContent || "").trim();
+          const href = link.getAttribute("href") || "";
+          if (/Rendeléseim|Pénztár|Kosár/i.test(label) || /\/(orders|penztar|kosar)\//i.test(href)) {
+            link.closest("li, .menu-item, section, .ast-builder-layout-element")?.remove();
+          }
+        });
       }
     };
     enhanceFooter();
@@ -533,10 +597,15 @@
       if (!whySection) return;
       try {
         const response = await fetch("/data/products.json");
-        const products = await response.json();
+        const productOverrides = getProductOverrides();
+        const products = (await response.json()).map((product) => ({
+          ...product,
+          ...(productOverrides[String(product.id)] || {}),
+        }));
         const usable = products.filter((product) => (
           product.status === "publish" &&
           product.title &&
+          !/cirkont[oö]mb|cirk[oó]nium/i.test(`${product.title} ${product.slug} ${(product.tags || []).map((tag) => tag.name).join(" ")}`) &&
           (product.price || product.regularPrice || product.salePrice) &&
           product.images &&
           product.images.length
@@ -552,7 +621,7 @@
           <div class="da-random-product-grid">
             ${shuffled.map((product) => {
               const image = product.images[0];
-              const imageSrc = image.attachedFile ? `/wp-content/uploads/${image.attachedFile}` : `/${image.localUrl || ""}`;
+              const imageSrc = product.image || (image.attachedFile ? `/wp-content/uploads/${image.attachedFile}` : `/${image.localUrl || ""}`);
               return `
                 <a class="da-random-product-card" href="/termek/${product.slug}/">
                   <img src="${imageSrc}" alt="${product.title}">
@@ -571,15 +640,24 @@
     renderRandomProducts();
 
     const renderCourseInterest = () => {
-      const isCoursePage = path.includes("/kurzusok/exocad-kezdo/") || path.includes("/kurzusok/exocad-halado/");
+      const isCoursePage = path.includes("/kurzusok/") || path.includes("/kurzus-reszletek/");
       if (!isCoursePage || document.querySelector(".da-course-interest")) return;
-      const courseName = path.includes("halado") ? "EXOCAD Haladó" : "EXOCAD Kezdő";
+      const courseOverrides = getCourseOverrides();
+      const detectedTitle = document.querySelector(".entry-title, h1")?.textContent?.trim() || "Kurzusaink";
+      const courseName = path.includes("halado")
+        ? "EXOCAD Haladó"
+        : path.includes("kezdo")
+          ? "EXOCAD Kezdő"
+          : path.includes("cirkonium")
+            ? "Cirkónium mesterfokon"
+            : detectedTitle;
+      const courseOverride = courseOverrides[courseName] || courseOverrides[path.split("/").filter(Boolean).pop()] || {};
       const panel = document.createElement("section");
       panel.className = "da-course-interest";
       panel.innerHTML = `
-        <p class="da-section-kicker">Betelt kurzus esetén</p>
-        <h2>${courseName}: érdeklődöm</h2>
-        <p>Ha a kurzus betelt, add le az adataidat. Statikus preview-ban az érdeklődés mentésre kerül ebben a böngészőben, és előkészít egy emailt az info@dentarttechnik.hu címre.</p>
+        <p class="da-section-kicker">Kurzus érdeklődés</p>
+        <h2>${escapeHtml(courseOverride.title || courseName)}: érdeklődöm</h2>
+        <p>${escapeHtml(courseOverride.description || "Ha a kurzus betelt, vagy szeretnél értesítést kapni a következő időpontról, add le az adataidat. Az érdeklődés mentésre kerül ebben a böngészőben, és előkészít egy emailt az info@dentarttechnik.hu címre.")}</p>
         <form>
           <input name="name" type="text" placeholder="Név" required>
           <input name="email" type="email" placeholder="Email cím" required>
