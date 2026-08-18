@@ -192,7 +192,11 @@ header .custom-logo-link img {
   place-items: center;
   border: 1px solid rgba(155, 220, 255, 0.72) !important;
   border-radius: 8px !important;
-  background: var(--da-purple-deep) !important;
+  background:
+    linear-gradient(#fff, #fff) center calc(50% - 8px) / 22px 2px no-repeat,
+    linear-gradient(#fff, #fff) center center / 22px 2px no-repeat,
+    linear-gradient(#fff, #fff) center calc(50% + 8px) / 22px 2px no-repeat,
+    var(--da-purple-deep) !important;
   box-shadow: 0 14px 28px rgba(9, 7, 21, 0.16);
   cursor: pointer;
   overflow: hidden;
@@ -203,31 +207,17 @@ header .custom-logo-link img {
 .ast-button-wrap .menu-toggle.main-header-menu-toggle:hover,
 .ast-button-wrap .menu-toggle.main-header-menu-toggle:focus-visible {
   border-color: #fff !important;
-  background: var(--da-purple) !important;
+  background:
+    linear-gradient(#fff, #fff) center calc(50% - 8px) / 22px 2px no-repeat,
+    linear-gradient(#fff, #fff) center center / 22px 2px no-repeat,
+    linear-gradient(#fff, #fff) center calc(50% + 8px) / 22px 2px no-repeat,
+    var(--da-purple) !important;
   box-shadow: 0 18px 34px rgba(9, 7, 21, 0.22);
   transform: translateY(-1px);
 }
 
 .ast-button-wrap .menu-toggle.main-header-menu-toggle::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 22px;
-  height: 2px;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  transition: box-shadow 140ms ease, opacity 140ms ease, transform 180ms ease;
-}
-
-.ast-button-wrap .menu-toggle.main-header-menu-toggle::before {
-  box-shadow:
-    0 -7px 0 #fff,
-    0 7px 0 #fff,
-    0 1px 2px rgba(0, 0, 0, 0.18);
+  content: none !important;
 }
 
 .ast-button-wrap .menu-toggle.main-header-menu-toggle::after {
@@ -247,11 +237,7 @@ header .custom-logo-link img {
 
 .ast-button-wrap .menu-toggle.main-header-menu-toggle[aria-expanded="true"]::before,
 .ast-main-header-nav-open .ast-button-wrap .menu-toggle.main-header-menu-toggle::before {
-  box-shadow:
-    0 -7px 0 #fff,
-    0 7px 0 #fff,
-    0 1px 2px rgba(0, 0, 0, 0.18);
-  transform: translate(-50%, -50%);
+  content: none !important;
 }
 
 .ast-button-wrap .menu-toggle.main-header-menu-toggle[aria-expanded="true"]::after,
