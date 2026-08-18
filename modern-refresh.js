@@ -442,15 +442,17 @@
           ["Fizetés", "/fizetes/"],
           ["Impresszum", "/impresszum/"],
           ["Kapcsolat", "/kapcsolat/"],
-          ["Ajánlatkérés", "/ajanlatkeres/"],
           ["Pályázatok", "/palyazatok/"],
         ];
+        infoMenu.querySelectorAll('a[href*="ajanlatkeres"]').forEach((link) => {
+          link.closest("li")?.remove();
+        });
         const currentTexts = Array.from(infoMenu.querySelectorAll("a")).map((link) => link.textContent.trim());
         infoItems.forEach(([label, href]) => {
           if (currentTexts.includes(label)) return;
           const item = document.createElement("li");
           item.className = "menu-item menu-item-type-custom da-footer-info-item";
-          item.innerHTML = `<a class="menu-link${href.includes("ajanlatkeres") ? " da-quote-menu-link" : ""}" href="${href}">${label}</a>`;
+          item.innerHTML = `<a class="menu-link" href="${href}">${label}</a>`;
           infoMenu.appendChild(item);
         });
       }
