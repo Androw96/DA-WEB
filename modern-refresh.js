@@ -735,8 +735,128 @@
     };
     captureQuoteRequests();
 
+    const featuredTeamMembers = [
+      {
+        name: "Dr. Kónya János",
+        initials: "KJ",
+        role: "Ügyvezető | Aranykoszorús fogtechnikus mester | Anyagtudományok doktora",
+        lead: "A Dent-Art-Technik Kft. alapítója és ügyvezetője, aki több mint három évtizede dolgozik a fogtechnika folyamatos fejlesztésén.",
+        paragraphs: [
+          "Szakmai pályáját a fogtechnika, a mérnöki szemlélet és az innováció összekapcsolása határozza meg.",
+          "Kiemelt szakterülete a digitális fogtechnológia, a 3D fémnyomtatás és a titán fogászati alkalmazása. Doktori kutatásában a 3D nyomtatással gyártott titánötvözet implantátumok felületkezelésével és szövetintegrációjának javításával foglalkozott.",
+          "Aktív szerepet vállal a szakmai tudás átadásában és a fogtechnika fejlődésében is. Rendszeresen tart szakmai előadásokat és képzéseket, emellett a MediKlaszter társelnöke és közép-dunántúli regionális igazgatója.",
+          "Munkáját több mint 30 év szakmai tapasztalata mellett ma is ugyanaz a szemlélet vezérli: a legújabb technológiák nem önmagukért fontosak, hanem azért, hogy egyre pontosabb, kiszámíthatóbb és magasabb színvonalú megoldások születhessenek."
+        ]
+      },
+      {
+        name: "Tóth Csilla",
+        initials: "TC",
+        role: "Ügyvezető | Gazdasági és külkapcsolati vezető",
+        lead: "1997-ben csatlakozott férjéhez, Dr. Kónya Jánoshoz a Dent-Art-Technik Kft. vezetésében, és azóta meghatározó szerepet tölt be a családi vállalkozás fejlődésében.",
+        paragraphs: [
+          "Ügyvezetőként a gazdasági folyamatok irányításáért, valamint a hazai és nemzetközi üzleti kapcsolatokért felel.",
+          "Munkájával közel három évtizede járul hozzá a vállalat stabil működéséhez, növekedéséhez és nemzetközi jelenlétének erősítéséhez.",
+          "A Dent-Art-Technik számára a családi értékek és a hosszú távú gondolkodás a kezdetektől meghatározóak, ezt a szemléletet ma már a következő generáció is továbbviszi a vállalkozásban.",
+          "Szakmai és vállalkozói tevékenységének elismeréseként 2014-ben Év Vállalkozója díjban részesült."
+        ]
+      },
+      {
+        name: "Kónya János Bendegúz",
+        initials: "KB",
+        role: "Vezetőség | Üzletfejlesztés és ügyvezetői management",
+        lead: "A családi vállalkozás következő generációját képviseli a Dent-Art-Technik Kft. vezetésében.",
+        paragraphs: [
+          "Ausztriában, a PwC tanácsadói környezetében szerzett nemzetközi tapasztalatokat, majd hazatért, hogy szakmai tudásával és új szemléletével is hozzájáruljon a vállalkozás további növekedéséhez.",
+          "Munkájában kiemelt szerepet kap az üzletfejlesztés, az innováció és a vállalati működés folyamatos fejlesztése.",
+          "Nemzetközi tapasztalatait a Dent-Art-Technik több évtizedes szakmai tudásával ötvözve dolgozik azon, hogy a vállalat a hagyományaira építve, ugyanakkor a jövő lehetőségeire nyitottan fejlődjön tovább.",
+          "A Széchenyi István Egyetem Regionális- és Gazdaságtudományi Doktori Iskolájának PhD-hallgatója. Kutatásainak középpontjában a családi vállalkozások generációváltása, az innováció és az első, illetve második generáció együttműködése áll."
+        ]
+      },
+      {
+        name: "Bozsányi Lajos",
+        initials: "BL",
+        role: "Fogtechnikus | CAD és individuális implantátumtervező",
+        lead: "2017 óta erősíti a Dent-Art-Technik csapatát, fogászati CAD/CAM rendszerekkel pedig már 2012 óta foglalkozik.",
+        paragraphs: [
+          "Munkájának középpontjában az egyedi, páciensspecifikus megoldások digitális tervezése áll.",
+          "A hagyományos fogpótlások mellett egyéni implantátumok, individuális csontpótlások és koponyarekonstrukciók tervezésében is részt vesz.",
+          "Szakértelmében a fogtechnikai tapasztalat, a digitális technológia és a mérnöki szemlélet találkozik.",
+          "A mindennapi tervezőmunka mellett kutatás-fejlesztési és innovációs projektekben is közreműködik, szakmai munkája tudományos publikációkhoz és páciensspecifikus implantátumok fejlesztéséhez is kapcsolódik."
+        ]
+      },
+      {
+        name: "Salamon Zsolt",
+        initials: "SZ",
+        role: "Fogtechnikus | CAD designer | EXOCAD oktató",
+        lead: "Szakmai pályafutása szorosan összefonódik a Dent-Art-Technik-kel: tanulóéveit is nálunk kezdte, és 2010 óta csapatunk tagja.",
+        paragraphs: [
+          "Az elmúlt több mint másfél évtized alatt tanulóból tapasztalt szakemberré és a csapat meghatározó tagjává vált.",
+          "Fogtechnikusként és CAD designerként széles körű tapasztalattal rendelkezik a digitális fogászati tervezésben, kiemelten az implantátumos és kombinált munkák területén.",
+          "Szakmai tudását aktívan továbbadja: a Dent-Art-Technik EXOCAD alap- és haladó szintű képzéseinek oktatója, emellett szakmai rendezvényeken is rendszeresen osztja meg gyakorlati tapasztalatait.",
+          "Története jól példázza azt a szemléletet, hogy a Dent-Art-Technik-nél a szakmai utánpótlás hosszú távú közös fejlődést is jelent."
+        ]
+      },
+      {
+        name: "Takács Fanni",
+        initials: "TF",
+        role: "Ügyvezetői koordinátor | Pályázati projektek",
+        lead: "Az ügyvezetés napi munkájának egyik meghatározó támogatója, aki számos szervezési és koordinációs feladat összefogásáért felel.",
+        paragraphs: [
+          "Munkájával biztos hátteret teremt a vezetői feladatok és a vállalat mindennapi működése mögött.",
+          "Kiemelt területe a pályázati lehetőségek felkutatása, a pályázatok előkészítése és a kapcsolódó folyamatok koordinálása.",
+          "Munkájának köszönhetően a Dent-Art-Technik az elmúlt években számos sikeres pályázati projektet valósíthatott meg, amelyek a vállalat fejlesztéseit és további növekedését is támogatták.",
+          "Precíz szervezőmunkájával összekötő szerepet tölt be az ügyvezetés, a különböző projektek és a vállalat működési folyamatai között."
+        ]
+      },
+      {
+        name: "Brányi-Virág Karolina",
+        initials: "BK",
+        role: "Üzletfejlesztési és marketingmenedzser",
+        lead: "Többéves kereskedelmi és vezetői tapasztalattal, valamint erős marketing- és üzletfejlesztési háttérrel csatlakozott a Dent-Art-Technik csapatához.",
+        paragraphs: [
+          "Korábban a fogtechnikai kereskedelem területén dolgozott, ahol operatív vezetőként az értékesítési és vállalati folyamatokra is széles körű rálátást szerzett.",
+          "A Dent-Art-Technik-nél a marketing és az üzletfejlesztés mellett a szakmai rendezvények és események szervezéséért is felel.",
+          "Munkájának fontos része az új üzleti és marketinglehetőségek felismerése, valamint olyan ötletek és megoldások kidolgozása, amelyek támogatják az ügyfélszerzést, a partnerkapcsolatok erősítését és a vállalat további növekedését.",
+          "Szemléletében a marketing szorosan összefonódik az értékesítéssel és az üzleti célokkal."
+        ]
+      }
+    ];
+
+    const teamMemberCard = (member, index, detailed = false) => `
+      <article class="da-featured-person${detailed ? " da-featured-person-detail" : ""}" style="--da-card-index:${index};">
+        <div class="da-person-avatar" aria-hidden="true">${escapeHtml(member.initials)}</div>
+        <div class="da-person-copy">
+          <span>${escapeHtml(member.role)}</span>
+          <h3>${escapeHtml(member.name)}</h3>
+          <p class="da-person-lead">${escapeHtml(member.lead)}</p>
+          ${detailed ? member.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("") : ""}
+        </div>
+      </article>
+    `;
+
     const renderAboutTeam = () => {
-      if (!path.includes("/rolunk/") || document.querySelector(".da-team-section")) return;
+      if (!path.includes("/rolunk/")) return;
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      const title = document.querySelector(".entry-title");
+      if (path.includes("/rolunk/csapat/")) {
+        if (title) title.textContent = "Kiemelt személyek";
+        if (entry && !document.querySelector(".da-team-profile-page")) {
+          entry.innerHTML = `
+            <section class="da-team-profile-page da-reveal is-visible">
+              <div class="da-team-profile-hero">
+                <p class="da-section-kicker">Rólunk / Csapat</p>
+                <h2>Akik a Dent-Art-Technik szakmai hátterét adják</h2>
+                <p>A több évtizedes tapasztalat mögött vezetői, fogtechnikai, üzletfejlesztési és szervezési szerepek találkoznak. Ez az oldal a kiemelt személyeket mutatja be áttekinthető, emberközeli formában.</p>
+              </div>
+              <div class="da-featured-team-list">
+                ${featuredTeamMembers.map((member, index) => teamMemberCard(member, index, true)).join("")}
+              </div>
+            </section>
+          `;
+        }
+        return;
+      }
+      if (document.querySelector(".da-team-section")) return;
       const team = document.createElement("section");
       team.className = "da-team-section da-reveal is-visible";
       team.innerHTML = `
@@ -744,23 +864,12 @@
           <p class="da-section-kicker">Vezetőség</p>
           <h2>Emberek a Dent-Art-Technik mögött</h2>
           <p>A több évtizedes szakmai múlt mögé arcokat és felelősségi köröket teszünk, hogy a cég ne csak hosszú szövegként, hanem élő csapatként jelenjen meg.</p>
+          <a class="da-team-link" href="/rolunk/csapat/">Kiemelt személyek</a>
         </div>
         <div class="da-team-grid">
-          <article>
-            <img src="/wp-content/uploads/2025-300x250.png" alt="Dr. Kónya János">
-            <span>Cégvezető</span>
-            <h3>Dr. Kónya János</h3>
-            <p>Alapítói szemlélet, szakmai irány és innovációs háttér.</p>
-          </article>
-          <article>
-            <img src="/wp-content/uploads/DentArtTechnik.png" alt="Tóth Csilla">
-            <span>Cégvezető</span>
-            <h3>Tóth Csilla</h3>
-            <p>Működés, partnerkapcsolatok és szervezeti fókusz.</p>
-          </article>
+          ${featuredTeamMembers.slice(0, 2).map((member, index) => teamMemberCard(member, index)).join("")}
         </div>
       `;
-      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
       if (entry) entry.insertAdjacentElement("afterbegin", team);
     };
     renderAboutTeam();
