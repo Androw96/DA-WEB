@@ -355,6 +355,7 @@
 
     const serviceFocusSection = document.querySelector(".elementor-element-abbfed0");
     if (serviceFocusSection) {
+      serviceFocusSection.classList.add("da-home-services", "da-reveal", "is-visible");
       const heading = serviceFocusSection.querySelector("h1, h2, h3");
       if (heading) heading.textContent = "Szolgáltatásaink";
     }
@@ -595,8 +596,10 @@
 
     const renderRandomProducts = async () => {
       if (!isHome || document.querySelector(".da-random-products")) return;
-      const whySection = document.querySelector(".elementor-element-1f5b655") || document.querySelector(".usp-section");
-      if (!whySection) return;
+      const serviceSection = document.querySelector(".da-home-services");
+      const fallbackSection = document.querySelector(".dentart-slider")?.closest(".e-parent, .e-con, section") || document.querySelector(".elementor-element-1f5b655") || document.querySelector(".usp-section");
+      const productAnchor = serviceSection || fallbackSection;
+      if (!productAnchor) return;
       try {
         const response = await fetch("/data/products.json");
         const productOverrides = getProductOverrides();
@@ -634,7 +637,7 @@
             }).join("")}
           </div>
         `;
-        whySection.insertAdjacentElement("afterend", panel);
+        productAnchor.insertAdjacentElement("afterend", panel);
       } catch (error) {
         console.warn("Dent-Art product highlight failed", error);
       }
