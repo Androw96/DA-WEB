@@ -465,7 +465,9 @@
         credit.className = "da-footer-credit";
         credit.innerHTML = `
           <span>Web:</span>
-          <a href="https://da-technology.eu/" target="_blank" rel="noopener">D.A.-Tech -> da-technology.eu</a>
+          <a href="https://da-technology.eu/" target="_blank" rel="noopener">D.A.-Tech</a>
+          <span class="da-footer-slash">/</span>
+          <a href="https://www.xkreativ.hu/" target="_blank" rel="noopener">xkreativ</a>
         `;
         copyright.appendChild(credit);
       }
