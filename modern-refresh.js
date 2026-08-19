@@ -162,6 +162,11 @@
     document.querySelectorAll('a[href*="/ajanlatkeres"], a[href*="ajanlatkeres"]').forEach((link) => {
       link.classList.add("da-quote-menu-link");
     });
+    document.querySelectorAll(
+      '.main-header-menu a[href*="/ajanlatkeres"], .main-header-menu a[href*="ajanlatkeres"], .site-footer .menu a[href*="/ajanlatkeres"], .site-footer .menu a[href*="ajanlatkeres"]'
+    ).forEach((link) => {
+      link.closest("li.menu-item")?.remove();
+    });
 
     const serviceCards = Array.from(
       document.querySelectorAll(".elementor-widget-image-box")
@@ -390,7 +395,6 @@
       const submenuItems = [
         ["Fogászat", "/fogaszat/"],
         ["Fogtechnika", "/fogtechnika/"],
-        ["Ajánlatkérés", "/ajanlatkeres/"],
         ["Kurzusok", "/kurzusok/"],
       ];
       serviceItems.forEach((item) => {
