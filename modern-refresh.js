@@ -465,9 +465,7 @@
         credit.className = "da-footer-credit";
         credit.innerHTML = `
           <span>Web:</span>
-          <img src="/wp-content/uploads/Weboldal-logo-sav.png" alt="D.A-Tech">
-          <span class="da-footer-slash">/</span>
-          <a href="https://www.xkreativ.hu/" target="_blank" rel="noopener">Xkreativ</a>
+          <a href="https://da-technology.eu/" target="_blank" rel="noopener">D.A.-Tech -> da-technology.eu</a>
         `;
         copyright.appendChild(credit);
       }
