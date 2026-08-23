@@ -1610,6 +1610,7 @@ body.da-lab-page .entry-content > ul > li::after {
   transition: transform 240ms ease, background 240ms ease;
 }
 
+body.da-dentistry-page .entry-content > ul > li::after,
 body.da-lab-page .entry-content > ul > li::after {
   right: -14px;
   bottom: -14px;
@@ -1630,6 +1631,7 @@ body.da-lab-page .entry-content > ul > li:hover::after {
   transform: scale(1.2);
 }
 
+body.da-dentistry-page .entry-content > ul > li:hover::after,
 body.da-lab-page .entry-content > ul > li:hover::after {
   transform: rotate(12deg) scale(1.2);
 }
