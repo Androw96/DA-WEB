@@ -22,6 +22,8 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
@@ -31,6 +33,24 @@ body {
   color: var(--da-ink);
   text-rendering: geometricPrecision;
   --da-scroll: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.astra-cart-drawer {
+  display: none !important;
+  right: 0 !important;
+  left: auto !important;
+  width: min(460px, 100vw) !important;
+  max-width: 100vw !important;
+  transform: translate3d(100%, 0, 0) !important;
+}
+
+html.ast-mobile-cart-active .astra-cart-drawer,
+.astra-cart-drawer.active,
+.astra-cart-drawer.ast-cart-drawer-open {
+  display: block !important;
+  transform: translate3d(0, 0, 0) !important;
 }
 
 body::before {
