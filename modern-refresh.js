@@ -168,11 +168,15 @@
       const ctaHeight = cta?.offsetHeight || 52;
       const bannerHeight = bannerPanel?.offsetHeight || 84;
       const viewportBottom = window.scrollY + window.innerHeight;
+      const footer = document.querySelector(".site-footer");
+      const footerTop = footer ? footer.getBoundingClientRect().top + window.scrollY : Number.POSITIVE_INFINITY;
+      const shouldHideCta = viewportBottom > footerTop - bottomGap;
 
       if (cta) {
         cta.style.position = "absolute";
         cta.style.top = `${Math.round(viewportBottom - ctaHeight - bottomGap)}px`;
         cta.style.right = `${bottomGap}px`;
+        cta.classList.toggle("da-floating-cta-hidden", shouldHideCta);
       }
 
       if (banner) {

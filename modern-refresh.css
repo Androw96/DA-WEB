@@ -880,7 +880,7 @@ input[type="submit"]:hover,
   text-decoration: none;
   box-shadow: 0 18px 42px rgba(64, 63, 130, 0.28);
   transform: translateY(0);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
   animation: daPulseCta 2.8s ease-in-out infinite;
   will-change: top;
   contain: layout paint;
@@ -890,6 +890,13 @@ input[type="submit"]:hover,
   color: #fff;
   transform: translateY(-3px);
   box-shadow: 0 22px 52px rgba(0, 176, 133, 0.35);
+}
+
+.da-floating-cta.da-floating-cta-hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(12px) !important;
 }
 
 .da-floating-cta span {
