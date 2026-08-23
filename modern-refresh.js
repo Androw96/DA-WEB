@@ -169,11 +169,18 @@
     });
 
     const wireNavigationSubmenus = () => {
-      document.querySelectorAll(".main-header-menu .menu-item-has-children").forEach((item) => {
+      const expandableMenus = ".main-header-menu, .custom-sidebar-menu .custom-menu-list";
+      const isInsideExpandableMenu = (node) => node?.closest?.(expandableMenus);
+
+      document.querySelectorAll(`${expandableMenus} .menu-item-has-children`).forEach((item) => {
         const button = item.querySelector(":scope > button.ast-menu-toggle");
-        const link = item.querySelector(":scope > a.menu-link");
+        const link = item.querySelector(":scope > a.menu-link, :scope > a");
         const submenu = item.querySelector(":scope > ul.sub-menu");
-        if (!submenu || item.dataset.daSubmenuReady === "true") return;
+        if (!submenu) return;
+        item.classList.add("da-has-click-submenu");
+        link?.setAttribute("aria-haspopup", "true");
+        button?.setAttribute("aria-haspopup", "true");
+        if (item.dataset.daSubmenuReady === "true") return;
         item.dataset.daSubmenuReady = "true";
 
         const setExpanded = (expanded) => {
@@ -190,9 +197,19 @@
         });
 
         link?.addEventListener("click", (event) => {
-          const isCategoryToggle = link.getAttribute("href") === "#" || item.classList.contains("kiemelt-link");
-          if (!isCategoryToggle) return;
+          if (!isInsideExpandableMenu(event.target)) return;
           event.preventDefault();
+          event.stopPropagation();
+          setExpanded(!item.classList.contains("ast-submenu-expanded"));
+        });
+
+        item.addEventListener("click", (event) => {
+          if (submenu.contains(event.target)) return;
+          const clickedDirectLink = link && (event.target === link || link.contains(event.target));
+          const clickedDirectButton = button && (event.target === button || button.contains(event.target));
+          if (clickedDirectLink || clickedDirectButton) return;
+          event.preventDefault();
+          event.stopPropagation();
           setExpanded(!item.classList.contains("ast-submenu-expanded"));
         });
       });
@@ -468,6 +485,7 @@
         ["Kurzusok", "/kurzusok/"],
       ];
       serviceItems.forEach((item) => {
+        item.classList.add("menu-item-has-children");
         let submenu = item.querySelector(":scope > ul.sub-menu");
         if (!submenu) {
           submenu = document.createElement("ul");
@@ -480,6 +498,7 @@
           )).join("");
         }
       });
+      wireNavigationSubmenus();
     };
     ensureServicesSubmenu();
 
