@@ -18,6 +18,8 @@
   --da-sky: #9bdcff;
   --da-shadow: 0 18px 48px rgba(20, 31, 27, 0.13);
   --da-radius: 8px;
+  --da-page-gutter: clamp(16px, 3vw, 56px);
+  --da-section-gutter: clamp(14px, 2.4vw, 34px);
 }
 
 html {
@@ -79,6 +81,39 @@ body::after {
     radial-gradient(circle at 76% 38%, rgba(0, 176, 133, 0.14), transparent 30%);
   filter: blur(28px);
   animation: daAmbient 13s ease-in-out infinite alternate;
+}
+
+.site-content > .ast-container,
+.ast-container,
+.ast-page-builder-template .site-content > .ast-container,
+.ast-separate-container .site-content > .ast-container {
+  width: 100% !important;
+  max-width: none !important;
+  padding-right: var(--da-page-gutter) !important;
+  padding-left: var(--da-page-gutter) !important;
+}
+
+.content-area.primary,
+.site-main,
+.site-main > article,
+.ast-separate-container .ast-article-single,
+.ast-woocommerce-container,
+.entry-content {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.ast-separate-container .ast-article-single,
+.ast-separate-container .ast-article-post {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.elementor-section.elementor-section-boxed > .elementor-container,
+.elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-default,
+.e-con.e-con-boxed > .e-con-inner {
+  width: 100% !important;
+  max-width: none !important;
 }
 
 a,
@@ -563,6 +598,27 @@ input[type="submit"]:hover,
   font-weight: 800;
 }
 
+.woocommerce div.product div.images,
+.woocommerce-page div.product div.images,
+.woocommerce-product-gallery,
+.woocommerce-product-gallery .flex-viewport,
+.woocommerce-product-gallery__wrapper,
+.woocommerce-product-gallery-thumbnails__wrapper {
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.woocommerce-product-gallery__wrapper,
+.woocommerce-product-gallery-thumbnails__wrapper {
+  width: 100% !important;
+}
+
+.woocommerce-product-gallery__image,
+.woocommerce-product-gallery__image a,
+.woocommerce-product-gallery__image img {
+  max-width: 100% !important;
+}
+
 .stock,
 .woocommerce div.product .stock {
   display: inline-flex;
@@ -653,13 +709,13 @@ input[type="submit"]:hover,
   grid-template-columns: minmax(220px, 1.1fr) repeat(3, minmax(170px, 1fr));
   gap: clamp(18px, 3vw, 34px);
   align-items: start;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 0 auto;
   padding: clamp(34px, 5vw, 58px) 0;
 }
 
 .site-footer .site-below-footer-inner-wrap {
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 0 auto;
   padding: 16px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
@@ -841,7 +897,7 @@ input[type="submit"]:hover,
 }
 
 .da-payment-info {
-  width: min(1180px, calc(100% - 36px));
+  width: 100%;
   margin: 34px auto 58px;
   padding: 28px;
   border: 1px solid rgba(64, 63, 130, 0.14);
@@ -854,7 +910,7 @@ input[type="submit"]:hover,
 
 .woocommerce div.product .woocommerce-tabs,
 .woocommerce-page div.product .woocommerce-tabs {
-  width: min(1180px, calc(100% - 36px));
+  width: 100%;
   margin: clamp(28px, 4vw, 56px) auto;
   overflow: hidden;
   border: 1px solid rgba(64, 63, 130, 0.16);
@@ -1119,7 +1175,7 @@ input[type="submit"]:hover,
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: 18px;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 28px auto 44px;
   padding: 18px;
   overflow: hidden;
@@ -1653,7 +1709,7 @@ body.home .elementor-element-abbfed0.da-home-services {
   display: grid !important;
   grid-template-columns: minmax(410px, 0.38fr) minmax(0, 1fr);
   gap: 18px;
-  width: min(1540px, calc(100% - 32px));
+  width: 100%;
   margin: 30px auto 20px !important;
   padding: 18px !important;
   border: 1px solid rgba(64, 63, 130, 0.12);
@@ -1826,7 +1882,7 @@ body.home .da-home-services .elementor-image-box-title a {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
   gap: 24px;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 26px auto 34px;
   padding: clamp(22px, 4vw, 42px);
   overflow: hidden;
@@ -1857,7 +1913,7 @@ body.da-lab-page .site-main > article {
 
 body.da-dentistry-page .entry-content,
 body.da-lab-page .entry-content {
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 0 auto 44px;
   padding: 24px !important;
   border: 1px solid rgba(64, 63, 130, 0.12);
@@ -2043,7 +2099,7 @@ body.da-lab-page .entry-content a {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
-  width: min(1180px, calc(100% - 32px));
+  width: 100%;
   margin: 0 auto 40px;
 }
 
@@ -2100,7 +2156,7 @@ body.da-lab-page .entry-content a {
 }
 
 .da-workflow {
-  width: min(1120px, calc(100% - 32px));
+  width: 100%;
   margin: 24px auto 44px;
   padding: 26px;
   border-radius: 8px;
@@ -2323,9 +2379,10 @@ body.da-news-page .site-content {
 
 body.da-news-page .site-content > .ast-container {
   display: block !important;
-  width: min(1220px, calc(100% - 32px));
+  width: 100% !important;
   max-width: none;
-  padding: 54px 0 74px;
+  padding-top: 54px !important;
+  padding-bottom: 74px !important;
 }
 
 body.da-news-page .content-area.primary {
@@ -2617,7 +2674,7 @@ body.da-news-page .read-more a {
 .elementor-element-1f5b655,
 .usp-section {
   display: grid !important;
-  width: min(1200px, calc(100% - 32px));
+  width: 100%;
   margin: 34px auto !important;
   padding: 28px !important;
   overflow: visible !important;
@@ -2669,7 +2726,7 @@ body.da-news-page .read-more a {
 }
 
 .da-random-products {
-  width: min(1200px, calc(100% - 32px));
+  width: 100%;
   clear: both;
   margin: 34px auto;
   padding: 26px;
@@ -2768,7 +2825,7 @@ body.da-news-page .read-more a {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  width: min(1120px, calc(100% - 32px));
+  width: 100%;
   margin: 0 auto 24px;
 }
 
@@ -2790,7 +2847,7 @@ body.da-news-page .read-more a {
 .da-admin-posts,
 .da-course-interest,
 .da-team-section {
-  width: min(1120px, calc(100% - 32px));
+  width: 100%;
   margin: 28px auto;
 }
 
@@ -2854,7 +2911,7 @@ body.da-home-page .elementor-element-d2bed48 .elementor-heading-title {
 }
 
 body.da-home-page .elementor-element-0228bba {
-  padding: 0 16px 64px !important;
+  padding: 0 0 64px !important;
 }
 
 body.da-home-page .blog-special-grid {
@@ -2862,7 +2919,7 @@ body.da-home-page .blog-special-grid {
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr) !important;
   grid-auto-rows: minmax(230px, auto) !important;
   gap: 18px !important;
-  width: min(1480px, 100%) !important;
+  width: 100% !important;
   margin: 0 auto !important;
 }
 
@@ -3190,7 +3247,7 @@ body.da-quote-page .wpforms-container select {
 }
 
 .da-team-profile-page {
-  width: min(1160px, calc(100% - 32px));
+  width: 100%;
   margin: 28px auto 52px;
 }
 
@@ -3247,7 +3304,7 @@ body.da-quote-page .wpforms-container select {
 }
 
 body.da-services-page .entry-content {
-  width: min(1120px, calc(100% - 32px));
+  width: 100%;
   margin: 28px auto 48px;
   padding: 26px;
   border-radius: 8px;
@@ -3268,7 +3325,7 @@ body.da-services-page .entry-content a {
 }
 
 body.da-quote-page .wpforms-container {
-  width: min(860px, calc(100% - 32px));
+  width: min(860px, 100%);
   margin: 20px auto 54px !important;
   padding: 24px !important;
   border: 1px solid rgba(64, 63, 130, 0.14);
@@ -3902,16 +3959,16 @@ body.da-quote-page .da-form-success {
 
   .site-footer .site-primary-footer-inner-wrap {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: min(100% - 24px, 720px);
+    width: 100%;
     padding: 34px 0;
   }
 
   .site-footer .site-below-footer-inner-wrap {
-    width: min(100% - 24px, 720px);
+    width: 100%;
   }
 
   .da-payment-info {
-    width: min(100% - 24px, 720px);
+    width: 100%;
     padding: 22px;
   }
 
@@ -3921,7 +3978,7 @@ body.da-quote-page .da-form-success {
 
   .da-discipline-switcher {
     grid-template-columns: 1fr;
-    width: min(100% - 24px, 720px);
+    width: 100%;
     margin: 18px auto 32px;
     padding: 14px;
   }
@@ -3936,7 +3993,7 @@ body.da-quote-page .da-form-success {
 
   .da-page-hero {
     grid-template-columns: 1fr;
-    width: min(100% - 24px, 720px);
+    width: 100%;
     margin-top: 18px;
   }
 
@@ -3946,7 +4003,7 @@ body.da-quote-page .da-form-success {
   .da-admin-post-grid,
   .da-team-grid {
     grid-template-columns: 1fr;
-    width: min(100% - 24px, 720px);
+    width: 100%;
   }
 
   body.da-home-page .elementor-element-abbfed0.da-home-services,
@@ -3981,7 +4038,7 @@ body.da-quote-page .da-form-success {
 
   .elementor-element-1f5b655,
   .usp-section {
-    width: min(100% - 24px, 720px);
+    width: 100%;
   }
 
   .elementor-element-1f5b655 .elementor-element-f5e004e,
@@ -3994,7 +4051,7 @@ body.da-quote-page .da-form-success {
   .da-course-interest,
   .da-team-section,
   body.da-services-page .entry-content {
-    width: min(100% - 24px, 720px);
+    width: 100%;
   }
 
   .da-random-products-head,
@@ -4009,7 +4066,7 @@ body.da-quote-page .da-form-success {
   }
 
   .da-team-profile-page {
-    width: min(100% - 24px, 720px);
+    width: 100%;
   }
 
   .da-team-profile-hero {
@@ -4026,7 +4083,7 @@ body.da-quote-page .da-form-success {
 
   body.da-home-page .blog-special-grid {
     grid-template-columns: 1fr !important;
-    width: min(100% - 24px, 720px) !important;
+    width: 100% !important;
   }
 
   body.da-home-page .blog-special-grid .bsg-post,
@@ -4050,9 +4107,9 @@ body.da-quote-page .da-form-success {
   }
 
   body.da-news-page .site-content > .ast-container {
-    width: min(100% - 24px, 720px);
-    padding-top: 32px;
-    padding-bottom: 54px;
+    width: 100% !important;
+    padding-top: 32px !important;
+    padding-bottom: 54px !important;
   }
 
   body.da-news-page .ast-row {
@@ -4080,7 +4137,7 @@ body.da-quote-page .da-form-success {
   }
 
   .da-workflow {
-    width: min(100% - 24px, 720px);
+    width: 100%;
     padding: 16px;
   }
 
@@ -4339,7 +4396,7 @@ body.da-quote-page .da-form-success {
   body.da-home-page .elementor-element-abbfed0.da-home-services,
   body.home .elementor-element-abbfed0.da-home-services,
   .da-random-products {
-    width: min(100% - 24px, 720px);
+    width: 100%;
     margin-top: 24px !important;
     padding: 16px !important;
   }
@@ -4411,7 +4468,7 @@ body.da-quote-page .da-form-success {
 @media (max-width: 768px) {
   .woocommerce div.product .woocommerce-tabs,
   .woocommerce-page div.product .woocommerce-tabs {
-    width: min(100% - 24px, 1180px);
+    width: 100%;
     margin-block: 24px;
   }
 
