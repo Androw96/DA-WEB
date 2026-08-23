@@ -1815,69 +1815,57 @@ body.da-lab-page .entry-content a {
 
 .da-workflow-road {
   position: relative;
-  min-height: 318px;
-  padding: 18px 0 6px;
+  min-height: 360px;
+  margin-inline: -26px;
+  padding: 18px 20px 10px;
 }
 
-.da-road-track {
+.da-road-svg {
   position: absolute;
-  top: 118px;
-  left: -6%;
-  right: -6%;
-  height: 82px;
-  border-radius: 999px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 20px, rgba(255, 255, 255, 0.78) 20px 38px, transparent 38px 58px) center / 100% 6px no-repeat,
-    #6d6d74;
-  box-shadow:
-    inset 0 0 0 10px rgba(255, 255, 255, 0.08),
-    0 18px 54px rgba(7, 6, 28, 0.32);
+  inset: 56px -52px 0;
+  width: calc(100% + 104px);
+  height: 238px;
+  overflow: visible;
+  filter: drop-shadow(0 16px 28px rgba(7, 6, 28, 0.36));
 }
 
-.da-road-track::before,
-.da-road-track::after {
-  content: "";
+.da-road-base,
+.da-road-dash {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.da-road-base {
+  stroke: #73737a;
+  stroke-width: 58;
+}
+
+.da-road-dash {
+  stroke: rgba(255, 255, 255, 0.84);
+  stroke-width: 6;
+  stroke-dasharray: 20 20;
+  animation: daRoadDash 16s linear infinite;
+}
+
+.da-road-runner {
   position: absolute;
+  left: 4%;
   top: 50%;
-  width: 160px;
-  height: 118px;
-  border: 34px solid #6d6d74;
-  border-right: 0;
-  border-radius: 999px 0 0 999px;
-  transform: translateY(-50%);
-  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.08);
-}
-
-.da-road-track::before {
-  left: 12%;
-  transform: translateY(-50%) rotate(180deg);
-}
-
-.da-road-track::after {
-  right: 12%;
-}
-
-.da-road-track span {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  z-index: 1;
-  width: 22px;
-  height: 22px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
   border-radius: 999px;
   background: var(--da-green);
   box-shadow:
-    0 0 0 10px rgba(0, 176, 133, 0.15),
-    0 0 28px rgba(0, 176, 133, 0.52);
-  animation: daRoadMarker 6.5s ease-in-out infinite;
+    0 0 0 8px rgba(0, 176, 133, 0.16),
+    0 0 30px rgba(0, 176, 133, 0.55);
+  animation: daRoadRunner 7.5s ease-in-out infinite;
 }
 
 .da-workflow-steps {
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(7, minmax(118px, 1fr));
-  gap: 10px;
-  align-items: start;
+  min-height: 340px;
 }
 
 .da-workflow-steps::before {
@@ -1885,36 +1873,31 @@ body.da-lab-page .entry-content a {
 }
 
 .da-workflow-step {
-  position: relative;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
   z-index: 1;
-  display: grid;
-  min-height: 204px;
-  align-content: start;
-  padding: 14px 12px 13px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 8px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
-  backdrop-filter: blur(12px);
+  display: block;
+  width: 142px;
+  min-height: 164px;
+  color: #fff !important;
   text-decoration: none !important;
-  box-shadow: 0 16px 34px rgba(7, 6, 28, 0.16);
-  transform: translateY(calc((var(--da-card-index) % 2) * 42px));
-  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+  transform: translate(-50%, -50%);
+  transition: transform 220ms ease, filter 220ms ease;
   animation: daWorkflowFloat 4.8s ease-in-out infinite;
   animation-delay: calc(var(--da-card-index) * 120ms);
 }
 
 .da-workflow-step:hover {
-  border-color: rgba(155, 220, 255, 0.7);
-  background:
-    linear-gradient(180deg, rgba(155, 220, 255, 0.18), rgba(255, 255, 255, 0.08));
-  transform: translateY(calc((var(--da-card-index) % 2) * 42px - 7px));
+  z-index: 5;
+  filter: brightness(1.1);
+  transform: translate(-50%, -50%) scale(1.05);
 }
 
 .da-workflow-step b {
   display: grid;
-  width: 54px;
-  height: 54px;
+  width: 86px;
+  height: 86px;
   margin: 0 auto 12px;
   place-items: center;
   border-radius: 999px;
@@ -1925,39 +1908,97 @@ body.da-lab-page .entry-content a {
   font-size: 14px;
   font-weight: 900;
   box-shadow:
-    0 0 0 10px rgba(155, 220, 255, 0.11),
-    0 14px 28px rgba(7, 6, 28, 0.22);
+    0 0 0 14px rgba(10, 14, 38, 0.38),
+    0 0 0 22px rgba(64, 63, 130, 0.25),
+    0 18px 30px rgba(7, 6, 28, 0.3);
   animation: daStepPulse 2.6s ease-in-out infinite;
 }
 
-.da-workflow-step:nth-child(2n) b {
+.da-workflow-step b svg {
+  width: 48px;
+  height: 48px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.da-workflow-step.is-purple b {
   background:
     radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.28), transparent 38%),
     var(--da-purple);
   animation-delay: 180ms;
 }
 
-.da-workflow-step:last-child b {
+.da-workflow-step.is-green b {
   background:
     radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 38%),
     #65f35f;
   color: #10221a;
 }
 
+.da-workflow-copy {
+  display: block !important;
+  position: absolute;
+  left: 50%;
+  width: 210px;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: inherit !important;
+  transform: translateX(-50%);
+}
+
+.da-workflow-step.is-top .da-workflow-copy {
+  bottom: calc(100% + 4px);
+}
+
+.da-workflow-step.is-bottom .da-workflow-copy {
+  top: calc(100% - 2px);
+}
+
 .da-workflow-step h3 {
   margin: 0 0 8px;
-  color: #fff;
-  font-size: clamp(16px, 1.5vw, 20px);
+  color: #9bdcff;
+  font-size: clamp(16px, 1.45vw, 21px);
+  font-weight: 900;
   line-height: 1.05;
   text-align: center;
+  text-shadow: 0 2px 12px rgba(7, 6, 28, 0.55);
 }
 
 .da-workflow-step p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.74);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 13px;
   line-height: 1.35;
   text-align: center;
+}
+
+.da-workflow-action {
+  position: absolute;
+  left: 50%;
+  bottom: -42px;
+  min-height: 0 !important;
+  padding: 7px 11px !important;
+  border: 1px solid rgba(155, 220, 255, 0.42);
+  border-radius: 999px;
+  background: rgba(7, 6, 28, 0.48) !important;
+  color: #fff !important;
+  font-size: 11px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+  white-space: nowrap;
+}
+
+.da-workflow-step:hover .da-workflow-action,
+.da-workflow-step:focus-visible .da-workflow-action {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 body.da-news-page .site-content {
@@ -2951,6 +2992,49 @@ body.da-quote-page .da-form-success {
   }
 }
 
+@keyframes daRoadDash {
+  to {
+    stroke-dashoffset: -80;
+  }
+}
+
+@keyframes daRoadRunner {
+  0% {
+    left: 2%;
+    top: 50%;
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+  18% {
+    left: 15%;
+    top: 34%;
+  }
+  34% {
+    left: 29%;
+    top: 56%;
+  }
+  50% {
+    left: 43%;
+    top: 34%;
+  }
+  66% {
+    left: 57%;
+    top: 56%;
+  }
+  82% {
+    left: 72%;
+    top: 34%;
+  }
+  100% {
+    left: 98%;
+    top: 50%;
+    opacity: 0;
+  }
+}
+
 @keyframes daStepPulse {
   0%,
   100% {
@@ -3690,40 +3774,49 @@ body.da-quote-page .da-form-success {
 
   .da-workflow-road {
     min-height: auto;
-    padding-top: 8px;
+    margin-inline: 0;
+    padding: 8px 0 0;
   }
 
-  .da-road-track {
-    top: 14px;
-    bottom: 14px;
-    left: 24px;
-    right: auto;
-    width: 54px;
-    height: auto;
-    background:
-      repeating-linear-gradient(180deg, transparent 0 20px, rgba(255, 255, 255, 0.78) 20px 38px, transparent 38px 58px) center / 6px 100% no-repeat,
-      #6d6d74;
-  }
-
-  .da-road-track::before,
-  .da-road-track::after {
-    content: none;
-  }
-
-  .da-road-track span {
-    top: 0;
-    left: 50%;
-    animation-name: daRoadMarkerVertical;
+  .da-road-svg,
+  .da-road-runner {
+    display: none;
   }
 
   .da-workflow-steps {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    display: grid;
+    min-height: 0;
+    gap: 14px;
+    padding-left: 22px;
+  }
+
+  .da-workflow-steps::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    bottom: 12px;
+    left: 38px;
+    width: 56px;
+    border-radius: 999px;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 18px, rgba(255, 255, 255, 0.78) 18px 34px, transparent 34px 52px) center / 6px 100% no-repeat,
+      #73737a;
+    box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.08);
   }
 
   .da-workflow-step {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    align-items: center;
+    width: 100%;
     min-height: 0;
-    padding-left: 62px;
+    padding: 12px 12px 12px 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.07);
     transform: none;
   }
 
@@ -3732,9 +3825,39 @@ body.da-quote-page .da-form-success {
   }
 
   .da-workflow-step b {
-    position: absolute;
-    top: 14px;
-    left: 14px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 64px;
+    height: 64px;
+    margin: 0;
+    z-index: 1;
+  }
+
+  .da-workflow-step b svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .da-workflow-copy {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .da-workflow-step.is-top .da-workflow-copy,
+  .da-workflow-step.is-bottom .da-workflow-copy {
+    top: auto;
+    bottom: auto;
+  }
+
+  .da-workflow-step h3,
+  .da-workflow-step p {
+    text-align: left;
+  }
+
+  .da-workflow-action {
+    display: none !important;
   }
 
   .floating-banner-panel {

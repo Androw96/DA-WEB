@@ -306,26 +306,40 @@
       const workflow = document.createElement("section");
       workflow.className = "da-workflow da-reveal";
       const steps = [
-        ["Lenyomatvétel", "Oral scan vagy analóg lenyomat", "#wpforms-27-field_1", "01"],
-        ["Design I.", "Virtuális tervezés, 3D ellenőrzés, mock-up STL", "#wpforms-27-field_3", "02"],
-        ["Rendelői konzultáció", "Mock-up próba és pontosítás", "#wpforms-27-field_3", "03"],
-        ["Design II.", "Végleges design, kontroll és változtatások megbeszélése", "#wpforms-27-field_5", "04"],
-        ["Gyártás", "Kidolgozás, leplezés, ragasztás", "#wpforms-27-field_5", "05"],
-        ["Szállítás", "Biztonságos átadás előkészítése", "#wpforms-submit-27", "06"],
-        ["Átadás", "Kész munka, követhető lezárás", "#wpforms-submit-27", "07"],
+        { title: "Lenyomatvétel", text: "Oral scan / analóg lenyomat", href: "#wpforms-27-field_1", icon: "tooth", tone: "blue", x: 14, y: 54, label: "top" },
+        { title: "Design I.", text: "Virtuális tervezés, 3D ellenőrzés, mock-up STL", href: "#wpforms-27-field_3", icon: "screen", tone: "purple", x: 28, y: 59, label: "bottom" },
+        { title: "Rendelői konzultáció", text: "Mock-up próba", href: "#wpforms-27-field_3", icon: "clipboard", tone: "blue", x: 42, y: 51, label: "top" },
+        { title: "Design II.", text: "Végleges design, 3D ellenőrzés, mock-up II., változtatások megbeszélése", href: "#wpforms-27-field_5", icon: "screen", tone: "purple", x: 56, y: 58, label: "bottom" },
+        { title: "Gyártás", text: "Kidolgozás, leplezés, ragasztás", href: "#wpforms-27-field_5", icon: "gear", tone: "blue", x: 70, y: 51, label: "top" },
+        { title: "Szállítás", text: "Biztonságos logisztika", href: "#wpforms-submit-27", icon: "palette", tone: "purple", x: 84, y: 58, label: "bottom" },
+        { title: "Átadás", text: "Kész munka átadása", href: "#wpforms-submit-27", icon: "pin", tone: "green", x: 96, y: 53, label: "top" },
       ];
+      const workflowIcons = {
+        tooth: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15.5 8.5c3.1-1.7 6 .5 8.5.5s5.4-2.2 8.5-.5c4.8 2.7 4.6 9.4 2.5 15.8-1.8 5.5-2 14.7-6.5 14.7-2.8 0-2.2-9.7-5-9.7s-2.2 9.7-5 9.7c-4.5 0-4.7-9.2-6.5-14.7-2.1-6.4-2.3-13.1 2.5-15.8Z"/></svg>',
+        screen: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12h32v21H8zM18 39h12M15 33h18"/><path d="M28 27 39 16M35 14l5 5M24 31l-3 1 1-3 12-12 2 2Z"/></svg>',
+        clipboard: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 10h16v6H16z"/><path d="M13 13H9v29h30V13h-4M18 24h12M18 31h12M18 38h8"/><path d="M22 7h4"/></svg>',
+        gear: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 17a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6M11.9 11.9l4.2 4.2M31.9 31.9l4.2 4.2M36.1 11.9l-4.2 4.2M16.1 31.9l-4.2 4.2"/></svg>',
+        palette: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8c-8.2 0-15 5.5-15 12.9 0 6.7 5.5 12.1 12.7 12.1h2.4c2 0 3.2 2.2 2.1 3.9-.9 1.4.1 3.1 1.8 3.1 6.2 0 11-6.5 11-14.8C39 15.7 32.2 8 24 8Z"/><path d="M16 21h.1M22 17h.1M30 18h.1M34 25h.1"/></svg>',
+        pin: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 43s13-11.7 13-23A13 13 0 0 0 11 20c0 11.3 13 23 13 23Z"/><path d="M24 25a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>',
+      };
       workflow.innerHTML = `
         <p class="da-section-kicker">Munkafolyamat</p>
         <h2>Munkafolyamat fogászat és fogtechnika között</h2>
-        <div class="da-workflow-road" aria-label="Fogtechnikai munkafolyamat">
-          <div class="da-road-track" aria-hidden="true"><span></span></div>
+        <div class="da-workflow-road da-workflow-map" aria-label="Fogtechnikai munkafolyamat">
+          <svg class="da-road-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <path class="da-road-base" d="M0 151 H70 C126 151 126 55 188 55 C250 55 250 151 312 151 C374 151 374 55 436 55 C498 55 498 151 560 151 C622 151 622 55 684 55 C746 55 746 151 808 151 C870 151 870 55 932 55 C994 55 994 151 1056 151 H1200"/>
+            <path class="da-road-dash" d="M0 151 H70 C126 151 126 55 188 55 C250 55 250 151 312 151 C374 151 374 55 436 55 C498 55 498 151 560 151 C622 151 622 55 684 55 C746 55 746 151 808 151 C870 151 870 55 932 55 C994 55 994 151 1056 151 H1200"/>
+          </svg>
+          <span class="da-road-runner" aria-hidden="true"></span>
           <div class="da-workflow-steps">
-            ${steps.map(([title, text, href, number], index) => `
-              <a class="da-workflow-step" href="${href}" style="--da-card-index:${index};">
-                <b>${number}</b>
-                <h3>${title}</h3>
-                <p>${text}</p>
-                <span>${index === steps.length - 1 ? "Lezárás" : "Tovább a ponthoz"}</span>
+            ${steps.map((step, index) => `
+              <a class="da-workflow-step is-${step.tone} is-${step.label}" href="${step.href}" style="--da-card-index:${index}; --x:${step.x}%; --y:${step.y}%;">
+                <b>${workflowIcons[step.icon]}</b>
+                <div class="da-workflow-copy">
+                  <h3>${step.title}</h3>
+                  <p>${step.text}</p>
+                </div>
+                <span class="da-workflow-action">${index === steps.length - 1 ? "Lezárás" : "Ugrás a ponthoz"}</span>
               </a>
             `).join("")}
           </div>
