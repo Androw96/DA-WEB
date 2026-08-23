@@ -69,7 +69,14 @@ a,
 
 .site-header,
 .ast-primary-header-bar,
-.main-header-bar {
+.main-header-bar,
+.ast-sticky-active,
+.ast-sticky-main-shrink,
+.ast-header-sticked,
+.ast-mobile-header-wrap,
+.ast-mobile-header-wrap .ast-primary-header-bar,
+.ast-mobile-header-content,
+.ast-mobile-popup-drawer.active .ast-mobile-popup-inner {
   background: linear-gradient(135deg, var(--da-purple-deep) 0%, var(--da-purple) 100%) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.16) !important;
   backdrop-filter: blur(18px);
@@ -1769,84 +1776,175 @@ body.da-lab-page .entry-content a {
 .da-workflow {
   width: min(1120px, calc(100% - 32px));
   margin: 24px auto 44px;
-  padding: 22px;
+  padding: 26px;
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(64, 63, 130, 0.96), rgba(45, 39, 95, 0.96)),
+    radial-gradient(circle at 18% 12%, rgba(0, 176, 133, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(155, 220, 255, 0.16), transparent 32%),
+    linear-gradient(135deg, rgba(64, 63, 130, 0.98), rgba(32, 24, 72, 0.98)),
     var(--da-purple);
   color: #fff;
   box-shadow: 0 24px 64px rgba(45, 39, 95, 0.22);
+  overflow: hidden;
+}
+
+.da-hide-static-workflow {
+  display: none !important;
 }
 
 .da-workflow h2 {
-  margin: 0 0 18px;
+  max-width: 780px;
+  margin: 0 0 24px;
   color: #fff;
+  font-size: clamp(34px, 4.4vw, 58px);
+  line-height: 1.02;
+}
+
+.da-workflow-road {
+  position: relative;
+  min-height: 318px;
+  padding: 18px 0 6px;
+}
+
+.da-road-track {
+  position: absolute;
+  top: 118px;
+  left: -6%;
+  right: -6%;
+  height: 82px;
+  border-radius: 999px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 20px, rgba(255, 255, 255, 0.78) 20px 38px, transparent 38px 58px) center / 100% 6px no-repeat,
+    #6d6d74;
+  box-shadow:
+    inset 0 0 0 10px rgba(255, 255, 255, 0.08),
+    0 18px 54px rgba(7, 6, 28, 0.32);
+}
+
+.da-road-track::before,
+.da-road-track::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 160px;
+  height: 118px;
+  border: 34px solid #6d6d74;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+  transform: translateY(-50%);
+  box-shadow: inset 0 0 0 6px rgba(255, 255, 255, 0.08);
+}
+
+.da-road-track::before {
+  left: 12%;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.da-road-track::after {
+  right: 12%;
+}
+
+.da-road-track span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--da-green);
+  box-shadow:
+    0 0 0 10px rgba(0, 176, 133, 0.15),
+    0 0 28px rgba(0, 176, 133, 0.52);
+  animation: daRoadMarker 6.5s ease-in-out infinite;
 }
 
 .da-workflow-steps {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(7, minmax(118px, 1fr));
+  gap: 10px;
+  align-items: start;
 }
 
 .da-workflow-steps::before {
-  content: "";
-  position: absolute;
-  top: 31px;
-  left: 8%;
-  right: 8%;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), var(--da-green), rgba(255, 255, 255, 0.12));
-  background-size: 200% 100%;
-  animation: daFlowLine 3.5s linear infinite;
+  content: none;
 }
 
 .da-workflow-step {
   position: relative;
   z-index: 1;
-  padding: 14px;
+  display: grid;
+  min-height: 204px;
+  align-content: start;
+  padding: 14px 12px 13px;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.09);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.055));
   backdrop-filter: blur(12px);
+  text-decoration: none !important;
+  box-shadow: 0 16px 34px rgba(7, 6, 28, 0.16);
+  transform: translateY(calc((var(--da-card-index) % 2) * 42px));
+  transition: transform 220ms ease, border-color 220ms ease, background 220ms ease;
+  animation: daWorkflowFloat 4.8s ease-in-out infinite;
+  animation-delay: calc(var(--da-card-index) * 120ms);
+}
+
+.da-workflow-step:hover {
+  border-color: rgba(155, 220, 255, 0.7);
+  background:
+    linear-gradient(180deg, rgba(155, 220, 255, 0.18), rgba(255, 255, 255, 0.08));
+  transform: translateY(calc((var(--da-card-index) % 2) * 42px - 7px));
 }
 
 .da-workflow-step b {
   display: grid;
-  width: 38px;
-  height: 38px;
-  margin-bottom: 14px;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 12px;
   place-items: center;
   border-radius: 999px;
-  background: var(--da-green);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.3), transparent 38%),
+    var(--da-blue, #006d99);
   color: #fff;
-  box-shadow: 0 0 0 8px rgba(0, 176, 133, 0.12);
+  font-size: 14px;
+  font-weight: 900;
+  box-shadow:
+    0 0 0 10px rgba(155, 220, 255, 0.11),
+    0 14px 28px rgba(7, 6, 28, 0.22);
   animation: daStepPulse 2.6s ease-in-out infinite;
 }
 
-.da-workflow-step:nth-child(2) b {
-  animation-delay: 160ms;
+.da-workflow-step:nth-child(2n) b {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.28), transparent 38%),
+    var(--da-purple);
+  animation-delay: 180ms;
 }
 
-.da-workflow-step:nth-child(3) b {
-  animation-delay: 320ms;
-}
-
-.da-workflow-step:nth-child(4) b {
-  animation-delay: 480ms;
+.da-workflow-step:last-child b {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 38%),
+    #65f35f;
+  color: #10221a;
 }
 
 .da-workflow-step h3 {
   margin: 0 0 8px;
   color: #fff;
-  font-size: 18px;
+  font-size: clamp(16px, 1.5vw, 20px);
+  line-height: 1.05;
+  text-align: center;
 }
 
 .da-workflow-step p {
   margin: 0;
   color: rgba(255, 255, 255, 0.74);
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: center;
 }
 
 body.da-news-page .site-content {
@@ -2844,11 +2942,61 @@ body.da-quote-page .da-form-success {
   0%,
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 8px rgba(0, 176, 133, 0.12);
+    box-shadow:
+      0 0 0 10px rgba(155, 220, 255, 0.11),
+      0 14px 28px rgba(7, 6, 28, 0.22);
   }
   50% {
     transform: scale(1.08);
-    box-shadow: 0 0 0 13px rgba(0, 176, 133, 0.04);
+    box-shadow:
+      0 0 0 15px rgba(155, 220, 255, 0.035),
+      0 18px 36px rgba(7, 6, 28, 0.26);
+  }
+}
+
+@keyframes daRoadMarker {
+  0% {
+    transform: translate(0, -50%) scale(0.85);
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(50vw, -50%) scale(1.08);
+  }
+  100% {
+    transform: translate(100vw, -50%) scale(0.85);
+    opacity: 0;
+  }
+}
+
+@keyframes daRoadMarkerVertical {
+  0% {
+    transform: translate(-50%, 0) scale(0.85);
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, 42vh) scale(1.08);
+  }
+  100% {
+    transform: translate(-50%, 84vh) scale(0.85);
+    opacity: 0;
+  }
+}
+
+@keyframes daWorkflowFloat {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.08);
   }
 }
 
@@ -3251,7 +3399,8 @@ body.da-quote-page .da-form-success {
     box-shadow: none !important;
   }
 
-  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > .sub-menu {
+  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > .sub-menu,
+  body.ast-header-break-point #ast-hf-menu-1-mobile .da-submenu-open > .sub-menu {
     display: grid !important;
     gap: 6px;
   }
@@ -3332,11 +3481,13 @@ body.da-quote-page .da-form-success {
     fill: #fff !important;
   }
 
-  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > button.ast-menu-toggle {
+  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > button.ast-menu-toggle,
+  body.ast-header-break-point #ast-hf-menu-1-mobile .da-submenu-open > button.ast-menu-toggle {
     background: rgba(155, 220, 255, 0.22) !important;
   }
 
-  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > button.ast-menu-toggle svg {
+  body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > button.ast-menu-toggle svg,
+  body.ast-header-break-point #ast-hf-menu-1-mobile .da-submenu-open > button.ast-menu-toggle svg {
     transform: rotate(180deg) !important;
   }
 
@@ -3384,8 +3535,7 @@ body.da-quote-page .da-form-success {
   .da-news-modern-grid,
   .da-grant-modern-grid,
   .da-admin-post-grid,
-  .da-team-grid,
-  .da-workflow-steps {
+  .da-team-grid {
     grid-template-columns: 1fr;
     width: min(100% - 24px, 720px);
   }
@@ -3521,19 +3671,51 @@ body.da-quote-page .da-form-success {
     padding: 16px;
   }
 
-  .da-workflow-steps::before {
-    top: 18px;
-    bottom: 18px;
-    left: 33px;
+  .da-workflow h2 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .da-workflow-road {
+    min-height: auto;
+    padding-top: 8px;
+  }
+
+  .da-road-track {
+    top: 14px;
+    bottom: 14px;
+    left: 24px;
     right: auto;
-    width: 2px;
+    width: 54px;
     height: auto;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), var(--da-green), rgba(255, 255, 255, 0.12));
-    background-size: 100% 200%;
+    background:
+      repeating-linear-gradient(180deg, transparent 0 20px, rgba(255, 255, 255, 0.78) 20px 38px, transparent 38px 58px) center / 6px 100% no-repeat,
+      #6d6d74;
+  }
+
+  .da-road-track::before,
+  .da-road-track::after {
+    content: none;
+  }
+
+  .da-road-track span {
+    top: 0;
+    left: 50%;
+    animation-name: daRoadMarkerVertical;
+  }
+
+  .da-workflow-steps {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .da-workflow-step {
+    min-height: 0;
     padding-left: 62px;
+    transform: none;
+  }
+
+  .da-workflow-step:hover {
+    transform: translateY(-4px);
   }
 
   .da-workflow-step b {

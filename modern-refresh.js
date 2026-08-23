@@ -168,6 +168,37 @@
       link.closest("li.menu-item")?.remove();
     });
 
+    const wireNavigationSubmenus = () => {
+      document.querySelectorAll(".main-header-menu .menu-item-has-children").forEach((item) => {
+        const button = item.querySelector(":scope > button.ast-menu-toggle");
+        const link = item.querySelector(":scope > a.menu-link");
+        const submenu = item.querySelector(":scope > ul.sub-menu");
+        if (!submenu || item.dataset.daSubmenuReady === "true") return;
+        item.dataset.daSubmenuReady = "true";
+
+        const setExpanded = (expanded) => {
+          item.classList.toggle("ast-submenu-expanded", expanded);
+          item.classList.toggle("da-submenu-open", expanded);
+          button?.setAttribute("aria-expanded", String(expanded));
+          link?.setAttribute("aria-expanded", String(expanded));
+        };
+
+        button?.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          setExpanded(!item.classList.contains("ast-submenu-expanded"));
+        });
+
+        link?.addEventListener("click", (event) => {
+          const isCategoryToggle = link.getAttribute("href") === "#" || item.classList.contains("kiemelt-link");
+          if (!isCategoryToggle) return;
+          event.preventDefault();
+          setExpanded(!item.classList.contains("ast-submenu-expanded"));
+        });
+      });
+    };
+    wireNavigationSubmenus();
+
     const serviceCards = Array.from(
       document.querySelectorAll(".elementor-widget-image-box")
     ).filter((card) => {
@@ -269,16 +300,35 @@
     }
 
     if (pageType === "quote" && !document.querySelector(".da-workflow")) {
+      document.querySelectorAll('img[src*="Fogtechnikai-munkafolyamat"], img[alt*="munkafolyamat" i]').forEach((image) => {
+        image.closest("p, figure, .wp-block-image, .elementor-widget-image")?.classList.add("da-hide-static-workflow");
+      });
       const workflow = document.createElement("section");
       workflow.className = "da-workflow da-reveal";
+      const steps = [
+        ["Lenyomatvétel", "Oral scan vagy analóg lenyomat", "#wpforms-27-field_1", "01"],
+        ["Design I.", "Virtuális tervezés, 3D ellenőrzés, mock-up STL", "#wpforms-27-field_3", "02"],
+        ["Rendelői konzultáció", "Mock-up próba és pontosítás", "#wpforms-27-field_3", "03"],
+        ["Design II.", "Végleges design, kontroll és változtatások megbeszélése", "#wpforms-27-field_5", "04"],
+        ["Gyártás", "Kidolgozás, leplezés, ragasztás", "#wpforms-27-field_5", "05"],
+        ["Szállítás", "Biztonságos átadás előkészítése", "#wpforms-submit-27", "06"],
+        ["Átadás", "Kész munka, követhető lezárás", "#wpforms-submit-27", "07"],
+      ];
       workflow.innerHTML = `
         <p class="da-section-kicker">Munkafolyamat</p>
-        <h2>Hogyan dolgozunk együtt</h2>
-        <div class="da-workflow-steps">
-          <a class="da-workflow-step" href="#wpforms-27-field_1"><b>1</b><h3>Kapcsolat</h3><p>Megérkezik az igény, a csapat beazonosítja a feladat típusát.</p><span>Adatok megadása</span></a>
-          <a class="da-workflow-step" href="#wpforms-27-field_3"><b>2</b><h3>Adatok</h3><p>A szükséges fájlok, kérdések és határidők egy helyre kerülnek.</p><span>Üzenet írása</span></a>
-          <a class="da-workflow-step" href="#wpforms-27-field_5"><b>3</b><h3>Tervezés</h3><p>A szakmai háttér kiválasztja a megfelelő technológiát és munkamenetet.</p><span>Fájl csatolása</span></a>
-          <a class="da-workflow-step" href="#wpforms-submit-27"><b>4</b><h3>Ajánlat</h3><p>Átlátható válasz érkezik, követhető következő lépéssel.</p><span>Küldés</span></a>
+        <h2>Munkafolyamat fogászat és fogtechnika között</h2>
+        <div class="da-workflow-road" aria-label="Fogtechnikai munkafolyamat">
+          <div class="da-road-track" aria-hidden="true"><span></span></div>
+          <div class="da-workflow-steps">
+            ${steps.map(([title, text, href, number], index) => `
+              <a class="da-workflow-step" href="${href}" style="--da-card-index:${index};">
+                <b>${number}</b>
+                <h3>${title}</h3>
+                <p>${text}</p>
+                <span>${index === steps.length - 1 ? "Lezárás" : "Tovább a ponthoz"}</span>
+              </a>
+            `).join("")}
+          </div>
         </div>
       `;
       const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
