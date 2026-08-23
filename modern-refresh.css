@@ -1610,6 +1610,13 @@ body.da-lab-page .entry-content > ul > li::after {
   transition: transform 240ms ease, background 240ms ease;
 }
 
+body.da-lab-page .entry-content > ul > li::after {
+  right: -14px;
+  bottom: -14px;
+  border-radius: 8px;
+  transform: rotate(12deg);
+}
+
 body.da-dentistry-page .entry-content > ul > li:hover,
 body.da-lab-page .entry-content > ul > li:hover {
   transform: translateY(-7px);
@@ -1621,6 +1628,10 @@ body.da-dentistry-page .entry-content > ul > li:hover::after,
 body.da-lab-page .entry-content > ul > li:hover::after {
   background: rgba(0, 176, 133, 0.15);
   transform: scale(1.2);
+}
+
+body.da-lab-page .entry-content > ul > li:hover::after {
+  transform: rotate(12deg) scale(1.2);
 }
 
 body.da-dentistry-page .entry-content > ul > li > strong,
