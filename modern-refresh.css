@@ -1815,57 +1815,26 @@ body.da-lab-page .entry-content a {
 
 .da-workflow-road {
   position: relative;
-  min-height: 360px;
+  min-height: 390px;
   margin-inline: -26px;
-  padding: 18px 20px 10px;
+  padding: 24px 20px 12px;
 }
 
-.da-road-svg {
+.da-workflow-map::before {
+  content: "";
   position: absolute;
-  inset: 56px -52px 0;
-  width: calc(100% + 104px);
-  height: 238px;
-  overflow: visible;
-  filter: drop-shadow(0 16px 28px rgba(7, 6, 28, 0.36));
-}
-
-.da-road-base,
-.da-road-dash {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.da-road-base {
-  stroke: #73737a;
-  stroke-width: 58;
-}
-
-.da-road-dash {
-  stroke: rgba(255, 255, 255, 0.84);
-  stroke-width: 6;
-  stroke-dasharray: 20 20;
-  animation: daRoadDash 16s linear infinite;
-}
-
-.da-road-runner {
-  position: absolute;
-  left: 4%;
-  top: 50%;
-  z-index: 2;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: var(--da-green);
-  box-shadow:
-    0 0 0 8px rgba(0, 176, 133, 0.16),
-    0 0 30px rgba(0, 176, 133, 0.55);
-  animation: daRoadRunner 7.5s ease-in-out infinite;
+  inset: 62px 34px 40px;
+  border-radius: 8px;
+  background:
+    linear-gradient(115deg, rgba(155, 220, 255, 0.14), transparent 28%),
+    linear-gradient(295deg, rgba(0, 176, 133, 0.13), transparent 32%);
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .da-workflow-steps {
   position: relative;
-  min-height: 340px;
+  min-height: 360px;
 }
 
 .da-workflow-steps::before {
@@ -1876,20 +1845,31 @@ body.da-lab-page .entry-content a {
   position: absolute;
   left: var(--x);
   top: var(--y);
-  z-index: 1;
+  z-index: 2;
   display: block;
-  width: 142px;
-  min-height: 164px;
+  width: 156px;
+  min-height: 174px;
+  padding: 12px 10px 14px;
+  border: 1px solid rgba(155, 220, 255, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045));
   color: #fff !important;
   text-decoration: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 34px rgba(7, 6, 28, 0.22);
   transform: translate(-50%, -50%);
-  transition: transform 220ms ease, filter 220ms ease;
+  transition: transform 220ms ease, filter 220ms ease, border-color 220ms ease, background 220ms ease;
   animation: daWorkflowFloat 4.8s ease-in-out infinite;
   animation-delay: calc(var(--da-card-index) * 120ms);
 }
 
 .da-workflow-step:hover {
   z-index: 5;
+  border-color: rgba(155, 220, 255, 0.78);
+  background:
+    linear-gradient(180deg, rgba(155, 220, 255, 0.2), rgba(255, 255, 255, 0.07));
   filter: brightness(1.1);
   transform: translate(-50%, -50%) scale(1.05);
 }
@@ -1898,7 +1878,7 @@ body.da-lab-page .entry-content a {
   display: grid;
   width: 86px;
   height: 86px;
-  margin: 0 auto 12px;
+  margin: 0 auto 10px;
   place-items: center;
   border-radius: 999px;
   background:
@@ -1912,6 +1892,36 @@ body.da-lab-page .entry-content a {
     0 0 0 22px rgba(64, 63, 130, 0.25),
     0 18px 30px rgba(7, 6, 28, 0.3);
   animation: daStepPulse 2.6s ease-in-out infinite;
+}
+
+.da-workflow-arrow {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  z-index: 1;
+  width: var(--w);
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #9bdcff 24%, var(--da-green) 72%, transparent);
+  box-shadow:
+    0 0 18px rgba(155, 220, 255, 0.48),
+    0 0 28px rgba(0, 176, 133, 0.24);
+  transform: translate(-50%, -50%) rotate(var(--r));
+  animation: daArrowPulse 2.3s ease-in-out infinite;
+  animation-delay: calc(var(--da-card-index) * 160ms);
+}
+
+.da-workflow-arrow::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-top: 4px solid var(--da-green);
+  border-right: 4px solid var(--da-green);
+  transform: translateY(-50%) rotate(45deg);
+  filter: drop-shadow(0 0 10px rgba(0, 176, 133, 0.55));
 }
 
 .da-workflow-step b svg {
@@ -1940,23 +1950,13 @@ body.da-lab-page .entry-content a {
 
 .da-workflow-copy {
   display: block !important;
-  position: absolute;
-  left: 50%;
-  width: 210px;
+  position: static;
+  width: auto;
   min-height: 0 !important;
   padding: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
   color: inherit !important;
-  transform: translateX(-50%);
-}
-
-.da-workflow-step.is-top .da-workflow-copy {
-  bottom: calc(100% + 4px);
-}
-
-.da-workflow-step.is-bottom .da-workflow-copy {
-  top: calc(100% - 2px);
 }
 
 .da-workflow-step h3 {
@@ -3035,6 +3035,18 @@ body.da-quote-page .da-form-success {
   }
 }
 
+@keyframes daArrowPulse {
+  0%,
+  100% {
+    opacity: 0.58;
+    transform: translate(-50%, -50%) rotate(var(--r)) scaleX(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(var(--r)) scaleX(1.08);
+  }
+}
+
 @keyframes daStepPulse {
   0%,
   100% {
@@ -3778,30 +3790,30 @@ body.da-quote-page .da-form-success {
     padding: 8px 0 0;
   }
 
-  .da-road-svg,
-  .da-road-runner {
-    display: none;
-  }
-
   .da-workflow-steps {
     display: grid;
     min-height: 0;
-    gap: 14px;
-    padding-left: 22px;
+    gap: 28px;
+    padding-left: 0;
   }
 
+  .da-workflow-map::before,
   .da-workflow-steps::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    bottom: 12px;
+    content: none;
+  }
+
+  .da-workflow-arrow {
+    display: block;
     left: 38px;
-    width: 56px;
-    border-radius: 999px;
-    background:
-      repeating-linear-gradient(180deg, transparent 0 18px, rgba(255, 255, 255, 0.78) 18px 34px, transparent 34px 52px) center / 6px 100% no-repeat,
-      #73737a;
-    box-shadow: inset 0 0 0 8px rgba(255, 255, 255, 0.08);
+    top: calc((var(--da-card-index) + 1) * 92px);
+    width: 42px;
+    height: 3px;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  .da-workflow-arrow::after {
+    width: 15px;
+    height: 15px;
   }
 
   .da-workflow-step {

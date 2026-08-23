@@ -322,16 +322,22 @@
         palette: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8c-8.2 0-15 5.5-15 12.9 0 6.7 5.5 12.1 12.7 12.1h2.4c2 0 3.2 2.2 2.1 3.9-.9 1.4.1 3.1 1.8 3.1 6.2 0 11-6.5 11-14.8C39 15.7 32.2 8 24 8Z"/><path d="M16 21h.1M22 17h.1M30 18h.1M34 25h.1"/></svg>',
         pin: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 43s13-11.7 13-23A13 13 0 0 0 11 20c0 11.3 13 23 13 23Z"/><path d="M24 25a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>',
       };
+      const arrows = [
+        { x: 21, y: 55, r: 10, w: 72 },
+        { x: 35, y: 55, r: -12, w: 72 },
+        { x: 49, y: 54, r: 12, w: 72 },
+        { x: 63, y: 54, r: -12, w: 72 },
+        { x: 77, y: 54, r: 12, w: 72 },
+        { x: 90, y: 55, r: -5, w: 58 },
+      ];
       workflow.innerHTML = `
         <p class="da-section-kicker">Munkafolyamat</p>
         <h2>Munkafolyamat fogászat és fogtechnika között</h2>
         <div class="da-workflow-road da-workflow-map" aria-label="Fogtechnikai munkafolyamat">
-          <svg class="da-road-svg" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
-            <path class="da-road-base" d="M0 151 H70 C126 151 126 55 188 55 C250 55 250 151 312 151 C374 151 374 55 436 55 C498 55 498 151 560 151 C622 151 622 55 684 55 C746 55 746 151 808 151 C870 151 870 55 932 55 C994 55 994 151 1056 151 H1200"/>
-            <path class="da-road-dash" d="M0 151 H70 C126 151 126 55 188 55 C250 55 250 151 312 151 C374 151 374 55 436 55 C498 55 498 151 560 151 C622 151 622 55 684 55 C746 55 746 151 808 151 C870 151 870 55 932 55 C994 55 994 151 1056 151 H1200"/>
-          </svg>
-          <span class="da-road-runner" aria-hidden="true"></span>
           <div class="da-workflow-steps">
+            ${arrows.map((arrow, index) => `
+              <span class="da-workflow-arrow" aria-hidden="true" style="--x:${arrow.x}%; --y:${arrow.y}%; --r:${arrow.r}deg; --w:${arrow.w}px; --da-card-index:${index};"></span>
+            `).join("")}
             ${steps.map((step, index) => `
               <a class="da-workflow-step is-${step.tone} is-${step.label}" href="${step.href}" style="--da-card-index:${index}; --x:${step.x}%; --y:${step.y}%;">
                 <b>${workflowIcons[step.icon]}</b>
