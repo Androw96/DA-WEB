@@ -180,6 +180,7 @@
         if (!submenu) return;
         item.classList.add("da-has-click-submenu");
         link?.setAttribute("aria-haspopup", "true");
+        link?.setAttribute("role", "button");
         button?.setAttribute("aria-haspopup", "true");
         if (item.dataset.daSubmenuReady === "true") return;
         item.dataset.daSubmenuReady = "true";
@@ -201,6 +202,7 @@
           if (!isInsideExpandableMenu(event.target)) return;
           event.preventDefault();
           event.stopPropagation();
+          event.stopImmediatePropagation?.();
           setExpanded(!item.classList.contains("ast-submenu-expanded"));
         });
 
@@ -234,6 +236,10 @@
           const clickedItemSurface = event.target === item;
           if (!clickedDirectLink && !clickedDirectButton && !clickedItemSurface) return;
 
+          item.classList.add("da-has-click-submenu");
+          directLink?.setAttribute("aria-haspopup", "true");
+          directLink?.setAttribute("role", "button");
+          directButton?.setAttribute("aria-haspopup", "true");
           event.preventDefault();
           event.stopPropagation();
           event.stopImmediatePropagation?.();

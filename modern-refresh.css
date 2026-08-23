@@ -160,7 +160,7 @@ header .custom-logo-link img {
 .main-header-menu .sub-menu {
   border: 0 !important;
   border-radius: var(--da-radius);
-  overflow: hidden;
+  overflow: visible;
   background: rgba(37, 24, 69, 0.96) !important;
   box-shadow: 0 22px 54px rgba(18, 12, 40, 0.32);
 }
@@ -187,6 +187,55 @@ header .custom-logo-link img {
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto !important;
+}
+
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children {
+  display: block !important;
+}
+
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children > .menu-link {
+  width: 100%;
+  padding-right: 48px !important;
+}
+
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children > .sub-menu {
+  position: static !important;
+  inset: auto !important;
+  display: none !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 10px 10px !important;
+  padding: 6px !important;
+  border-radius: 8px !important;
+  background: rgba(7, 6, 28, 0.28) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  transform: none !important;
+}
+
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children:hover > .sub-menu,
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children:focus-within > .sub-menu,
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children.da-submenu-open > .sub-menu,
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children.ast-submenu-expanded > .sub-menu {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  gap: 5px;
+}
+
+.main-header-menu > .menu-item > .sub-menu .menu-item-has-children > .ast-menu-toggle {
+  top: 6px !important;
+  right: 8px !important;
+  display: grid !important;
+  place-items: center;
+  width: 32px !important;
+  min-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: rgba(155, 220, 255, 0.12) !important;
+  color: #fff !important;
 }
 
 .ast-header-search .astra-search-icon,
@@ -1067,7 +1116,7 @@ input[type="submit"]:hover,
 
 .custom-sidebar-menu {
   border-radius: 8px;
-  overflow: hidden;
+  overflow: visible;
   background:
     linear-gradient(180deg, rgba(37, 24, 69, 0.98), rgba(51, 74, 124, 0.96)) !important;
   box-shadow: 0 20px 48px rgba(37, 24, 69, 0.2);
@@ -1077,6 +1126,12 @@ input[type="submit"]:hover,
   color: #fff !important;
   background: rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.custom-sidebar-menu .menu-link > .ast-icon,
+.custom-sidebar-menu .menu-link > .dropdown-menu-toggle,
+.custom-sidebar-menu .ast-menu-toggle {
+  display: none !important;
 }
 
 .custom-sidebar-menu .custom-menu-list > li:first-child > a {
@@ -1100,34 +1155,53 @@ input[type="submit"]:hover,
 }
 
 .custom-sidebar-menu .menu-item-has-children > a::after {
-  content: "";
+  content: "+";
   position: absolute;
   top: 50%;
-  right: 20px;
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: translateY(-64%) rotate(45deg);
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(155, 220, 255, 0.42);
+  border-radius: 8px;
+  background: rgba(155, 220, 255, 0.12);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  transform: translateY(-50%);
   transition: transform 180ms ease;
 }
 
 .custom-sidebar-menu .menu-item-has-children.da-submenu-open > a::after,
-.custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > a::after {
-  transform: translateY(-36%) rotate(225deg);
+.custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > a::after,
+.custom-sidebar-menu .menu-item-has-children:hover > a::after,
+.custom-sidebar-menu .menu-item-has-children:focus-within > a::after {
+  content: "-";
+  transform: translateY(-50%);
 }
 
 .custom-sidebar-menu .menu-item-has-children > .sub-menu {
   display: none !important;
+  position: static !important;
+  width: 100% !important;
   margin: 0 !important;
   padding: 6px !important;
   border: 0 !important;
   background: rgba(7, 6, 28, 0.18) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
+.custom-sidebar-menu .menu-item-has-children:hover > .sub-menu,
+.custom-sidebar-menu .menu-item-has-children:focus-within > .sub-menu,
 .custom-sidebar-menu .menu-item-has-children.da-submenu-open > .sub-menu,
 .custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > .sub-menu {
   display: grid !important;
+  position: static !important;
+  pointer-events: auto !important;
   gap: 6px;
 }
 
