@@ -171,11 +171,12 @@
     const wireNavigationSubmenus = () => {
       const expandableMenus = ".main-header-menu, .custom-sidebar-menu .custom-menu-list";
       const isInsideExpandableMenu = (node) => node?.closest?.(expandableMenus);
+      const getDirectChild = (item, selector) => Array.from(item.children).find((child) => child.matches?.(selector));
 
       document.querySelectorAll(`${expandableMenus} .menu-item-has-children`).forEach((item) => {
-        const button = item.querySelector(":scope > button.ast-menu-toggle");
-        const link = item.querySelector(":scope > a.menu-link, :scope > a");
-        const submenu = item.querySelector(":scope > ul.sub-menu");
+        const button = getDirectChild(item, "button.ast-menu-toggle");
+        const link = getDirectChild(item, "a.menu-link, a");
+        const submenu = getDirectChild(item, "ul.sub-menu");
         if (!submenu) return;
         item.classList.add("da-has-click-submenu");
         link?.setAttribute("aria-haspopup", "true");
@@ -213,6 +214,36 @@
           setExpanded(!item.classList.contains("ast-submenu-expanded"));
         });
       });
+
+      if (document.body.dataset.daDelegatedSubmenus !== "true") {
+        document.body.dataset.daDelegatedSubmenus = "true";
+        document.addEventListener("click", (event) => {
+          const menuRoot = event.target.closest?.(expandableMenus);
+          if (!menuRoot) return;
+
+          const item = event.target.closest(".menu-item-has-children");
+          if (!item || !menuRoot.contains(item)) return;
+
+          const submenu = getDirectChild(item, "ul.sub-menu");
+          if (!submenu || submenu.contains(event.target)) return;
+
+          const directLink = getDirectChild(item, "a.menu-link, a");
+          const directButton = getDirectChild(item, "button.ast-menu-toggle");
+          const clickedDirectLink = directLink && (event.target === directLink || directLink.contains(event.target));
+          const clickedDirectButton = directButton && (event.target === directButton || directButton.contains(event.target));
+          const clickedItemSurface = event.target === item;
+          if (!clickedDirectLink && !clickedDirectButton && !clickedItemSurface) return;
+
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation?.();
+          const expanded = !item.classList.contains("da-submenu-open") && !item.classList.contains("ast-submenu-expanded");
+          item.classList.toggle("ast-submenu-expanded", expanded);
+          item.classList.toggle("da-submenu-open", expanded);
+          directButton?.setAttribute("aria-expanded", String(expanded));
+          directLink?.setAttribute("aria-expanded", String(expanded));
+        }, true);
+      }
     };
     wireNavigationSubmenus();
 
