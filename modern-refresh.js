@@ -159,18 +159,39 @@
       cta.textContent = "Ajánlatkérés";
       cta.setAttribute("aria-label", "Ajánlatkérés");
     });
-    const syncFloatingCta = () => {
-      document.querySelectorAll(".da-floating-cta").forEach((cta) => {
-        const height = cta.offsetHeight || 52;
-        const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
+    let floatingUiFrame = 0;
+    const positionFloatingUi = () => {
+      const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
+      const cta = document.querySelector(".da-floating-cta");
+      const banner = document.querySelector(".floating-banner-wrapper");
+      const bannerPanel = banner?.querySelector(".floating-banner-panel");
+      const ctaHeight = cta?.offsetHeight || 52;
+      const bannerHeight = bannerPanel?.offsetHeight || 84;
+      const viewportBottom = window.scrollY + window.innerHeight;
+
+      if (cta) {
         cta.style.position = "absolute";
-        cta.style.top = `${window.scrollY + window.innerHeight - height - bottomGap}px`;
+        cta.style.top = `${Math.round(viewportBottom - ctaHeight - bottomGap)}px`;
         cta.style.right = `${bottomGap}px`;
+      }
+
+      if (banner) {
+        banner.style.position = "absolute";
+        banner.style.setProperty("top", `${Math.round(viewportBottom - bannerHeight - ctaHeight - bottomGap - 14)}px`, "important");
+        banner.style.setProperty("right", `${bottomGap}px`, "important");
+        banner.style.setProperty("bottom", "auto", "important");
+      }
+    };
+    const syncFloatingUi = () => {
+      if (floatingUiFrame) return;
+      floatingUiFrame = requestAnimationFrame(() => {
+        floatingUiFrame = 0;
+        positionFloatingUi();
       });
     };
-    syncFloatingCta();
-    window.addEventListener("scroll", syncFloatingCta, { passive: true });
-    window.addEventListener("resize", syncFloatingCta);
+    syncFloatingUi();
+    window.addEventListener("scroll", syncFloatingUi, { passive: true });
+    window.addEventListener("resize", syncFloatingUi);
     document.querySelectorAll('a[href*="/ajanlatkeres"], a[href*="ajanlatkeres"]').forEach((link) => {
       link.classList.add("da-quote-menu-link");
     });
@@ -1037,6 +1058,7 @@
         bannerPanel.style.display = "";
         bannerButton.style.display = "none";
         sessionStorage.setItem("floatingBannerCompact", "true");
+        syncFloatingUi();
       };
 
       const openBanner = () => {
@@ -1047,6 +1069,7 @@
         bannerButton.style.display = "none";
         sessionStorage.removeItem("floatingBannerClosed");
         sessionStorage.removeItem("floatingBannerCompact");
+        syncFloatingUi();
       };
 
       bannerClose.addEventListener("click", (event) => {
@@ -1073,6 +1096,7 @@
       } else {
         openBanner();
       }
+      window.addEventListener("load", syncFloatingUi, { once: true });
     }
   });
 })();

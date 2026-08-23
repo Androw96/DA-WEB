@@ -806,6 +806,8 @@ input[type="submit"]:hover,
   transform: translateY(0);
   transition: transform 180ms ease, box-shadow 180ms ease;
   animation: daPulseCta 2.8s ease-in-out infinite;
+  will-change: top;
+  contain: layout paint;
 }
 
 .da-floating-cta:hover {
@@ -1452,20 +1454,22 @@ input[type="submit"]:hover,
 }
 
 .floating-banner-wrapper {
-  position: fixed !important;
+  position: absolute !important;
   right: 18px !important;
-  bottom: 82px !important;
-  top: auto !important;
+  bottom: auto !important;
+  top: auto;
   left: auto !important;
   z-index: 9998 !important;
   pointer-events: none;
+  will-change: top;
+  contain: layout paint;
 }
 
 .floating-banner-panel {
-  position: fixed !important;
+  position: relative !important;
   top: auto !important;
-  right: 18px !important;
-  bottom: 82px !important;
+  right: auto !important;
+  bottom: auto !important;
   left: auto !important;
   width: min(280px, calc(100vw - 28px)) !important;
   max-width: min(280px, calc(100vw - 28px)) !important;
@@ -4167,12 +4171,12 @@ body.da-quote-page .da-form-success {
 
   .floating-banner-wrapper {
     right: 12px !important;
-    bottom: 68px !important;
+    bottom: auto !important;
   }
 
   .floating-banner-panel {
-    right: 12px !important;
-    bottom: 68px !important;
+    right: auto !important;
+    bottom: auto !important;
     width: min(220px, calc(100vw - 24px)) !important;
     max-width: min(220px, calc(100vw - 24px)) !important;
   }
@@ -4184,7 +4188,7 @@ body.da-quote-page .da-form-success {
 
   .floating-banner-panel.floating-banner-panel-right,
   .floating-banner-panel.floating-banner-panel-left {
-    right: 12px !important;
+    right: auto !important;
   }
 
   .floating-banner-close {
