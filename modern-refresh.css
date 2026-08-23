@@ -774,7 +774,7 @@ input[type="submit"]:hover,
 .da-floating-cta {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  bottom: auto;
   z-index: 9999;
   display: inline-flex;
   align-items: center;

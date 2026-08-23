@@ -159,6 +159,18 @@
       cta.textContent = "Ajánlatkérés";
       cta.setAttribute("aria-label", "Ajánlatkérés");
     });
+    const syncFloatingCta = () => {
+      document.querySelectorAll(".da-floating-cta").forEach((cta) => {
+        const height = cta.offsetHeight || 52;
+        const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
+        cta.style.position = "absolute";
+        cta.style.top = `${window.scrollY + window.innerHeight - height - bottomGap}px`;
+        cta.style.right = `${bottomGap}px`;
+      });
+    };
+    syncFloatingCta();
+    window.addEventListener("scroll", syncFloatingCta, { passive: true });
+    window.addEventListener("resize", syncFloatingCta);
     document.querySelectorAll('a[href*="/ajanlatkeres"], a[href*="ajanlatkeres"]').forEach((link) => {
       link.classList.add("da-quote-menu-link");
     });
