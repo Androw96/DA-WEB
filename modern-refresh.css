@@ -195,6 +195,14 @@ header .custom-logo-link img {
   pointer-events: auto !important;
 }
 
+.main-header-menu .menu-item-has-children:not(.da-submenu-open):not(.ast-submenu-expanded) > .sub-menu,
+.custom-sidebar-menu .menu-item-has-children:not(.da-submenu-open):not(.ast-submenu-expanded) > .sub-menu {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .main-header-menu > .menu-item > .sub-menu .menu-item-has-children {
   display: block !important;
 }
@@ -218,8 +226,6 @@ header .custom-logo-link img {
   transform: none !important;
 }
 
-.main-header-menu > .menu-item > .sub-menu .menu-item-has-children:hover > .sub-menu,
-.main-header-menu > .menu-item > .sub-menu .menu-item-has-children:focus-within > .sub-menu,
 .main-header-menu > .menu-item > .sub-menu .menu-item-has-children.da-submenu-open > .sub-menu,
 .main-header-menu > .menu-item > .sub-menu .menu-item-has-children.ast-submenu-expanded > .sub-menu {
   display: grid !important;
@@ -243,9 +249,7 @@ header .custom-logo-link img {
 }
 
 .main-header-menu .sub-menu .menu-item-has-children.da-submenu-open > .menu-link::after,
-.main-header-menu .sub-menu .menu-item-has-children.ast-submenu-expanded > .menu-link::after,
-.main-header-menu .sub-menu .menu-item-has-children:hover > .menu-link::after,
-.main-header-menu .sub-menu .menu-item-has-children:focus-within > .menu-link::after {
+.main-header-menu .sub-menu .menu-item-has-children.ast-submenu-expanded > .menu-link::after {
   content: "-";
 }
 
@@ -1326,9 +1330,7 @@ input[type="submit"]:hover,
 }
 
 .custom-sidebar-menu .menu-item-has-children.da-submenu-open > a::after,
-.custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > a::after,
-.custom-sidebar-menu .menu-item-has-children:hover > a::after,
-.custom-sidebar-menu .menu-item-has-children:focus-within > a::after {
+.custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > a::after {
   content: "-";
   transform: translateY(-50%);
 }
@@ -1346,8 +1348,6 @@ input[type="submit"]:hover,
   visibility: visible !important;
 }
 
-.custom-sidebar-menu .menu-item-has-children:hover > .sub-menu,
-.custom-sidebar-menu .menu-item-has-children:focus-within > .sub-menu,
 .custom-sidebar-menu .menu-item-has-children.da-submenu-open > .sub-menu,
 .custom-sidebar-menu .menu-item-has-children.ast-submenu-expanded > .sub-menu {
   display: grid !important;
