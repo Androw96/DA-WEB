@@ -3505,8 +3505,41 @@ body.da-quote-page .da-form-success {
 }
 
 @media (max-width: 921px) {
+  html,
+  body,
+  #page,
+  .site,
+  .site-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    background-color: #f7f8f5 !important;
+  }
+
   body {
-    background: #f7f8f5;
+    background: #f7f8f5 !important;
+  }
+
+  .site-content > .ast-container,
+  .ast-container,
+  .content-area.primary,
+  .site-main,
+  .site-main > article,
+  .entry-content,
+  .elementor,
+  .elementor-section,
+  .elementor-element.e-con,
+  .e-con.e-con-boxed > .e-con-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  .site-content > .ast-container,
+  .ast-container {
+    padding-right: var(--da-page-gutter) !important;
+    padding-left: var(--da-page-gutter) !important;
   }
 
   .site-header,
@@ -4282,6 +4315,11 @@ body.da-quote-page .da-form-success {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --da-page-gutter: 14px;
+    --da-section-gutter: 12px;
+  }
+
   .site-footer .site-primary-footer-inner-wrap {
     grid-template-columns: 1fr;
     gap: 22px;
