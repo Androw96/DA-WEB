@@ -322,6 +322,23 @@ header .custom-logo-link img {
   cursor: pointer;
 }
 
+.main-header-menu .da-simplified-categories > .sub-menu {
+  width: 300px !important;
+  padding: 10px !important;
+}
+
+.main-header-menu .da-simplified-categories > .sub-menu > .da-category-direct-link > .menu-link {
+  min-height: 50px;
+  border-radius: 8px;
+}
+
+.main-header-menu .da-simplified-categories > .sub-menu .sub-menu,
+.main-header-menu .da-simplified-categories > .sub-menu button.ast-menu-toggle,
+.main-header-menu .da-simplified-categories > .sub-menu .dropdown-menu-toggle,
+.main-header-menu .da-simplified-categories > .sub-menu .ast-header-navigation-arrow {
+  display: none !important;
+}
+
 .ast-header-search .astra-search-icon,
 .ast-site-header-cart i.astra-icon,
 .ast-header-account-wrap .ast-header-account-type-icon .ahfb-svg-iconset svg,

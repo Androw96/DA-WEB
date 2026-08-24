@@ -587,6 +587,7 @@
 
     const ensureServicesSubmenu = () => {
       const serviceItems = Array.from(document.querySelectorAll(".menu-item")).filter((item) => {
+        if (item.closest(".kiemelt-link")) return false;
         const linkText = item.querySelector(":scope > a .menu-text, :scope > a")?.textContent?.trim() || "";
         return linkText === "Szolgáltatások";
       });
@@ -611,6 +612,30 @@
       });
       wireNavigationSubmenus();
     };
+
+    const simplifyCategoryDropdown = () => {
+      const categoryLinks = [
+        ["Termékek", "/uzlet/"],
+        ["Szolgáltatások", "/szolgaltatasok/"],
+        ["Kurzusok", "/kurzusok/"],
+        ["Rólunk", "/rolunk/"],
+      ];
+
+      document.querySelectorAll(".main-header-menu .kiemelt-link").forEach((root) => {
+        let submenu = Array.from(root.children).find((child) => child.matches?.("ul.sub-menu"));
+        if (!submenu) {
+          submenu = document.createElement("ul");
+          submenu.className = "sub-menu";
+          root.appendChild(submenu);
+        }
+
+        root.classList.add("menu-item-has-children", "da-simplified-categories");
+        submenu.innerHTML = categoryLinks.map(([label, href]) => (
+          `<li class="menu-item menu-item-type-custom da-category-direct-link"><a class="menu-link" href="${href}">${label}</a></li>`
+        )).join("");
+      });
+    };
+    simplifyCategoryDropdown();
     ensureServicesSubmenu();
 
     const enhanceFooter = () => {
