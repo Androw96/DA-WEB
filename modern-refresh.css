@@ -855,11 +855,15 @@ input[type="submit"]:hover,
 .da-floating-cta {
   position: fixed;
   right: 18px;
-  bottom: auto;
+  bottom: 18px;
   z-index: 9999;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: max-content;
+  max-width: calc(100vw - 28px);
+  min-width: 148px;
   min-height: 48px;
   padding: 12px 18px;
   border: 2px solid var(--da-sky);
@@ -867,12 +871,14 @@ input[type="submit"]:hover,
   background: var(--da-purple);
   color: #fff;
   font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
   text-decoration: none;
   box-shadow: 0 18px 42px rgba(64, 63, 130, 0.28);
   transform: translateY(0);
   transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
   animation: daPulseCta 2.8s ease-in-out infinite;
-  will-change: top;
+  will-change: transform, opacity;
   contain: layout paint;
 }
 
@@ -4269,11 +4275,19 @@ body.da-quote-page .da-form-success {
   }
 
   .da-floating-cta {
-    right: 12px;
+    right: auto !important;
+    left: 50% !important;
     bottom: 12px;
+    width: min(320px, calc(100vw - 28px));
+    max-width: calc(100vw - 28px);
+    transform: translateX(-50%);
     min-height: 44px;
     padding: 10px 14px;
     font-size: 14px;
+  }
+
+  .da-floating-cta:hover {
+    transform: translateX(-50%) translateY(-2px);
   }
 
   .floating-banner-wrapper {

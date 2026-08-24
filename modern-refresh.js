@@ -161,6 +161,7 @@
     });
     let floatingUiFrame = 0;
     const positionFloatingUi = () => {
+      const isCompactViewport = window.matchMedia("(max-width: 640px)").matches;
       const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
       const cta = document.querySelector(".da-floating-cta");
       const banner = document.querySelector(".floating-banner-wrapper");
@@ -174,19 +175,23 @@
 
       if (cta) {
         cta.style.display = shouldHideCta ? "none" : "inline-flex";
-        cta.style.position = "absolute";
-        cta.style.top = `${Math.round(viewportBottom - ctaHeight - bottomGap)}px`;
-        cta.style.right = `${bottomGap}px`;
+        cta.style.position = "fixed";
+        cta.style.top = "auto";
+        cta.style.bottom = `${bottomGap}px`;
+        cta.style.right = isCompactViewport ? "auto" : `${bottomGap}px`;
+        cta.style.left = isCompactViewport ? "50%" : "auto";
+        cta.style.transform = "";
+        cta.classList.toggle("da-floating-cta-compact", isCompactViewport);
         cta.setAttribute("aria-hidden", shouldHideCta ? "true" : "false");
         cta.tabIndex = shouldHideCta ? -1 : 0;
         cta.classList.toggle("da-floating-cta-hidden", shouldHideCta);
       }
 
       if (banner) {
-        banner.style.position = "absolute";
-        banner.style.setProperty("top", `${Math.round(viewportBottom - bannerHeight - ctaHeight - bottomGap - 14)}px`, "important");
+        banner.style.position = "fixed";
+        banner.style.setProperty("top", "auto", "important");
+        banner.style.setProperty("bottom", `${bottomGap + ctaHeight + 14}px`, "important");
         banner.style.setProperty("right", `${bottomGap}px`, "important");
-        banner.style.setProperty("bottom", "auto", "important");
       }
     };
     const syncFloatingUi = () => {
