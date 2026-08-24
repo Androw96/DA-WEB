@@ -1274,7 +1274,7 @@ input[type="submit"]:hover,
 
 .da-discipline-card:hover {
   color: #fff;
-  transform: translateY(-8px);
+  transform: none;
   box-shadow: 0 24px 46px rgba(0, 0, 0, 0.28);
 }
 
@@ -1819,7 +1819,7 @@ body.home .da-home-services .elementor-widget-image-box > .elementor-widget-cont
 
 body.da-home-page .da-home-services .elementor-widget-image-box:hover > .elementor-widget-container,
 body.home .da-home-services .elementor-widget-image-box:hover > .elementor-widget-container {
-  transform: translateY(-7px);
+  transform: none;
   border-color: rgba(0, 176, 133, 0.58) !important;
   box-shadow: 0 26px 64px rgba(45, 39, 95, 0.22);
 }
@@ -2024,7 +2024,7 @@ body.da-lab-page .entry-content > ul > li::after {
 
 body.da-dentistry-page .entry-content > ul > li:hover,
 body.da-lab-page .entry-content > ul > li:hover {
-  transform: translateY(-7px);
+  transform: none;
   border-color: rgba(64, 63, 130, 0.3);
   box-shadow: 0 22px 54px rgba(45, 39, 95, 0.14);
 }
@@ -2032,12 +2032,12 @@ body.da-lab-page .entry-content > ul > li:hover {
 body.da-dentistry-page .entry-content > ul > li:hover::after,
 body.da-lab-page .entry-content > ul > li:hover::after {
   background: rgba(0, 176, 133, 0.15);
-  transform: scale(1.2);
+  transform: rotate(12deg);
 }
 
 body.da-dentistry-page .entry-content > ul > li:hover::after,
 body.da-lab-page .entry-content > ul > li:hover::after {
-  transform: rotate(12deg) scale(1.2);
+  transform: rotate(12deg);
 }
 
 body.da-dentistry-page .entry-content > ul > li > strong,

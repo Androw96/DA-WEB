@@ -109,7 +109,13 @@
           ".bsg-item",
         ].join(",")
       )
-    );
+    ).filter((card) => {
+      const isServiceFocusCard = Boolean(
+        card.closest(".da-home-services, .da-service-modern-grid, body.da-dentistry-page, body.da-lab-page")
+      );
+      const isNavigationCard = Boolean(card.closest(".main-header-menu, .custom-sidebar-menu"));
+      return !isServiceFocusCard && !isNavigationCard;
+    });
     modernCards.forEach((card, index) => {
       card.classList.add("da-modern-card");
       card.style.setProperty("--da-delay", `${Math.min(index * 45, 420)}ms`);
