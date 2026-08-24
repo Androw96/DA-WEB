@@ -56,31 +56,11 @@ html.ast-mobile-cart-active .astra-cart-drawer,
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(64, 63, 130, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(64, 63, 130, 0.035) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 68%);
-  transform: translateY(calc(var(--da-scroll) * -26px));
+  content: none;
 }
 
 body::after {
-  content: "";
-  position: fixed;
-  inset: auto -10vw -28vh;
-  z-index: -1;
-  height: 46vh;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 42%, rgba(101, 80, 169, 0.16), transparent 28%),
-    radial-gradient(circle at 76% 38%, rgba(0, 176, 133, 0.14), transparent 30%);
-  filter: blur(28px);
-  animation: daAmbient 13s ease-in-out infinite alternate;
+  content: none;
 }
 
 .site-content > .ast-container,
