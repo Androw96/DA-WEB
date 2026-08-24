@@ -216,12 +216,29 @@
       const expandableMenus = ".main-header-menu, .custom-sidebar-menu .custom-menu-list";
       const isInsideExpandableMenu = (node) => node?.closest?.(expandableMenus);
       const getDirectChild = (item, selector) => Array.from(item.children).find((child) => child.matches?.(selector));
+      const isCategoryBranch = (item) => {
+        const categoryRoot = item.closest(".kiemelt-link");
+        return Boolean(categoryRoot && categoryRoot !== item);
+      };
+      const isSidebarBranch = (item) => Boolean(item.closest(".custom-sidebar-menu"));
+      const makeLinkOnlyBranch = (item) => {
+        const link = getDirectChild(item, "a.menu-link, a");
+        item.classList.add("da-link-only-branch");
+        item.classList.remove("da-has-click-submenu", "da-submenu-open", "ast-submenu-expanded");
+        link?.removeAttribute("aria-haspopup");
+        link?.removeAttribute("role");
+        link?.setAttribute("aria-expanded", "false");
+      };
 
       document.querySelectorAll(`${expandableMenus} .menu-item-has-children`).forEach((item) => {
         const button = getDirectChild(item, "button.ast-menu-toggle");
         const link = getDirectChild(item, "a.menu-link, a");
         const submenu = getDirectChild(item, "ul.sub-menu");
         if (!submenu) return;
+        if (isCategoryBranch(item) || isSidebarBranch(item)) {
+          makeLinkOnlyBranch(item);
+          return;
+        }
         item.classList.add("da-has-click-submenu");
         link?.setAttribute("aria-haspopup", "true");
         link?.setAttribute("role", "button");
@@ -269,6 +286,10 @@
 
           const item = event.target.closest(".menu-item-has-children");
           if (!item || !menuRoot.contains(item)) return;
+          if (item.classList.contains("da-link-only-branch") || isCategoryBranch(item) || isSidebarBranch(item)) {
+            makeLinkOnlyBranch(item);
+            return;
+          }
 
           const submenu = getDirectChild(item, "ul.sub-menu");
           if (!submenu || submenu.contains(event.target)) return;

@@ -298,6 +298,30 @@ header .custom-logo-link img {
   content: "-";
 }
 
+.main-header-menu .kiemelt-link > .sub-menu .menu-item-has-children > .sub-menu,
+.custom-sidebar-menu .menu-item-has-children > .sub-menu {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.main-header-menu .kiemelt-link > .sub-menu .menu-item-has-children > .menu-link,
+.custom-sidebar-menu .menu-item-has-children > a {
+  padding-right: 18px !important;
+}
+
+.main-header-menu .kiemelt-link > .sub-menu .menu-item-has-children > .menu-link::after,
+.custom-sidebar-menu .menu-item-has-children > a::after {
+  display: none !important;
+  content: none !important;
+}
+
+.main-header-menu .kiemelt-link > .sub-menu .menu-item-has-children,
+.custom-sidebar-menu .menu-item-has-children {
+  cursor: pointer;
+}
+
 .ast-header-search .astra-search-icon,
 .ast-site-header-cart i.astra-icon,
 .ast-header-account-wrap .ast-header-account-type-icon .ahfb-svg-iconset svg,
