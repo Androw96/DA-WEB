@@ -173,9 +173,12 @@
       const shouldHideCta = viewportBottom > footerTop - bottomGap;
 
       if (cta) {
+        cta.style.display = shouldHideCta ? "none" : "inline-flex";
         cta.style.position = "absolute";
         cta.style.top = `${Math.round(viewportBottom - ctaHeight - bottomGap)}px`;
         cta.style.right = `${bottomGap}px`;
+        cta.setAttribute("aria-hidden", shouldHideCta ? "true" : "false");
+        cta.tabIndex = shouldHideCta ? -1 : 0;
         cta.classList.toggle("da-floating-cta-hidden", shouldHideCta);
       }
 
