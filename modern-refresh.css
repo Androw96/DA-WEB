@@ -1540,8 +1540,16 @@ input[type="submit"]:hover,
   left: auto !important;
   z-index: 9998 !important;
   pointer-events: none;
-  will-change: top;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+  will-change: bottom, opacity, transform;
   contain: layout paint;
+}
+
+.floating-banner-wrapper.da-banner-hidden {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(12px) !important;
 }
 
 .floating-banner-panel {

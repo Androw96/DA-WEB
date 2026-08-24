@@ -165,16 +165,13 @@
       const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
       const cta = document.querySelector(".da-floating-cta");
       const banner = document.querySelector(".floating-banner-wrapper");
-      const bannerPanel = banner?.querySelector(".floating-banner-panel");
       const ctaHeight = cta?.offsetHeight || 52;
-      const bannerHeight = bannerPanel?.offsetHeight || 84;
-      const viewportBottom = window.scrollY + window.innerHeight;
       const footer = document.querySelector(".site-footer");
-      const footerTop = footer ? footer.getBoundingClientRect().top + window.scrollY : Number.POSITIVE_INFINITY;
-      const shouldHideCta = viewportBottom > footerTop - bottomGap;
+      const footerTopInViewport = footer ? footer.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
+      const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap;
 
       if (cta) {
-        cta.style.display = shouldHideCta ? "none" : "inline-flex";
+        cta.style.display = "inline-flex";
         cta.style.position = "fixed";
         cta.style.top = "auto";
         cta.style.bottom = `${bottomGap}px`;
@@ -182,16 +179,18 @@
         cta.style.left = isCompactViewport ? "50%" : "auto";
         cta.style.transform = "";
         cta.classList.toggle("da-floating-cta-compact", isCompactViewport);
-        cta.setAttribute("aria-hidden", shouldHideCta ? "true" : "false");
-        cta.tabIndex = shouldHideCta ? -1 : 0;
-        cta.classList.toggle("da-floating-cta-hidden", shouldHideCta);
+        cta.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
+        cta.tabIndex = shouldHideFloatingUi ? -1 : 0;
+        cta.classList.toggle("da-floating-cta-hidden", shouldHideFloatingUi);
       }
 
       if (banner) {
-        banner.style.position = "fixed";
+        banner.style.setProperty("position", "fixed", "important");
         banner.style.setProperty("top", "auto", "important");
         banner.style.setProperty("bottom", `${bottomGap + ctaHeight + 14}px`, "important");
         banner.style.setProperty("right", `${bottomGap}px`, "important");
+        banner.classList.toggle("da-banner-hidden", shouldHideFloatingUi);
+        banner.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
       }
     };
     const syncFloatingUi = () => {
