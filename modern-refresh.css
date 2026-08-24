@@ -26,6 +26,13 @@ html {
   scroll-behavior: smooth;
   max-width: 100%;
   overflow-x: clip;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
@@ -67,6 +74,7 @@ body::after {
 .ast-container,
 .ast-page-builder-template .site-content > .ast-container,
 .ast-separate-container .site-content > .ast-container {
+  box-sizing: border-box !important;
   width: 100% !important;
   max-width: none !important;
   padding-right: var(--da-page-gutter) !important;
@@ -79,6 +87,7 @@ body::after {
 .ast-separate-container .ast-article-single,
 .ast-woocommerce-container,
 .entry-content {
+  box-sizing: border-box !important;
   width: 100% !important;
   max-width: none !important;
 }
@@ -92,6 +101,7 @@ body::after {
 .elementor-section.elementor-section-boxed > .elementor-container,
 .elementor-section.elementor-section-boxed > .elementor-container.elementor-column-gap-default,
 .e-con.e-con-boxed > .e-con-inner {
+  box-sizing: border-box !important;
   width: 100% !important;
   max-width: none !important;
 }
