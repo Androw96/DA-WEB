@@ -27,6 +27,9 @@
     if (isHome) {
       document.body.classList.add("da-home-page");
     }
+    if (path.includes("/a-mosoly-hattere-szakmai-nap-gyorben/")) {
+      document.body.classList.add("da-smile-event-page");
+    }
 
     const progress = document.createElement("div");
     progress.className = "da-scroll-progress";
@@ -877,6 +880,145 @@
     };
     renderCourseInterest();
 
+    const renderServicesPage = () => {
+      if (pageType !== "services") return;
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      if (!entry || document.querySelector(".da-services-hub")) return;
+      const services = [
+        {
+          title: "Implantációs protetika",
+          text: "Tervezett implantátumra épülő koronák, hidak, All-on megoldások és egyéni implantátum irányok.",
+          href: "/termekkategoria/implantacios-protetika/",
+          image: "/wp-content/uploads/Implantacios-protetika.png",
+        },
+        {
+          title: "Esztétikai fogászat",
+          text: "Héjkerámiák, koronák, inlay-onlay betétek és mosolyrehabilitációs megoldások egy helyen.",
+          href: "/termekkategoria/esztetikai-fogaszat/",
+          image: "/wp-content/uploads/Veneers.png",
+        },
+        {
+          title: "Bérnyomtatás és marástechnológia",
+          text: "Digitális tervezés, 3D nyomtatás, LMF és marási folyamatok fogászati/fogtechnikai háttérrel.",
+          href: "/termekkategoria/bernyomtatas-es-marastechnologia/",
+          image: "/wp-content/uploads/3D-polimer-nyomtatas-500x500.png",
+        },
+        {
+          title: "Kombinált munkák",
+          text: "Fémlemezes és fémmentes kombinált pótlások komplex esetekhez, laboroldali támogatással.",
+          href: "/termekkategoria/kombinalt-munkak/",
+          image: "/wp-content/uploads/Femlemezes-potlasok.jpg",
+        },
+        {
+          title: "CAD/CAM termék- és anyagrendszer",
+          text: "Cirkónium-dioxid, PMMA, 3D resin és kapcsolódó digitális CAD/CAM anyagok áttekinthetően.",
+          href: "/termekkategoria/cadcam/",
+          image: "/wp-content/uploads/Cirkonmaras-600x600.png",
+        },
+        {
+          title: "Ajánlatkérés szakmai munkára",
+          text: "Ha konkrét esethez, laborfolyamathoz vagy anyagválasztáshoz kérsz irányt, indulj innen.",
+          href: "/ajanlatkeres/",
+          image: "/wp-content/uploads/Fogtechnikai-munkafolyamat-500x496.png",
+        },
+      ];
+      entry.innerHTML = `
+        <section class="da-services-hub da-reveal is-visible">
+          <div class="da-services-hub-hero">
+            <p class="da-section-kicker">Szolgáltatásaink</p>
+            <h2>Válassz szakmai irányt, a részletek már az adott oldalon vezetnek tovább</h2>
+            <p>A menü most nem apró almenükbe bontja szét a szakmai területeket: minden szolgáltatási csoport saját oldalra visz, ahol a kapcsolódó termékek, eljárások és ajánlatkérési útvonalak áttekinthetően épülnek fel.</p>
+          </div>
+          <div class="da-services-link-grid">
+            ${services.map((service) => `
+              <a class="da-service-link-card" href="${service.href}">
+                <img src="${service.image}" alt="${escapeHtml(service.title)}">
+                <span>Megnyitás</span>
+                <h3>${escapeHtml(service.title)}</h3>
+                <p>${escapeHtml(service.text)}</p>
+              </a>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    };
+    renderServicesPage();
+
+    const renderCoursesOverview = () => {
+      if (path !== "/kurzusok/" && !path.endsWith("/kurzusok/")) return;
+      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+      if (!entry || document.querySelector(".da-courses-overview")) return;
+      const courses = [
+        {
+          title: "EXOCAD Kezdő",
+          status: "Érdeklődöm",
+          text: "Belépő szintű digitális tervezési kurzus azoknak, akik stabil alapokat szeretnének az EXOCAD használatához.",
+          href: "/kurzusok/exocad-kezdo/",
+          image: "/wp-content/uploads/EXOCAD-Zartkoru-rendezveny-500x500.png",
+          past: true,
+        },
+        {
+          title: "EXOCAD Haladó",
+          status: "Érdeklődöm",
+          text: "Haladó tervezési szemlélet, összetettebb esetek és gyorsabb digitális munkafolyamatok.",
+          href: "/kurzusok/exocad-halado/",
+          image: "/wp-content/uploads/EXOCAD-Zartkoru-rendezveny-300x300.png",
+          past: true,
+        },
+        {
+          title: "Cirkónium mesterfokon",
+          status: "Érdeklődöm",
+          text: "Anyagismeret, tervezési döntések és gyakorlati fogások cirkónium munkákhoz.",
+          href: "/kurzusok/cirkonium-mesterfokon/",
+          image: "/wp-content/uploads/Cirkonium-mesterfokon.png",
+          past: true,
+        },
+        {
+          title: "A mosoly háttere - szakmai nap",
+          status: "Múltbéli esemény",
+          text: "Kreditpontos szakmai nap Győrben, előadókkal, ünnepi programmal és közös szakmai találkozással.",
+          href: "/a-mosoly-hattere-szakmai-nap-gyorben/",
+          image: "/wp-content/uploads/WEBOLDAL-boritokepek-3-1024x423.png",
+          past: true,
+        },
+      ];
+      entry.innerHTML = `
+        <section class="da-courses-overview da-reveal is-visible">
+          <div class="da-courses-hero">
+            <p class="da-section-kicker">Kurzusaink</p>
+            <h2>Szakmai képzések digitális fogászati és fogtechnikai fókuszban</h2>
+            <p>Az aktuális időpontok folyamatosan frissülnek. Ha egy kurzus betelt vagy már lezárult, az érdeklődés gombbal jelezheted, hogy szeretnél értesítést kapni a következő alkalomról.</p>
+          </div>
+          <div class="da-course-card-grid">
+            ${courses.slice(0, 3).map((course) => `
+              <article class="da-course-card">
+                <img src="${course.image}" alt="${escapeHtml(course.title)}">
+                <div>
+                  <span>${escapeHtml(course.status)}</span>
+                  <h3>${escapeHtml(course.title)}</h3>
+                  <p>${escapeHtml(course.text)}</p>
+                  <a href="${course.href}">Érdeklődöm</a>
+                </div>
+              </article>
+            `).join("")}
+          </div>
+          <section class="da-past-courses">
+            <p class="da-section-kicker">Archívum</p>
+            <h2>Múltbéli kurzusaink:</h2>
+            <div class="da-past-course-list">
+              ${courses.filter((course) => course.past).map((course) => `
+                <a href="${course.href}">
+                  <strong>${escapeHtml(course.title)}</strong>
+                  <span>${escapeHtml(course.status)}</span>
+                </a>
+              `).join("")}
+            </div>
+          </section>
+        </section>
+      `;
+    };
+    renderCoursesOverview();
+
     const captureQuoteRequests = () => {
       if (pageType !== "quote") return;
       const form = document.querySelector("#wpforms-form-27, .wpforms-form, .entry-content form");
@@ -1051,21 +1193,49 @@
         }
         return;
       }
-      if (document.querySelector(".da-team-section")) return;
-      const team = document.createElement("section");
-      team.className = "da-team-section da-reveal is-visible";
-      team.innerHTML = `
-        <div class="da-team-intro">
-          <p class="da-section-kicker">Vezetőség</p>
-          <h2>Emberek a Dent-Art-Technik mögött</h2>
-          <p>A több évtizedes szakmai múlt mögé arcokat és felelősségi köröket teszünk, hogy a cég ne csak hosszú szövegként, hanem élő csapatként jelenjen meg.</p>
-          <a class="da-team-link" href="/rolunk/csapat/">Kiemelt személyek</a>
-        </div>
-        <div class="da-team-grid">
-          ${featuredTeamMembers.slice(0, 2).map((member, index) => teamMemberCard(member, index)).join("")}
-        </div>
+      if (!entry || document.querySelector(".da-about-experience")) return;
+      const image = entry.querySelector('img[src*="2025"]');
+      const imageSrc = image?.getAttribute("srcset")?.split(",").pop()?.trim().split(/\s+/)[0]
+        || image?.getAttribute("src")
+        || "/wp-content/uploads/2025.png";
+      image?.closest("p, figure")?.remove();
+      entry.innerHTML = `
+        <section class="da-about-experience da-reveal is-visible">
+          <div class="da-about-visual">
+            <img src="${imageSrc}" alt="Dent-Art-Technik csapat">
+            <div>
+              <p class="da-section-kicker">Dent-Art-Technik</p>
+              <h2>33 év szakmai háttér, digitális lendület és laborprecizitás</h2>
+              <p>Nem csak fogtechnikai termékeket gyártunk: olyan szakmai hátteret építünk, amelyben a hagyományos mesterség, a CAD/CAM gondolkodás, a 3D technológia és a partneri kommunikáció egy rendszerként működik.</p>
+            </div>
+          </div>
+          <div class="da-about-story">
+            <article>
+              <span>1992</span>
+              <h3>Mesterlaborból komplex szakmai partner</h3>
+              <p>Kónya János fogtechnikus mester alapításával a cél kezdettől egyértelmű volt: magas színvonalú, teljes körű laborháttér, amely biztonságot ad a rendelőknek és kiszámítható minőséget a pácienseknek.</p>
+            </article>
+            <article>
+              <span>Technológia</span>
+              <h3>Modern géppark, egymásra épülő folyamatok</h3>
+              <p>A kivehető protézisektől az implantátumgyártásig, a préskerámiától a digitális tervezésig minden terület mögött kontrollált folyamat és fejleszthető szakmai rendszer áll.</p>
+            </article>
+            <article>
+              <span>Minőség</span>
+              <h3>Tanúsított működés, szakmai elismerések</h3>
+              <p>ISO rendszerek, CE minősített eljárások, Magyar Termék Nagydíjak és szakmai díjak jelzik azt az irányt, amelyet a csapat nap mint nap képvisel.</p>
+            </article>
+          </div>
+          <div class="da-about-team-link">
+            <div>
+              <p class="da-section-kicker">Kiemelt személyek</p>
+              <h2>Az arcokat külön oldalon mutatjuk be</h2>
+              <p>A vezetői és szakmai szerepek külön, áttekinthető csapatoldalon kaptak helyet.</p>
+            </div>
+            <a class="da-team-link" href="/rolunk/csapat/">Kiemelt személyek megnyitása</a>
+          </div>
+        </section>
       `;
-      if (entry) entry.insertAdjacentElement("afterbegin", team);
     };
     renderAboutTeam();
 

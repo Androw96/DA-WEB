@@ -3359,6 +3359,254 @@ body.da-services-page .entry-content a {
   color: #fff;
 }
 
+.da-services-hub,
+.da-courses-overview,
+.da-about-experience {
+  width: 100%;
+}
+
+.da-services-hub-hero,
+.da-courses-hero,
+.da-about-team-link {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 18px;
+  padding: 28px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 86% 0%, rgba(155, 220, 255, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(64, 63, 130, 0.98), rgba(37, 24, 69, 0.98));
+  box-shadow: 0 22px 58px rgba(22, 18, 54, 0.22);
+}
+
+.da-services-hub-hero h2,
+.da-courses-hero h2,
+.da-about-team-link h2 {
+  max-width: 880px;
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(34px, 4.8vw, 58px);
+  line-height: 1.02;
+}
+
+.da-services-hub-hero p,
+.da-courses-hero p,
+.da-about-team-link p {
+  max-width: 820px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.da-services-link-grid,
+.da-course-card-grid,
+.da-about-story {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.da-service-link-card,
+.da-course-card,
+.da-about-story article {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(155, 220, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--da-ink) !important;
+  box-shadow: 0 18px 44px rgba(22, 18, 54, 0.13);
+  text-decoration: none;
+}
+
+.da-service-link-card {
+  display: grid;
+  grid-template-rows: 210px auto auto auto;
+  min-height: 100%;
+  padding: 14px;
+}
+
+.da-service-link-card img,
+.da-course-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #eef2f7;
+}
+
+.da-service-link-card span,
+.da-course-card span,
+.da-about-story article span {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 14px;
+  padding: 6px 9px;
+  border-radius: 8px;
+  background: rgba(0, 176, 133, 0.1);
+  color: var(--da-green) !important;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.da-service-link-card h3,
+.da-course-card h3,
+.da-about-story article h3 {
+  margin: 10px 0 8px;
+  color: var(--da-purple) !important;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.05;
+}
+
+.da-service-link-card p,
+.da-course-card p,
+.da-about-story article p {
+  margin: 0;
+  color: var(--da-muted) !important;
+  line-height: 1.58;
+}
+
+.da-course-card {
+  display: grid;
+  grid-template-rows: 210px 1fr;
+}
+
+.da-course-card > div,
+.da-about-story article {
+  padding: 18px;
+}
+
+.da-course-card a {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--da-purple);
+  color: #fff !important;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.da-past-courses {
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.da-past-courses h2 {
+  margin: 0 0 14px;
+  color: var(--da-purple);
+}
+
+.da-past-course-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.da-past-course-list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  color: var(--da-purple) !important;
+  text-decoration: none;
+}
+
+.da-past-course-list span {
+  color: var(--da-green);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.da-about-visual {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+  gap: 0;
+  overflow: hidden;
+  margin-bottom: 18px;
+  border-radius: 8px;
+  background: var(--da-purple);
+  box-shadow: 0 24px 64px rgba(45, 39, 95, 0.22);
+}
+
+.da-about-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.da-about-visual > div {
+  display: grid;
+  align-content: center;
+  padding: 34px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(0, 176, 133, 0.18), transparent 34%),
+    linear-gradient(135deg, rgba(64, 63, 130, 0.96), rgba(37, 24, 69, 0.98));
+}
+
+.da-about-visual h2 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(34px, 4.5vw, 62px);
+  line-height: 1.02;
+}
+
+.da-about-visual p {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.da-about-team-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel,
+body.da-lab-page .da-service-modern-grid .da-modern-panel {
+  transform: none !important;
+  transition: box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover,
+body.da-lab-page .da-service-modern-grid .da-modern-panel:hover {
+  transform: none !important;
+  border-color: rgba(155, 220, 255, 0.48);
+  box-shadow: 0 18px 48px rgba(45, 39, 95, 0.16);
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel::after,
+body.da-lab-page .da-service-modern-grid .da-modern-panel::after {
+  border-radius: 8px;
+  transform: none !important;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover::after,
+body.da-lab-page .da-service-modern-grid .da-modern-panel:hover::after {
+  transform: none !important;
+  background: rgba(0, 176, 133, 0.18);
+}
+
+body.da-smile-event-page .entry-content {
+  width: min(980px, 100%);
+  margin: 24px auto 52px;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid rgba(64, 63, 130, 0.12);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 22px 58px rgba(45, 39, 95, 0.12);
+}
+
 body.da-quote-page .wpforms-container {
   width: min(860px, 100%);
   margin: 20px auto 54px !important;
@@ -4023,6 +4271,29 @@ body.da-quote-page .da-form-success {
   body.ast-header-break-point #ast-hf-menu-1-mobile .ast-submenu-expanded > button.ast-menu-toggle svg,
   body.ast-header-break-point #ast-hf-menu-1-mobile .da-submenu-open > button.ast-menu-toggle svg {
     transform: rotate(180deg) !important;
+  }
+
+  .da-services-link-grid,
+  .da-course-card-grid,
+  .da-about-story {
+    grid-template-columns: 1fr;
+  }
+
+  .da-past-course-list {
+    grid-template-columns: 1fr;
+  }
+
+  .da-about-visual {
+    grid-template-columns: 1fr;
+  }
+
+  .da-about-visual img {
+    min-height: 280px;
+  }
+
+  .da-about-team-link {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .site-footer .site-primary-footer-inner-wrap {
