@@ -894,10 +894,9 @@ input[type="submit"]:hover,
 }
 
 .da-floating-layer {
-  position: absolute !important;
+  position: fixed !important;
   right: 18px;
-  top: 0;
-  bottom: auto;
+  bottom: 18px;
   z-index: 2147483000 !important;
   display: flex;
   flex-direction: column;
@@ -4670,7 +4669,7 @@ body.da-quote-page .da-form-success {
 
   .da-floating-layer {
     right: 12px;
-    bottom: auto;
+    bottom: 12px;
     left: 12px;
     align-items: stretch;
     gap: 10px;

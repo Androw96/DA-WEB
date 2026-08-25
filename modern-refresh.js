@@ -173,7 +173,9 @@
       if (!layer) {
         layer = document.createElement("div");
         layer.className = "da-floating-layer";
-        document.body.appendChild(layer);
+      }
+      if (layer.parentElement !== document.documentElement) {
+        document.documentElement.appendChild(layer);
       }
       return layer;
     };
@@ -189,10 +191,8 @@
       const layerHeight = layer.getBoundingClientRect().height || 0;
       const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
       const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap - layerHeight;
-      const scrollOffset = window.scrollY || document.documentElement.scrollTop || 0;
-      const layerViewportTop = Math.max(bottomGap, window.innerHeight - bottomGap - layerHeight);
-      layer.style.top = `${scrollOffset + layerViewportTop}px`;
-      layer.style.bottom = "auto";
+      layer.style.top = "";
+      layer.style.bottom = "";
       layer.classList.toggle("da-floating-layer-hidden", shouldHideFloatingUi);
 
       if (cta) {
