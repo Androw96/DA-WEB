@@ -8,7 +8,43 @@
   };
 
   ready(() => {
-    const path = window.location.pathname.replace(/\/index\.html$/, "/");
+    const pagesBase = window.location.hostname.endsWith("github.io")
+      ? `/${window.location.pathname.split("/").filter(Boolean)[0] || ""}`
+      : "";
+    const siteUrl = (url) => {
+      if (!url || !url.startsWith("/") || url.startsWith("//")) return url;
+      if (!pagesBase || url.startsWith(`${pagesBase}/`)) return url;
+      return `${pagesBase}${url}`;
+    };
+    const rawPath = window.location.pathname.replace(/\/index\.html$/, "/");
+    const path = pagesBase && rawPath.startsWith(`${pagesBase}/`)
+      ? rawPath.slice(pagesBase.length) || "/"
+      : rawPath;
+    const normalizeSiteUrls = (root = document) => {
+      if (!pagesBase) return;
+      root.querySelectorAll("[href], [src], [action]").forEach((element) => {
+        ["href", "src", "action"].forEach((attribute) => {
+          const value = element.getAttribute(attribute);
+          if (value && value.startsWith("/") && !value.startsWith("//") && !value.startsWith(`${pagesBase}/`)) {
+            element.setAttribute(attribute, siteUrl(value));
+          }
+        });
+      });
+      root.querySelectorAll("[srcset]").forEach((element) => {
+        const value = element.getAttribute("srcset");
+        if (!value) return;
+        element.setAttribute("srcset", value
+          .split(",")
+          .map((item) => {
+            const parts = item.trim().split(/\s+/);
+            if (parts[0]?.startsWith("/") && !parts[0].startsWith(`${pagesBase}/`)) {
+              parts[0] = siteUrl(parts[0]);
+            }
+            return parts.join(" ");
+          })
+          .join(", "));
+      });
+    };
     const isHome = document.body.classList.contains("home") || path === "/" || path.endsWith("/simply-static-1-1784283072/");
     const pageType = (() => {
       if (path.includes("/fogaszat/")) return "dentistry";
@@ -789,7 +825,7 @@
       }
 
       try {
-        const response = await fetch("/data/posts.json");
+        const response = await fetch(siteUrl("/data/posts.json"));
         const originalPosts = await response.json();
         const currentPost = originalPosts.find((post) => post.slug === pageSlug);
         const overridePost = currentPost && wordpressOverrides.find((post) => Number(post.originalId) === Number(currentPost.id));
@@ -836,7 +872,7 @@
       const productAnchor = serviceSection || fallbackSection;
       if (!productAnchor) return;
       try {
-        const response = await fetch("/data/products.json");
+        const response = await fetch(siteUrl("/data/products.json"));
         const productOverrides = getProductOverrides();
         const products = (await response.json()).map((product) => ({
           ...product,
@@ -1337,5 +1373,6 @@
       }
       window.addEventListener("load", syncFloatingUi, { once: true });
     }
+    normalizeSiteUrls();
   });
 })();
