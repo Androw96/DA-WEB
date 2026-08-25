@@ -168,46 +168,41 @@
       cta.textContent = "Ajánlatkérés";
       cta.setAttribute("aria-label", "Ajánlatkérés");
     });
+    const getFloatingLayer = () => {
+      let layer = document.querySelector(".da-floating-layer");
+      if (!layer) {
+        layer = document.createElement("div");
+        layer.className = "da-floating-layer";
+        document.body.appendChild(layer);
+      }
+      return layer;
+    };
     let floatingUiFrame = 0;
     const positionFloatingUi = () => {
-      const isCompactViewport = window.matchMedia("(max-width: 640px)").matches;
-      const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
       const cta = document.querySelector(".da-floating-cta");
       const banner = document.querySelector(".floating-banner-wrapper");
-      if (banner && banner.parentElement !== document.body) {
-        document.body.appendChild(banner);
-      }
-      const ctaHeight = cta?.offsetHeight || 52;
-      const bannerHeight = banner?.getBoundingClientRect().height || 0;
+      const layer = getFloatingLayer();
+      if (banner && banner.parentElement !== layer) layer.appendChild(banner);
+      if (cta && cta.parentElement !== layer) layer.appendChild(cta);
       const footer = document.querySelector(".site-footer");
       const footerTopInViewport = footer ? footer.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
-      const floatingStackHeight = ctaHeight + bannerHeight + 24;
-      const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap - floatingStackHeight;
-      const ctaViewportTop = Math.max(bottomGap, window.innerHeight - bottomGap - ctaHeight);
-      const bannerViewportTop = Math.max(bottomGap, ctaViewportTop - bannerHeight - 14);
+      const layerHeight = layer.getBoundingClientRect().height || 0;
+      const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
+      const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap - layerHeight;
       const scrollOffset = window.scrollY || document.documentElement.scrollTop || 0;
-      const ctaTop = scrollOffset + ctaViewportTop;
-      const bannerTop = scrollOffset + bannerViewportTop;
+      const layerViewportTop = Math.max(bottomGap, window.innerHeight - bottomGap - layerHeight);
+      layer.style.top = `${scrollOffset + layerViewportTop}px`;
+      layer.style.bottom = "auto";
+      layer.classList.toggle("da-floating-layer-hidden", shouldHideFloatingUi);
 
       if (cta) {
-        cta.style.display = "inline-flex";
-        cta.style.position = "absolute";
-        cta.style.top = `${ctaTop}px`;
-        cta.style.bottom = "auto";
-        cta.style.right = isCompactViewport ? "auto" : `${bottomGap}px`;
-        cta.style.left = isCompactViewport ? "50%" : "auto";
-        cta.style.transform = isCompactViewport ? "translateX(-50%)" : "";
-        cta.classList.toggle("da-floating-cta-compact", isCompactViewport);
+        cta.classList.toggle("da-floating-cta-compact", window.matchMedia("(max-width: 640px)").matches);
         cta.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
         cta.tabIndex = shouldHideFloatingUi ? -1 : 0;
         cta.classList.toggle("da-floating-cta-hidden", shouldHideFloatingUi);
       }
 
       if (banner) {
-        banner.style.setProperty("position", "absolute", "important");
-        banner.style.setProperty("top", `${bannerTop}px`, "important");
-        banner.style.setProperty("bottom", "auto", "important");
-        banner.style.setProperty("right", `${bottomGap}px`, "important");
         banner.classList.toggle("da-banner-hidden", shouldHideFloatingUi);
         banner.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
       }
@@ -433,7 +428,7 @@
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
         { title: "Gyártási pontosság", text: "A technológiai szolgáltatások erősebb, prémiumabb kártyarendszerben jelennek meg.", image: "/wp-content/uploads/Cirkonmaras-600x600.png" },
-        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány.", image: "/wp-content/uploads/Fogtechnikai-munkafolyamat-1024x423.png" },
+        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány.", image: "/wp-content/uploads/partneri-utvonal-business-v1.png" },
         { title: "Anyag és folyamat", text: "A termékkategóriák mögé kerül egy modernebb szakmai narratíva és vizuális ritmus.", image: "/wp-content/uploads/LMF-600x600.png" },
       ]));
     }

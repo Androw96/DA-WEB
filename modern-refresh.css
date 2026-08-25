@@ -25,7 +25,7 @@
 html {
   scroll-behavior: smooth;
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
   box-sizing: border-box;
 }
 
@@ -43,7 +43,7 @@ body {
   text-rendering: geometricPrecision;
   --da-scroll: 0;
   max-width: 100%;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 .astra-cart-drawer {
@@ -893,10 +893,31 @@ input[type="submit"]:hover,
   box-shadow: 0 0 18px rgba(64, 63, 130, 0.35);
 }
 
-.da-floating-cta {
+.da-floating-layer {
   position: absolute !important;
   right: 18px;
-  bottom: 18px;
+  top: 0;
+  bottom: auto;
+  z-index: 2147483000 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 160ms ease, visibility 160ms ease;
+  will-change: opacity;
+}
+
+.da-floating-layer.da-floating-layer-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.da-floating-cta {
+  position: relative !important;
+  inset: auto !important;
   z-index: 2147483000 !important;
   display: inline-flex !important;
   align-items: center;
@@ -921,6 +942,7 @@ input[type="submit"]:hover,
   animation: daPulseCta 2.8s ease-in-out infinite;
   will-change: transform, opacity;
   contain: layout paint;
+  pointer-events: auto;
 }
 
 .da-floating-cta:hover {
@@ -930,10 +952,7 @@ input[type="submit"]:hover,
 }
 
 .da-floating-cta.da-floating-cta-hidden {
-  visibility: hidden !important;
-  opacity: 0 !important;
   pointer-events: none !important;
-  transform: translateY(12px) !important;
 }
 
 .da-floating-cta span {
@@ -1574,23 +1593,21 @@ input[type="submit"]:hover,
 }
 
 .floating-banner-wrapper {
-  position: absolute !important;
-  right: 18px !important;
+  position: relative !important;
+  inset: auto !important;
   bottom: auto !important;
   top: auto;
   left: auto !important;
-  z-index: 9998 !important;
+  right: auto !important;
+  z-index: 2147482999 !important;
   pointer-events: none;
-  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
-  will-change: bottom, opacity, transform;
+  transition: opacity 180ms ease, visibility 180ms ease;
+  will-change: opacity;
   contain: layout paint;
 }
 
 .floating-banner-wrapper.da-banner-hidden {
-  visibility: hidden !important;
-  opacity: 0 !important;
   pointer-events: none !important;
-  transform: translateY(12px) !important;
 }
 
 .floating-banner-panel {
@@ -1611,7 +1628,7 @@ input[type="submit"]:hover,
 
 .floating-banner-panel.floating-banner-panel-right,
 .floating-banner-panel.floating-banner-panel-left {
-  right: 18px !important;
+  right: auto !important;
   left: auto !important;
 }
 
@@ -1695,10 +1712,10 @@ input[type="submit"]:hover,
 }
 
 .floating-banner-btn {
-  position: fixed !important;
+  position: relative !important;
   top: auto !important;
-  right: 18px !important;
-  bottom: 82px !important;
+  right: auto !important;
+  bottom: auto !important;
   left: auto !important;
   align-items: center !important;
   justify-content: center !important;
@@ -4651,37 +4668,40 @@ body.da-quote-page .da-form-success {
     display: none !important;
   }
 
-  .floating-banner-panel {
-    width: min(360px, calc(100vw - 24px)) !important;
-    max-width: min(360px, calc(100vw - 24px)) !important;
+  .da-floating-layer {
+    right: 12px;
+    bottom: auto;
+    left: 12px;
+    align-items: stretch;
+    gap: 10px;
   }
 
   .da-floating-cta {
-    right: auto !important;
-    left: 50% !important;
-    bottom: 12px;
-    width: min(320px, calc(100vw - 28px));
-    max-width: calc(100vw - 28px);
-    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100%;
     min-height: 44px;
     padding: 10px 14px;
     font-size: 14px;
+    transform: none;
   }
 
   .da-floating-cta:hover {
-    transform: translateX(-50%) translateY(-2px);
+    transform: translateY(-2px);
   }
 
   .floating-banner-wrapper {
-    right: 12px !important;
+    right: auto !important;
     bottom: auto !important;
+    left: auto !important;
+    align-self: flex-end;
   }
 
   .floating-banner-panel {
     right: auto !important;
     bottom: auto !important;
-    width: min(220px, calc(100vw - 24px)) !important;
-    max-width: min(220px, calc(100vw - 24px)) !important;
+    left: auto !important;
+    width: min(220px, 100%) !important;
+    max-width: min(220px, 100%) !important;
   }
 
   .floating-banner-wrapper.da-banner-compact .floating-banner-panel {
@@ -4692,6 +4712,7 @@ body.da-quote-page .da-form-success {
   .floating-banner-panel.floating-banner-panel-right,
   .floating-banner-panel.floating-banner-panel-left {
     right: auto !important;
+    left: auto !important;
   }
 
   .floating-banner-close {
@@ -4703,8 +4724,8 @@ body.da-quote-page .da-form-success {
   }
 
   .floating-banner-btn {
-    right: 12px !important;
-    bottom: 68px !important;
+    right: auto !important;
+    bottom: auto !important;
     width: 42px !important;
     height: 42px !important;
   }
