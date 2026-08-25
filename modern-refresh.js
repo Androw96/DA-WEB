@@ -183,17 +183,20 @@
       const footerTopInViewport = footer ? footer.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
       const floatingStackHeight = ctaHeight + bannerHeight + 24;
       const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap - floatingStackHeight;
-      const ctaTop = Math.max(bottomGap, window.innerHeight - bottomGap - ctaHeight);
-      const bannerTop = Math.max(bottomGap, ctaTop - bannerHeight - 14);
+      const ctaViewportTop = Math.max(bottomGap, window.innerHeight - bottomGap - ctaHeight);
+      const bannerViewportTop = Math.max(bottomGap, ctaViewportTop - bannerHeight - 14);
+      const scrollOffset = window.scrollY || document.documentElement.scrollTop || 0;
+      const ctaTop = scrollOffset + ctaViewportTop;
+      const bannerTop = scrollOffset + bannerViewportTop;
 
       if (cta) {
         cta.style.display = "inline-flex";
-        cta.style.position = "fixed";
+        cta.style.position = "absolute";
         cta.style.top = `${ctaTop}px`;
         cta.style.bottom = "auto";
         cta.style.right = isCompactViewport ? "auto" : `${bottomGap}px`;
         cta.style.left = isCompactViewport ? "50%" : "auto";
-        cta.style.transform = "";
+        cta.style.transform = isCompactViewport ? "translateX(-50%)" : "";
         cta.classList.toggle("da-floating-cta-compact", isCompactViewport);
         cta.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
         cta.tabIndex = shouldHideFloatingUi ? -1 : 0;
@@ -201,7 +204,7 @@
       }
 
       if (banner) {
-        banner.style.setProperty("position", "fixed", "important");
+        banner.style.setProperty("position", "absolute", "important");
         banner.style.setProperty("top", `${bannerTop}px`, "important");
         banner.style.setProperty("bottom", "auto", "important");
         banner.style.setProperty("right", `${bottomGap}px`, "important");
