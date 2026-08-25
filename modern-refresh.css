@@ -3595,11 +3595,66 @@ body.da-lab-page .da-service-modern-grid .da-modern-panel {
   transition: box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 330px;
+  padding: 22px;
+  border: 1px solid rgba(155, 220, 255, 0.48);
+  background: var(--da-purple-deep);
+  color: #fff;
+  isolation: isolate;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.08) contrast(1.05);
+  transform: scale(1.01);
+  transition: transform 520ms ease, filter 520ms ease;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(18, 14, 34, 0.08), rgba(18, 14, 34, 0.88)),
+    linear-gradient(135deg, rgba(0, 176, 133, 0.2), rgba(51, 74, 124, 0.36));
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3,
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel p {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 5px;
+  margin-bottom: 12px;
+  border-radius: 999px;
+  background: var(--da-green);
+}
+
 body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover,
 body.da-lab-page .da-service-modern-grid .da-modern-panel:hover {
   transform: none !important;
   border-color: rgba(155, 220, 255, 0.48);
   box-shadow: 0 18px 48px rgba(45, 39, 95, 0.16);
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover img {
+  filter: saturate(1.2) contrast(1.08);
+  transform: scale(1.06);
 }
 
 body.da-dentistry-page .da-service-modern-grid .da-modern-panel::after,

@@ -174,16 +174,23 @@
       const bottomGap = window.matchMedia("(max-width: 768px)").matches ? 12 : 18;
       const cta = document.querySelector(".da-floating-cta");
       const banner = document.querySelector(".floating-banner-wrapper");
+      if (banner && banner.parentElement !== document.body) {
+        document.body.appendChild(banner);
+      }
       const ctaHeight = cta?.offsetHeight || 52;
+      const bannerHeight = banner?.getBoundingClientRect().height || 0;
       const footer = document.querySelector(".site-footer");
       const footerTopInViewport = footer ? footer.getBoundingClientRect().top : Number.POSITIVE_INFINITY;
-      const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap;
+      const floatingStackHeight = ctaHeight + bannerHeight + 24;
+      const shouldHideFloatingUi = footerTopInViewport < window.innerHeight - bottomGap - floatingStackHeight;
+      const ctaTop = Math.max(bottomGap, window.innerHeight - bottomGap - ctaHeight);
+      const bannerTop = Math.max(bottomGap, ctaTop - bannerHeight - 14);
 
       if (cta) {
         cta.style.display = "inline-flex";
         cta.style.position = "fixed";
-        cta.style.top = "auto";
-        cta.style.bottom = `${bottomGap}px`;
+        cta.style.top = `${ctaTop}px`;
+        cta.style.bottom = "auto";
         cta.style.right = isCompactViewport ? "auto" : `${bottomGap}px`;
         cta.style.left = isCompactViewport ? "50%" : "auto";
         cta.style.transform = "";
@@ -195,8 +202,8 @@
 
       if (banner) {
         banner.style.setProperty("position", "fixed", "important");
-        banner.style.setProperty("top", "auto", "important");
-        banner.style.setProperty("bottom", `${bottomGap + ctaHeight + 14}px`, "important");
+        banner.style.setProperty("top", `${bannerTop}px`, "important");
+        banner.style.setProperty("bottom", "auto", "important");
         banner.style.setProperty("right", `${bottomGap}px`, "important");
         banner.classList.toggle("da-banner-hidden", shouldHideFloatingUi);
         banner.setAttribute("aria-hidden", shouldHideFloatingUi ? "true" : "false");
@@ -384,6 +391,7 @@
       grid.className = `${className} da-reveal`;
       grid.innerHTML = panels.map((panel) => `
         <article class="da-modern-panel">
+          ${panel.image ? `<img src="${panel.image}" alt="${panel.title}">` : ""}
           <h3>${panel.title}</h3>
           <p>${panel.text}</p>
         </article>
@@ -403,9 +411,9 @@
         ],
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
-        { title: "Esztétikai fókusz", text: "Vizuálisan tisztább út a mosolyrehabilitációs és héjkerámia megoldások felé." },
-        { title: "Implantációs háttér", text: "Komplex esetekhez rendezettebb, szakmai belépő és erősebb bizalomépítés." },
-        { title: "Digitális kapcsolat", text: "A fogtechnikai háttér nem rejtve marad, hanem értékként jelenik meg a páciensútban." },
+        { title: "Esztétikai fókusz", text: "Vizuálisan tisztább út a mosolyrehabilitációs és héjkerámia megoldások felé.", image: "/wp-content/uploads/Veneers.png" },
+        { title: "Implantációs háttér", text: "Komplex esetekhez rendezettebb, szakmai belépő és erősebb bizalomépítés.", image: "/wp-content/uploads/Implantacios-protetika.png" },
+        { title: "Digitális kapcsolat", text: "A fogtechnikai háttér nem rejtve marad, hanem értékként jelenik meg a páciensútban.", image: "/wp-content/uploads/Digitalis-tervezes-600x493.png" },
       ]));
     }
 
