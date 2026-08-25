@@ -429,9 +429,9 @@
         ],
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
-        { title: "Gyártási pontosság", text: "A technológiai szolgáltatások erősebb, prémiumabb kártyarendszerben jelennek meg." },
-        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány." },
-        { title: "Anyag és folyamat", text: "A termékkategóriák mögé kerül egy modernebb szakmai narratíva és vizuális ritmus." },
+        { title: "Gyártási pontosság", text: "A technológiai szolgáltatások erősebb, prémiumabb kártyarendszerben jelennek meg.", image: "/wp-content/uploads/Cirkonmaras-600x600.png" },
+        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány.", image: "/wp-content/uploads/Fogtechnikai-munkafolyamat-1024x423.png" },
+        { title: "Anyag és folyamat", text: "A termékkategóriák mögé kerül egy modernebb szakmai narratíva és vizuális ritmus.", image: "/wp-content/uploads/LMF-600x600.png" },
       ]));
     }
 

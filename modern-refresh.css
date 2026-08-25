@@ -3595,7 +3595,8 @@ body.da-lab-page .da-service-modern-grid .da-modern-panel {
   transition: box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel,
+body.da-lab-page .da-service-modern-grid .da-modern-panel {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -3607,7 +3608,8 @@ body.da-dentistry-page .da-service-modern-grid .da-modern-panel {
   isolation: isolate;
 }
 
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel img {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel img,
+body.da-lab-page .da-service-modern-grid .da-modern-panel img {
   position: absolute;
   inset: 0;
   z-index: -2;
@@ -3619,7 +3621,8 @@ body.da-dentistry-page .da-service-modern-grid .da-modern-panel img {
   transition: transform 520ms ease, filter 520ms ease;
 }
 
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel::before {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel::before,
+body.da-lab-page .da-service-modern-grid .da-modern-panel::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -3630,12 +3633,15 @@ body.da-dentistry-page .da-service-modern-grid .da-modern-panel::before {
 }
 
 body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3,
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel p {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel p,
+body.da-lab-page .da-service-modern-grid .da-modern-panel h3,
+body.da-lab-page .da-service-modern-grid .da-modern-panel p {
   color: #fff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
 }
 
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3::before {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3::before,
+body.da-lab-page .da-service-modern-grid .da-modern-panel h3::before {
   content: "";
   display: block;
   width: 54px;
@@ -3652,7 +3658,8 @@ body.da-lab-page .da-service-modern-grid .da-modern-panel:hover {
   box-shadow: 0 18px 48px rgba(45, 39, 95, 0.16);
 }
 
-body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover img {
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel:hover img,
+body.da-lab-page .da-service-modern-grid .da-modern-panel:hover img {
   filter: saturate(1.2) contrast(1.08);
   transform: scale(1.06);
 }
