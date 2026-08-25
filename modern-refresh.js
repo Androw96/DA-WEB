@@ -991,7 +991,7 @@
           status: "Érdeklődöm",
           text: "Belépő szintű digitális tervezési kurzus azoknak, akik stabil alapokat szeretnének az EXOCAD használatához.",
           href: "/kurzusok/exocad-kezdo/",
-          image: "/wp-content/uploads/EXOCAD-Zartkoru-rendezveny-500x500.png",
+          image: "/wp-content/uploads/exocad-kezdo-digitalis-fog-v1.png",
           past: true,
         },
         {
@@ -999,7 +999,7 @@
           status: "Érdeklődöm",
           text: "Haladó tervezési szemlélet, összetettebb esetek és gyorsabb digitális munkafolyamatok.",
           href: "/kurzusok/exocad-halado/",
-          image: "/wp-content/uploads/EXOCAD-Zartkoru-rendezveny-300x300.png",
+          image: "/wp-content/uploads/exocad-halado-digitalis-fogsor-v1.png",
           past: true,
         },
         {

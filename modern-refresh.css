@@ -1602,7 +1602,8 @@ input[type="submit"]:hover,
   pointer-events: none;
   transition: opacity 180ms ease, visibility 180ms ease;
   will-change: opacity;
-  contain: layout paint;
+  overflow: visible !important;
+  contain: layout;
 }
 
 .floating-banner-wrapper.da-banner-hidden {
@@ -1655,7 +1656,7 @@ input[type="submit"]:hover,
 .floating-banner-wrapper.da-banner-compact .floating-banner-close {
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0) scale(0.9);
+  transform: translateY(0) scale(1);
 }
 
 .floating-banner-panel a {
@@ -1674,8 +1675,8 @@ input[type="submit"]:hover,
 }
 
 .floating-banner-close {
-  top: -14px !important;
-  right: -14px !important;
+  top: -10px !important;
+  right: -10px !important;
   left: auto !important;
   box-sizing: border-box !important;
   width: 32px !important;
@@ -4715,8 +4716,8 @@ body.da-quote-page .da-form-success {
   }
 
   .floating-banner-close {
-    top: -12px !important;
-    right: -10px !important;
+    top: -10px !important;
+    right: -6px !important;
     opacity: 1;
     pointer-events: auto;
     transform: none;
