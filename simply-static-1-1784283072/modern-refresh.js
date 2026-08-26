@@ -54,6 +54,7 @@
       if (path.includes("/palyazatok/")) return "grants";
       if (path.includes("/szolgaltatasok/")) return "services";
       if (path.includes("/rolunk/")) return "about";
+      if (path.includes("/kurzusok/")) return "courses";
       return "";
     })();
 
@@ -425,7 +426,7 @@
       grid.className = `${className} da-reveal`;
       grid.innerHTML = panels.map((panel) => `
         <article class="da-modern-panel">
-          ${panel.image ? `<img src="${panel.image}" alt="${panel.title}">` : ""}
+          ${panel.image ? `<img src="${siteUrl(panel.image)}" alt="${panel.title}">` : ""}
           <h3>${panel.title}</h3>
           <p>${panel.text}</p>
         </article>
@@ -436,8 +437,8 @@
     if (pageType === "dentistry" && !document.querySelector(".da-page-hero")) {
       insertAfterHeader(createHero({
         kicker: "Fogászat",
-        title: "Precíz ellátás modern ritmusban",
-        text: "Átlátható, pácienseknek szóló belépő esztétikai, implantációs és digitális fogászati megoldásokhoz.",
+        title: "A pontos diagnózistól a személyre szabott megoldásig!",
+        text: "Modern diagnosztikai, esztétikai és implantációs megoldások, digitális tervezéssel és személyre szabott szemlélettel.",
         stats: [
           { value: "01", label: "diagnózis" },
           { value: "02", label: "tervezés" },
@@ -445,17 +446,17 @@
         ],
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
-        { title: "Esztétikai fókusz", text: "Vizuálisan tisztább út a mosolyrehabilitációs és héjkerámia megoldások felé.", image: "/wp-content/uploads/Veneers.png" },
-        { title: "Implantációs háttér", text: "Komplex esetekhez rendezettebb, szakmai belépő és erősebb bizalomépítés.", image: "/wp-content/uploads/Implantacios-protetika.png" },
-        { title: "Digitális kapcsolat", text: "A fogtechnikai háttér nem rejtve marad, hanem értékként jelenik meg a páciensútban.", image: "/wp-content/uploads/Digitalis-tervezes-600x493.png" },
+        { title: "Esztétikai megoldások", text: "Héjkerámiák, esztétikai fogpótlások és komplex mosolyrehabilitációk a természetes és kiszámítható végeredményért.", image: "/wp-content/uploads/Veneers.png" },
+        { title: "Implantációs megoldások", text: "Implantációs és protetikai háttér az egyedi felépítményektől a teljes fogíves rehabilitációkig.", image: "/wp-content/uploads/Implantacios-protetika.png" },
+        { title: "Digitális együttműködés", text: "Digitális tervezés és korszerű gyártástechnológia a pontosabb, gyorsabb és kiszámíthatóbb közös munkáért.", image: "/wp-content/uploads/Digitalis-tervezes-600x493.png" },
       ]));
     }
 
     if (pageType === "lab" && !document.querySelector(".da-page-hero")) {
       insertAfterHeader(createHero({
         kicker: "Fogtechnika",
-        title: "Laborháttér látványosabb rendszerben",
-        text: "A CAD/CAM, implantációs protetika, nyomtatás és gyártási folyamatok modernebb, komponens alapú bemutatást kapnak.",
+        title: "Technológiai háttér, amire a laborja építhet",
+        text: "A digitális tervezéstől a gyártáson át az anyagellátásig olyan technológiai és szakmai hátteret biztosítunk, amelyre fogtechnikai partnerként a mindennapi munkában is számíthat.",
         stats: [
           { value: "CAD", label: "tervezés" },
           { value: "CAM", label: "gyártás" },
@@ -463,9 +464,10 @@
         ],
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
-        { title: "Gyártási pontosság", text: "A technológiai szolgáltatások erősebb, prémiumabb kártyarendszerben jelennek meg.", image: "/wp-content/uploads/Cirkonmaras-600x600.png" },
-        { title: "Partneri útvonal", text: "Fogorvosi partnerek számára gyorsabb tájékozódás és egyértelműbb ajánlatkérési irány.", image: "/wp-content/uploads/partneri-utvonal-business-v1.png" },
-        { title: "Anyag és folyamat", text: "A termékkategóriák mögé kerül egy modernebb szakmai narratíva és vizuális ritmus.", image: "/wp-content/uploads/LMF-600x600.png" },
+        { title: "Technológiai háttér", text: "Precíz digitális tervezés, 3D nyomtatás és marástechnológia egy helyen.", image: "/wp-content/uploads/Cirkonmaras-600x600.png" },
+        { title: "Laborpartnerség", text: "Rugalmas gyártási és szakmai háttér fogtechnikai laborok számára, az egyedi feladattól a komplex munkákig.", image: "/wp-content/uploads/partneri-utvonal-business-v1.png" },
+        { title: "Anyag- és eszközellátás", text: "Vsmile és D-Tech alap- és segédanyagok közvetlenül a labor mindennapi munkájához.", image: "/wp-content/uploads/LMF-600x600.png" },
+        { title: "Folyamatbiztonság", text: "Átlátható szakmai útvonal a tervezéstől az átadásig, hogy minden munka követhető és kiszámítható legyen.", image: "/wp-content/uploads/Digitalis-tervezes.png" },
       ]));
     }
 
@@ -523,6 +525,16 @@
       `;
       const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
       if (entry) {
+        if (!document.querySelector(".da-quote-intro")) {
+          const intro = document.createElement("section");
+          intro.className = "da-quote-intro da-reveal is-visible";
+          intro.innerHTML = `
+            <p class="da-section-kicker">Ajánlatkérés</p>
+            <h2>Személyre szabott szakmai válasz, átlátható lépésekben</h2>
+            <p>Írja meg, milyen munkához, anyaghoz vagy digitális folyamathoz kér támogatást. A beérkező információk alapján olyan ajánlatot készítünk, amely nem csak árat, hanem követhető szakmai útvonalat is ad.</p>
+          `;
+          entry.insertAdjacentElement("afterbegin", intro);
+        }
         entry.appendChild(workflow);
         activateInserted(workflow);
       }
@@ -1251,14 +1263,14 @@
       const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
       const title = document.querySelector(".entry-title");
       if (path.includes("/rolunk/csapat/")) {
-        if (title) title.textContent = "Kiemelt személyek";
+        if (title) title.textContent = "Kiemelt munkatársaink";
         if (entry && !document.querySelector(".da-team-profile-page")) {
           entry.innerHTML = `
             <section class="da-team-profile-page da-reveal is-visible">
               <div class="da-team-profile-hero">
                 <p class="da-section-kicker">Rólunk / Csapat</p>
-                <h2>Akik a Dent-Art-Technik szakmai hátterét adják</h2>
-                <p>A több évtizedes tapasztalat mögött vezetői, fogtechnikai, üzletfejlesztési és szervezési szerepek találkoznak. Ez az oldal a kiemelt személyeket mutatja be áttekinthető, emberközeli formában.</p>
+                <h2>Kiemelt munkatársaink</h2>
+                <p>A több évtizedes tapasztalat mögött vezetői, fogtechnikai, üzletfejlesztési és szervezési szerepek találkoznak.</p>
               </div>
               <div class="da-featured-team-list">
                 ${featuredTeamMembers.map((member, index) => teamMemberCard(member, index, true)).join("")}
@@ -1303,11 +1315,13 @@
           </div>
           <div class="da-about-team-link">
             <div>
-              <p class="da-section-kicker">Kiemelt személyek</p>
-              <h2>Az arcokat külön oldalon mutatjuk be</h2>
-              <p>A vezetői és szakmai szerepek külön, áttekinthető csapatoldalon kaptak helyet.</p>
+              <p class="da-section-kicker">Csapat</p>
+              <h2>Kiemelt munkatársaink</h2>
+              <p>A vezetői, fogtechnikai, üzletfejlesztési és szervezési szerepek ugyanazon az oldalon, áttekinthető formában jelennek meg.</p>
             </div>
-            <a class="da-team-link" href="/rolunk/csapat/">Kiemelt személyek megnyitása</a>
+          </div>
+          <div class="da-featured-team-list da-featured-team-inline">
+            ${featuredTeamMembers.map((member, index) => teamMemberCard(member, index, false)).join("")}
           </div>
         </section>
       `;

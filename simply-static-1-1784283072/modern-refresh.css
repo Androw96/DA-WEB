@@ -4955,3 +4955,295 @@ body.da-quote-page .da-form-success {
     font-size: clamp(23px, 6.7vw, 25px) !important;
   }
 }
+
+/* Review pass: stronger page-level consistency for the presentation build. */
+body.da-dentistry-page .site-content > .ast-container,
+body.da-lab-page .site-content > .ast-container,
+body.da-grants-page .site-content > .ast-container,
+body.da-about-page .site-content > .ast-container,
+body.da-quote-page .site-content > .ast-container,
+body.da-news-page .site-content > .ast-container {
+  padding-right: clamp(18px, 4rem, 64px) !important;
+  padding-left: clamp(18px, 4rem, 64px) !important;
+}
+
+body.da-dentistry-page .entry-content,
+body.da-lab-page .entry-content {
+  display: grid;
+  gap: 18px;
+  max-width: 1180px;
+  padding: clamp(20px, 2rem, 34px) !important;
+}
+
+body.da-dentistry-page .entry-content > p:first-of-type,
+body.da-lab-page .entry-content > p:first-of-type,
+body.da-dentistry-page .entry-content blockquote,
+body.da-lab-page .entry-content blockquote {
+  max-width: 880px;
+  margin-right: auto;
+  margin-left: 0;
+  text-align: left;
+}
+
+body.da-dentistry-page .entry-content > ul,
+body.da-lab-page .entry-content > ul {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+body.da-dentistry-page .entry-content > ul > li,
+body.da-lab-page .entry-content > ul > li {
+  min-height: 190px;
+  padding: 24px;
+  background:
+    linear-gradient(180deg, rgba(64, 63, 130, 0.92), rgba(37, 24, 69, 0.96)),
+    var(--da-purple) !important;
+  color: #fff;
+}
+
+body.da-dentistry-page .entry-content > ul > li > strong,
+body.da-lab-page .entry-content > ul > li > strong,
+body.da-dentistry-page .entry-content > ul > li > a > strong,
+body.da-lab-page .entry-content > ul > li > a > strong {
+  color: #fff;
+}
+
+body.da-dentistry-page .entry-content > ul > li,
+body.da-dentistry-page .entry-content > ul > li p,
+body.da-dentistry-page .entry-content > ul > li a,
+body.da-lab-page .entry-content > ul > li,
+body.da-lab-page .entry-content > ul > li p,
+body.da-lab-page .entry-content > ul > li a {
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+.da-page-hero {
+  align-items: end;
+  min-height: 0;
+  padding: clamp(30px, 4rem, 60px);
+}
+
+.da-page-hero h1 {
+  max-width: 920px;
+  font-size: clamp(2.35rem, 4.25rem, 4.25rem);
+  line-height: 1.04;
+  text-align: left;
+}
+
+.da-page-hero p {
+  font-size: clamp(1rem, 1.18rem, 1.18rem);
+  text-align: left;
+}
+
+.da-service-modern-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1180px;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel,
+body.da-lab-page .da-service-modern-grid .da-modern-panel {
+  min-height: 360px;
+  padding: 26px;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel h3,
+body.da-lab-page .da-service-modern-grid .da-modern-panel h3 {
+  max-width: 92%;
+  font-size: clamp(1.55rem, 2rem, 2rem);
+  text-align: left;
+}
+
+body.da-dentistry-page .da-service-modern-grid .da-modern-panel p,
+body.da-lab-page .da-service-modern-grid .da-modern-panel p {
+  max-width: 38rem;
+  font-size: 1rem;
+  line-height: 1.52;
+  text-align: left;
+}
+
+body.da-news-page .site-main::before,
+body.da-news-page .site-main::after {
+  margin-left: clamp(18px, 4rem, 64px);
+}
+
+body.da-news-page .site-main::after {
+  font-size: clamp(2rem, 3.4rem, 3.4rem);
+}
+
+body.da-news-page .ast-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+body.da-news-page .ast-row article.post:first-child {
+  grid-column: span 2;
+}
+
+body.da-news-page .ast-row article.post:first-child .post-content {
+  grid-template-columns: 54% minmax(0, 1fr);
+}
+
+body.da-news-page .post-thumb,
+body.da-news-page .post-thumb-img-content,
+body.da-news-page .ast-blog-featured-section {
+  aspect-ratio: 4 / 3;
+  background: #eef2f7;
+}
+
+body.da-news-page .post-thumb img,
+body.da-news-page .post-thumb-img-content img,
+body.da-news-page .ast-blog-featured-section img,
+body.da-news-page article.post img.wp-post-image {
+  object-fit: cover !important;
+  padding: 0;
+}
+
+body.da-news-page .ast-row article.post:first-child .ast-blog-featured-section,
+body.da-news-page .ast-row article.post:first-child .post-thumb,
+body.da-news-page .ast-row article.post:first-child .post-thumb-img-content {
+  min-height: 360px;
+}
+
+body.da-news-page .entry-title,
+body.da-news-page .entry-header,
+body.da-news-page .ast-excerpt-container,
+body.da-news-page .read-more {
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+}
+
+body.da-grants-page .entry-content {
+  max-width: 1120px;
+  margin: 22px auto 54px;
+  padding: clamp(22px, 3rem, 48px) !important;
+  border: 1px solid rgba(64, 63, 130, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 58px rgba(45, 39, 95, 0.12);
+}
+
+body.da-grants-page .entry-content > * {
+  max-width: 940px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+body.da-grants-page .entry-content > .alignwide,
+body.da-grants-page .entry-content > .alignfull,
+body.da-grants-page .entry-content figure,
+body.da-grants-page .entry-content img {
+  max-width: 100%;
+}
+
+.da-quote-intro {
+  margin: 0 auto 24px;
+  padding: clamp(24px, 3rem, 48px);
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(0, 176, 133, 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(64, 63, 130, 0.98), rgba(37, 24, 69, 0.98));
+  box-shadow: 0 22px 58px rgba(45, 39, 95, 0.18);
+}
+
+.da-quote-intro h2 {
+  max-width: 860px;
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(2rem, 3.6rem, 3.6rem);
+  line-height: 1.05;
+}
+
+.da-quote-intro p {
+  max-width: 820px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.da-workflow {
+  max-width: 1220px;
+}
+
+.da-workflow-road {
+  margin-inline: 0;
+}
+
+.da-workflow-step {
+  animation-duration: 7s;
+}
+
+.da-about-team-link {
+  display: block;
+}
+
+.da-about-team-link h2 {
+  max-width: 760px;
+}
+
+.da-featured-team-inline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.da-featured-team-inline .da-featured-person {
+  min-height: 100%;
+}
+
+.woocommerce ul.products {
+  align-items: stretch;
+}
+
+.woocommerce ul.products li.product {
+  display: flex !important;
+  flex-direction: column;
+}
+
+.woocommerce ul.products li.product .astra-shop-thumbnail-wrap {
+  display: grid;
+  aspect-ratio: 1 / 1;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f2f5f8;
+}
+
+.woocommerce ul.products li.product img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  padding: 18px;
+}
+
+@media (max-width: 921px) {
+  .da-page-hero,
+  .da-service-modern-grid,
+  body.da-dentistry-page .entry-content,
+  body.da-lab-page .entry-content,
+  body.da-grants-page .entry-content {
+    max-width: 100%;
+  }
+
+  .da-service-modern-grid,
+  body.da-dentistry-page .entry-content > ul,
+  body.da-lab-page .entry-content > ul,
+  body.da-news-page .ast-row,
+  .da-featured-team-inline {
+    grid-template-columns: 1fr;
+  }
+
+  body.da-news-page .ast-row article.post:first-child {
+    grid-column: auto;
+  }
+
+  body.da-news-page .ast-row article.post:first-child .post-content {
+    grid-template-columns: 1fr;
+  }
+
+  .da-page-hero h1,
+  .da-quote-intro h2,
+  body.da-news-page .site-main::after {
+    font-size: clamp(2rem, 2.45rem, 2.45rem);
+  }
+}
