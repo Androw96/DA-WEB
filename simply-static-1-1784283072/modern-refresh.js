@@ -897,9 +897,11 @@
           <div class="da-random-product-grid">
             ${shuffled.map((product) => {
               const image = product.images[0];
-              const imageSrc = product.image || (image.attachedFile ? `/wp-content/uploads/${image.attachedFile}` : `/${image.localUrl || ""}`);
+              const rawImageSrc = product.image || (image.attachedFile ? `/wp-content/uploads/${image.attachedFile}` : `/${image.localUrl || ""}`);
+              const imageSrc = siteUrl(rawImageSrc);
+              const productHref = siteUrl(`/termek/${product.slug}/`);
               return `
-                <a class="da-random-product-card" href="/termek/${product.slug}/">
+                <a class="da-random-product-card" href="${productHref}">
                   <img src="${imageSrc}" alt="${product.title}">
                   <strong>${product.title}</strong>
                   <span>${formatPrice(product.salePrice || product.price || product.regularPrice)}</span>
