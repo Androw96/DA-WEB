@@ -5667,3 +5667,95 @@ body.da-lab-page .da-service-modern-grid .da-modern-panel:nth-child(n+4) {
     min-height: 76px;
   }
 }
+
+/* Keep the home hero and service cards on the same layout plane */
+body.da-home-page,
+body.home {
+  --da-home-plane-width: min(1400px, calc(100vw - 80px));
+  --da-home-plane-side: clamp(250px, 20vw, 300px);
+  --da-home-plane-gap: clamp(22px, 2.1vw, 32px);
+}
+
+body.da-home-page .elementor-element-6b304ad,
+body.home .elementor-element-6b304ad,
+body.da-home-page .elementor-element-abbfed0.da-home-services,
+body.home .elementor-element-abbfed0.da-home-services {
+  width: var(--da-home-plane-width) !important;
+  max-width: var(--da-home-plane-width) !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.da-home-page .elementor-element-6b304ad,
+body.home .elementor-element-6b304ad {
+  grid-template-columns: var(--da-home-plane-side) minmax(0, 1fr) !important;
+  gap: var(--da-home-plane-gap) !important;
+}
+
+body.da-home-page .elementor-element-abbfed0.da-home-services,
+body.home .elementor-element-abbfed0.da-home-services {
+  display: grid !important;
+  grid-template-columns: var(--da-home-plane-side) minmax(0, 1fr) !important;
+  gap: var(--da-home-plane-gap) !important;
+  align-items: stretch !important;
+  padding: 18px !important;
+}
+
+body.da-home-page .da-home-services .elementor-element-e0435fe,
+body.home .da-home-services .elementor-element-e0435fe,
+body.da-home-page .da-home-services .elementor-element-7fe214d,
+body.home .da-home-services .elementor-element-7fe214d {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+body.da-home-page .da-home-services .elementor-element-7fe214d,
+body.home .da-home-services .elementor-element-7fe214d {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: var(--da-home-plane-gap) !important;
+}
+
+body.da-home-page .da-home-services .elementor-element-e0435fe,
+body.home .da-home-services .elementor-element-e0435fe,
+body.da-home-page .da-home-services .elementor-widget-image-box > .elementor-widget-container,
+body.home .da-home-services .elementor-widget-image-box > .elementor-widget-container {
+  height: 100% !important;
+}
+
+body.da-home-page .da-home-services .elementor-element-e0435fe,
+body.home .da-home-services .elementor-element-e0435fe {
+  justify-content: flex-end !important;
+  min-height: 250px !important;
+}
+
+@media (max-width: 1024px) {
+  body.da-home-page,
+  body.home {
+    --da-home-plane-width: calc(100vw - 36px);
+    --da-home-plane-side: clamp(190px, 26vw, 250px);
+    --da-home-plane-gap: 18px;
+  }
+}
+
+@media (max-width: 767px) {
+  body.da-home-page,
+  body.home {
+    --da-home-plane-width: calc(100vw - 28px);
+    --da-home-plane-gap: 14px;
+  }
+
+  body.da-home-page .elementor-element-6b304ad,
+  body.home .elementor-element-6b304ad,
+  body.da-home-page .elementor-element-abbfed0.da-home-services,
+  body.home .elementor-element-abbfed0.da-home-services {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  body.da-home-page .da-home-services .elementor-element-7fe214d,
+  body.home .da-home-services .elementor-element-7fe214d {
+    grid-template-columns: 1fr !important;
+  }
+}
