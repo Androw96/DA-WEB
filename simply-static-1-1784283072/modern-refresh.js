@@ -467,7 +467,6 @@
         { title: "Technológiai háttér", text: "Precíz digitális tervezés, 3D nyomtatás és marástechnológia egy helyen.", image: "/wp-content/uploads/Cirkonmaras-600x600.png" },
         { title: "Laborpartnerség", text: "Rugalmas gyártási és szakmai háttér fogtechnikai laborok számára, az egyedi feladattól a komplex munkákig.", image: "/wp-content/uploads/partneri-utvonal-business-v1.png" },
         { title: "Anyag- és eszközellátás", text: "Vsmile és D-Tech alap- és segédanyagok közvetlenül a labor mindennapi munkájához.", image: "/wp-content/uploads/LMF-600x600.png" },
-        { title: "Folyamatbiztonság", text: "Átlátható szakmai útvonal a tervezéstől az átadásig, hogy minden munka követhető és kiszámítható legyen.", image: "/wp-content/uploads/Digitalis-tervezes.png" },
       ]));
     }
 
@@ -617,6 +616,32 @@
       if (heading) heading.textContent = "Szolgáltatásaink";
     }
     document.querySelectorAll(".da-service-focus-names, .da-discipline-switcher").forEach((node) => node.remove());
+
+    const renderPartnerStrip = () => {
+      const partnerImage = document.querySelector(".elementor-element-9e5c440 img[src*='Weboldal-logo-sav']");
+      if (!partnerImage || document.querySelector(".da-partner-logo-grid")) return;
+      const widget = partnerImage.closest(".elementor-widget-container") || partnerImage.parentElement;
+      if (!widget) return;
+      const logos = [
+        "SGS Dental",
+        "D-Tech 3D",
+        "VSmile",
+        "Dent-Art Technik",
+        "Bono",
+        "Dent Art Klinik",
+      ];
+      const grid = document.createElement("div");
+      grid.className = "da-partner-logo-grid";
+      grid.setAttribute("aria-label", "Partnereink");
+      grid.innerHTML = logos.map((name, index) => `
+        <div class="da-partner-logo-card" style="--partner-index: ${index};">
+          <span>${escapeHtml(name)}</span>
+        </div>
+      `).join("");
+      grid.style.setProperty("--partner-strip", `url('${siteUrl("/wp-content/uploads/Weboldal-logo-sav.png")}')`);
+      widget.replaceChildren(grid);
+    };
+    renderPartnerStrip();
 
     if (isHome) {
       document.querySelectorAll(".atp-item").forEach((item) => {
