@@ -5596,27 +5596,31 @@ body.home .da-partner-logo-grid {
 
 body.da-home-page .da-partner-logo-card,
 body.home .da-partner-logo-card {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
   position: relative;
   min-height: 94px;
   overflow: hidden;
   border: 1px solid rgba(70, 64, 132, 0.16);
   border-radius: 10px;
-  background-color: #fff;
-  background-image: var(--partner-strip);
-  background-repeat: no-repeat;
-  background-size: 600% auto;
-  background-position: calc(var(--partner-index) * -100%) center;
+  padding: 18px 20px;
+  background: #fff;
   box-shadow: 0 14px 34px rgba(37, 31, 91, 0.12);
 }
 
-body.da-home-page .da-partner-logo-card span,
-body.home .da-partner-logo-card span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
+body.da-home-page .da-partner-logo-card img,
+body.home .da-partner-logo-card img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 220px !important;
+  height: 58px !important;
+  object-fit: contain !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 body.da-lab-page .da-service-modern-grid .da-modern-panel:nth-child(n+4) {

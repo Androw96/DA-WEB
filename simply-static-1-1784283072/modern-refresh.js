@@ -623,22 +623,21 @@
       const widget = partnerImage.closest(".elementor-widget-container") || partnerImage.parentElement;
       if (!widget) return;
       const logos = [
-        "SGS Dental",
-        "D-Tech 3D",
-        "VSmile",
-        "Dent-Art Technik",
-        "Bono",
-        "Dent Art Klinik",
+        ["SGS Dental", "/wp-content/uploads/partners/sgs-dental.png"],
+        ["D-Tech 3D", "/wp-content/uploads/partners/dtech-3d.png"],
+        ["VSmile", "/wp-content/uploads/partners/vsmile.png"],
+        ["Dent-Art Technik", "/wp-content/uploads/partners/dent-art-technik.png"],
+        ["Bono", "/wp-content/uploads/partners/bono.png"],
+        ["Dent Art Klinik", "/wp-content/uploads/partners/dent-art-klinik.png"],
       ];
       const grid = document.createElement("div");
       grid.className = "da-partner-logo-grid";
       grid.setAttribute("aria-label", "Partnereink");
-      grid.innerHTML = logos.map((name, index) => `
-        <div class="da-partner-logo-card" style="--partner-index: ${index};">
-          <span>${escapeHtml(name)}</span>
+      grid.innerHTML = logos.map(([name, src]) => `
+        <div class="da-partner-logo-card">
+          <img src="${siteUrl(src)}" alt="${escapeHtml(name)}">
         </div>
       `).join("");
-      grid.style.setProperty("--partner-strip", `url('${siteUrl("/wp-content/uploads/Weboldal-logo-sav.png")}')`);
       widget.replaceChildren(grid);
     };
     renderPartnerStrip();
