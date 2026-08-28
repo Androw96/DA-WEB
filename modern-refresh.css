@@ -5623,6 +5623,18 @@ body.home .da-partner-logo-card img {
   box-shadow: none !important;
 }
 
+body.da-home-page .da-partner-logo-window,
+body.home .da-partner-logo-window {
+  display: block !important;
+  width: min(100%, var(--logo-w)) !important;
+  height: var(--logo-strip-h) !important;
+  max-height: 66px;
+  background-image: var(--logo-strip);
+  background-repeat: no-repeat;
+  background-size: var(--logo-strip-w) var(--logo-strip-h);
+  background-position: var(--logo-x) center;
+}
+
 body.da-lab-page .da-service-modern-grid .da-modern-panel:nth-child(n+4) {
   display: none !important;
 }
