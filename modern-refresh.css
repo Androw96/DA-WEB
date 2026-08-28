@@ -5728,6 +5728,17 @@ body.da-home-page .da-home-services .elementor-element-e0435fe,
 body.home .da-home-services .elementor-element-e0435fe {
   justify-content: flex-end !important;
   min-height: 250px !important;
+  container-type: inline-size;
+  overflow: hidden !important;
+}
+
+body.da-home-page .da-home-services .elementor-element-e0435fe .elementor-heading-title,
+body.home .da-home-services .elementor-element-e0435fe .elementor-heading-title {
+  max-width: 100% !important;
+  overflow: visible !important;
+  font-size: clamp(26px, 9cqw, 42px) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0 !important;
 }
 
 @media (max-width: 1024px) {
