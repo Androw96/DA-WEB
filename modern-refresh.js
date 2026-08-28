@@ -622,27 +622,20 @@
       if (!partnerImage || document.querySelector(".da-partner-logo-grid")) return;
       const widget = partnerImage.closest(".elementor-widget-container") || partnerImage.parentElement;
       if (!widget) return;
-      const logoScale = 0.56;
-      const strip = siteUrl("/wp-content/uploads/Weboldal-logo-sav.png");
       const logos = [
-        ["SGS Dental", 0, 235],
-        ["D-Tech 3D", 250, 140],
-        ["VSmile", 410, 175],
-        ["Dent-Art Technik", 605, 295],
-        ["Bono", 960, 175],
-        ["Dent Art Klinik", 1175, 361],
+        ["SGS Dental", "/wp-content/uploads/partners/sgs-dental.png"],
+        ["D-Tech 3D", "/wp-content/uploads/partners/dtech-3d.png"],
+        ["VSmile", "/wp-content/uploads/partners/vsmile.png"],
+        ["Dent Art Klinik", "/wp-content/uploads/partners/dent-art-klinik.png"],
+        ["Bono", "/wp-content/uploads/partners/bono.png"],
+        ["Dent-Art-Technik", "/wp-content/uploads/partners/dent-art-technik.png"],
       ];
       const grid = document.createElement("div");
       grid.className = "da-partner-logo-grid";
       grid.setAttribute("aria-label", "Partnereink");
-      grid.innerHTML = logos.map(([name, x, width]) => `
+      grid.innerHTML = logos.map(([name, src]) => `
         <div class="da-partner-logo-card">
-          <span
-            class="da-partner-logo-window"
-            role="img"
-            aria-label="${escapeHtml(name)}"
-            style="--logo-strip: url('${strip}'); --logo-w: ${Math.ceil(width * logoScale)}px; --logo-strip-w: ${Math.ceil(1536 * logoScale)}px; --logo-strip-h: ${Math.ceil(142 * logoScale)}px; --logo-x: -${Math.round(x * logoScale)}px;"
-          ></span>
+          <img src="${siteUrl(src)}" alt="${escapeHtml(name)}">
         </div>
       `).join("");
       widget.replaceChildren(grid);
