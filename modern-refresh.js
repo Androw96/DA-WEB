@@ -447,7 +447,7 @@
         ],
       }));
       insertAfterHeader(createPanelGrid("da-service-modern-grid", [
-        { title: "Esztétikai megoldások", text: "Héjkerámiák, esztétikai fogpótlások és komplex mosolyrehabilitációk a természetes és kiszámítható végeredményért.", image: "/wp-content/uploads/Veneers.png" },
+        { title: "Esztétikai megoldások", text: "Héjkerámiák, esztétikai fogpótlások és komplex mosolyrehabilitációk a természetes és kiszámítható végeredményért.", image: "/wp-content/uploads/Koronak-es-hidak.png" },
         { title: "Implantációs megoldások", text: "Implantációs és protetikai háttér az egyedi felépítményektől a teljes fogíves rehabilitációkig.", image: "/wp-content/uploads/Implantacios-protetika.png" },
         { title: "Digitális együttműködés", text: "Digitális tervezés és korszerű gyártástechnológia a pontosabb, gyorsabb és kiszámíthatóbb közös munkáért.", image: "/wp-content/uploads/Digitalis-tervezes-600x493.png" },
       ]));
@@ -999,7 +999,7 @@
       const services = [
         {
           title: "Implantációs protetika",
-          text: "Tervezett implantátumra épülő koronák, hidak, All-on megoldások és egyéni implantátum irányok.",
+          text: "Implantátumra épülő koronák, hidak, All-on megoldások és egyéni implantátum irányok.",
           href: "/termekkategoria/implantacios-protetika/",
           image: "/wp-content/uploads/Implantacios-protetika.png",
         },
@@ -1007,31 +1007,13 @@
           title: "Esztétikai fogászat",
           text: "Héjkerámiák, koronák, inlay-onlay betétek és mosolyrehabilitációs megoldások egy helyen.",
           href: "/termekkategoria/esztetikai-fogaszat/",
-          image: "/wp-content/uploads/Veneers.png",
+          image: "/wp-content/uploads/Koronak-es-hidak.png",
         },
         {
-          title: "Bérnyomtatás és marástechnológia",
-          text: "Digitális tervezés, 3D nyomtatás, LMF és marási folyamatok fogászati/fogtechnikai háttérrel.",
+          title: "Technológiai háttér",
+          text: "Digitális tervezés, 3D nyomtatás, LMF és marási folyamatok egy áttekinthető szakmai útvonalon.",
           href: "/termekkategoria/bernyomtatas-es-marastechnologia/",
-          image: "/wp-content/uploads/3D-polimer-nyomtatas-500x500.png",
-        },
-        {
-          title: "Kombinált munkák",
-          text: "Fémlemezes és fémmentes kombinált pótlások komplex esetekhez, laboroldali támogatással.",
-          href: "/termekkategoria/kombinalt-munkak/",
-          image: "/wp-content/uploads/Femlemezes-potlasok.jpg",
-        },
-        {
-          title: "CAD/CAM termék- és anyagrendszer",
-          text: "Cirkónium-dioxid, PMMA, 3D resin és kapcsolódó digitális CAD/CAM anyagok áttekinthetően.",
-          href: "/termekkategoria/cadcam/",
           image: "/wp-content/uploads/Cirkonmaras-600x600.png",
-        },
-        {
-          title: "Ajánlatkérés szakmai munkára",
-          text: "Ha konkrét esethez, laborfolyamathoz vagy anyagválasztáshoz kérsz irányt, indulj innen.",
-          href: "/ajanlatkeres/",
-          image: "/wp-content/uploads/Fogtechnikai-munkafolyamat-500x496.png",
         },
       ];
       entry.innerHTML = `
