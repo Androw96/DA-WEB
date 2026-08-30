@@ -5818,3 +5818,14 @@ body.home .da-home-services .elementor-element-e0435fe .elementor-heading-title 
     grid-template-columns: 1fr !important;
   }
 }
+
+@media (min-width: 922px) {
+  body.da-dentistry-page .entry-content > ul,
+  body.da-lab-page .entry-content > ul,
+  body.da-dentistry-page .da-service-modern-grid,
+  body.da-lab-page .da-service-modern-grid,
+  body.da-services-page .da-services-link-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    max-width: none !important;
+  }
+}
