@@ -46,6 +46,16 @@ body {
   overflow-x: hidden;
 }
 
+html.da-prepaint,
+html.da-prepaint body {
+  background-color: var(--da-purple-deep);
+}
+
+body.da-grants-page .entry-header,
+body.page-id-2140 .entry-header {
+  display: none !important;
+}
+
 .astra-cart-drawer {
   display: none !important;
   right: 0 !important;
