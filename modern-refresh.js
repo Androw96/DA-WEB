@@ -101,7 +101,7 @@
 
     if (isHome) {
       const labels = [
-        "Szakmai fókusz",
+        "",
         "Előnyök",
         "Bemutatkozás",
         "Termékkínálat",
@@ -111,6 +111,7 @@
         const widget = heading.closest(".elementor-widget-heading");
         if (!widget || widget.querySelector(".da-component-subtitle")) return;
         widget.classList.add("da-component-heading");
+        if (!labels[index % labels.length]) return;
         const subtitle = document.createElement("p");
         subtitle.className = "da-component-subtitle";
         subtitle.textContent = labels[index % labels.length];
