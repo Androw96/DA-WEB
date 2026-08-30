@@ -2470,25 +2470,21 @@ body.da-news-page .site-main {
 }
 
 body.da-news-page .site-main::before {
-  content: "Hírek";
+  content: "Szakmai események, képzések és friss Dent-Art-Technik hírek egy helyen.";
   display: block;
-  margin: 0 0 10px;
-  color: var(--da-green);
-  font-size: 13px;
+  max-width: 920px;
+  margin: 0 0 34px;
+  color: var(--da-purple);
+  font-size: clamp(34px, 5vw, 58px);
   font-weight: 900;
+  line-height: 1.04;
   letter-spacing: 0;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 body.da-news-page .site-main::after {
-  content: "Szakmai események, képzések és friss Dent-Art-Technik hírek egy helyen.";
-  display: block;
-  max-width: 760px;
-  margin: 0 0 34px;
-  color: var(--da-purple);
-  font-size: clamp(32px, 5vw, 58px);
-  font-weight: 900;
-  line-height: 1.03;
+  content: none;
+  display: none;
 }
 
 body.da-news-page .ast-row {
