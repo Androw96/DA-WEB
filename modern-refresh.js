@@ -67,8 +67,6 @@
     if (path.includes("/a-mosoly-hattere-szakmai-nap-gyorben/")) {
       document.body.classList.add("da-smile-event-page");
     }
-    document.documentElement.classList.remove("da-prepaint");
-
     const progress = document.createElement("div");
     progress.className = "da-scroll-progress";
     document.body.appendChild(progress);
@@ -1440,5 +1438,9 @@
       window.addEventListener("load", syncFloatingUi, { once: true });
     }
     normalizeSiteUrls();
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove("da-prepaint");
+      document.documentElement.classList.add("da-modern-ready");
+    });
   });
 })();
