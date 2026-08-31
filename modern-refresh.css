@@ -5239,6 +5239,32 @@ body.da-about-page .entry-header {
   display: none !important;
 }
 
+html body.da-about-page.ast-normal-title-enabled .entry-header,
+html body.da-about-page .site-main > article > .entry-header,
+html body.da-about-page .ast-article-single > .entry-header,
+html body.da-grants-page.ast-normal-title-enabled .entry-header,
+html body.da-grants-page .site-main > article > .entry-header,
+html body.da-grants-page .ast-article-single > .entry-header,
+html body.page-id-18.ast-normal-title-enabled .entry-header,
+html body.page-id-2140.ast-normal-title-enabled .entry-header {
+  display: none !important;
+  visibility: hidden !important;
+  overflow: hidden !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+
+html body.da-about-page .site-main > article,
+html body.da-grants-page .site-main > article,
+html body.page-id-18 .site-main > article,
+html body.page-id-2140 .site-main > article {
+  padding-top: 0 !important;
+}
+
 body.da-about-page .da-about-experience {
   display: grid;
   gap: clamp(18px, 2.2vw, 28px);
