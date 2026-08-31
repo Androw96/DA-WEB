@@ -1395,6 +1395,7 @@
         banner.classList.add("da-banner-open", "da-banner-compact");
         bannerPanel.style.display = "";
         bannerButton.style.display = "none";
+        localStorage.setItem("floatingBannerCompact", "true");
         sessionStorage.setItem("floatingBannerCompact", "true");
         syncFloatingUi();
       };
@@ -1405,6 +1406,8 @@
         banner.classList.remove("da-banner-compact");
         bannerPanel.style.display = "";
         bannerButton.style.display = "none";
+        localStorage.removeItem("floatingBannerClosed");
+        localStorage.removeItem("floatingBannerCompact");
         sessionStorage.removeItem("floatingBannerClosed");
         sessionStorage.removeItem("floatingBannerCompact");
         syncFloatingUi();
@@ -1429,7 +1432,7 @@
         banner.classList.remove("da-banner-hover");
       });
 
-      if (sessionStorage.getItem("floatingBannerCompact") === "true") {
+      if (localStorage.getItem("floatingBannerCompact") === "true" || sessionStorage.getItem("floatingBannerCompact") === "true") {
         closeBanner();
       } else {
         openBanner();
