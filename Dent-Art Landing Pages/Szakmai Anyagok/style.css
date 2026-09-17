@@ -40,7 +40,19 @@ h1{font-size:clamp(54px,6vw,82px);letter-spacing:-.045em}
 .videos{padding:106px 0;display:grid;gap:48px}
 .video-copy{max-width:830px}
 .video-copy>p:not(.eyebrow){margin:28px 0 30px;color:var(--muted);font-size:18px;line-height:1.75}
-.video-player{display:block;width:min(100%,660px);max-height:820px;margin:0 auto;background:#111;box-shadow:0 20px 50px #1b1c2b1f;object-fit:contain}
+.video-series{display:grid;gap:26px}
+.more-videos{margin-top:34px;padding-top:64px;border-top:1px solid var(--line)}
+.series-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
+.series-heading span{display:block;margin-bottom:10px;color:var(--green);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
+.series-heading h3{font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
+.series-heading p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
+.video-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.video-card{overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 14px 36px #1b1c2b12}
+.video-card video{display:block;width:100%;aspect-ratio:9/16;background:#111;object-fit:cover}
+.video-card>div{padding:20px 20px 24px}
+.video-card span{color:var(--green);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.video-card h4{margin:9px 0 7px;font-family:"Outfit",Arial,sans-serif;font-size:23px;line-height:1.1}
+.video-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
 .talks{background:var(--deep);color:#fff}
 .talks-inner{padding:108px 0;display:grid;grid-template-columns:1fr .85fr;gap:42px 80px}
 .talks-title>p:not(.eyebrow){max-width:650px;margin:28px 0 0;color:#ffffffb5;line-height:1.75}
@@ -62,6 +74,8 @@ footer{background:var(--purple);color:#fff}
 
 @media(max-width:900px){nav,.header-cta{display:none}
 .section-intro,.science-inner,.videos,.talks-inner,.contact{grid-template-columns:1fr;gap:36px}
+.series-heading{grid-template-columns:1fr;gap:14px}
+.video-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
 .resource-grid{grid-template-columns:1fr}
 .event-card{max-width:640px}
 .stream{grid-column:auto}
@@ -86,7 +100,9 @@ h1{font-size:clamp(40px,12vw,52px)}
 .resource-card{min-height:0;padding:28px 24px}
 .resource-card h3{font-size:29px}
 .science-inner,.videos,.talks-inner{padding:64px 0}
-.video-player{width:100%;max-height:78vh}
+.video-gallery{grid-template-columns:1fr;gap:24px}
+.video-card h4{font-size:25px}
+.more-videos{margin-top:22px;padding-top:52px}
 .talks-inner{gap:34px}
 .event-card{padding:28px 24px}
 .event-card h3{font-size:27px}
