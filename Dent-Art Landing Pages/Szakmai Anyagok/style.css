@@ -40,9 +40,7 @@ h1{font-size:clamp(54px,6vw,82px);letter-spacing:-.045em}
 .videos{padding:106px 0;display:grid;gap:48px}
 .video-copy{max-width:830px}
 .video-copy>p:not(.eyebrow){margin:28px 0 30px;color:var(--muted);font-size:18px;line-height:1.75}
-.instagram-embed{width:min(100%,660px);padding:12px;margin:0 auto;background:#fff;border:1px solid var(--line);box-shadow:0 20px 50px #1b1c2b1f}
-.instagram-embed iframe{display:block;width:100%;height:780px;border:0;background:var(--paper)}
-.instagram-embed>a{display:block;padding:16px 12px 6px;color:var(--purple);font-size:13px;font-weight:700;text-align:center;text-transform:uppercase;letter-spacing:.07em}
+.video-player{display:block;width:min(100%,660px);max-height:820px;margin:0 auto;background:#111;box-shadow:0 20px 50px #1b1c2b1f;object-fit:contain}
 .talks{background:var(--deep);color:#fff}
 .talks-inner{padding:108px 0;display:grid;grid-template-columns:1fr .85fr;gap:42px 80px}
 .talks-title>p:not(.eyebrow){max-width:650px;margin:28px 0 0;color:#ffffffb5;line-height:1.75}
@@ -88,8 +86,7 @@ h1{font-size:clamp(40px,12vw,52px)}
 .resource-card{min-height:0;padding:28px 24px}
 .resource-card h3{font-size:29px}
 .science-inner,.videos,.talks-inner{padding:64px 0}
-.instagram-embed{width:100%;padding:6px}
-.instagram-embed iframe{height:690px}
+.video-player{width:100%;max-height:78vh}
 .talks-inner{gap:34px}
 .event-card{padding:28px 24px}
 .event-card h3{font-size:27px}
