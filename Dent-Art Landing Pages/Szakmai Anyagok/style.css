@@ -41,7 +41,6 @@ h1{font-size:clamp(54px,6vw,82px);letter-spacing:-.045em}
 .video-copy{max-width:830px}
 .video-copy>p:not(.eyebrow){margin:28px 0 30px;color:var(--muted);font-size:18px;line-height:1.75}
 .video-series{display:grid;gap:26px}
-.more-videos{margin-top:34px;padding-top:64px;border-top:1px solid var(--line)}
 .series-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
 .series-heading span{display:block;margin-bottom:10px;color:var(--green);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .series-heading h3{font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
@@ -102,7 +101,6 @@ h1{font-size:clamp(40px,12vw,52px)}
 .science-inner,.videos,.talks-inner{padding:64px 0}
 .video-gallery{grid-template-columns:1fr;gap:24px}
 .video-card h4{font-size:25px}
-.more-videos{margin-top:22px;padding-top:52px}
 .talks-inner{gap:34px}
 .event-card{padding:28px 24px}
 .event-card h3{font-size:27px}
