@@ -46,12 +46,23 @@ h1{font-size:clamp(54px,6vw,82px);letter-spacing:-.045em}
 .series-heading h3{font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
 .series-heading p{margin:0;color:var(--muted);font-size:16px;line-height:1.65}
 .video-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.video-card{overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 14px 36px #1b1c2b12}
-.video-card video{display:block;width:100%;aspect-ratio:9/16;border:3px solid var(--green);background:#111;object-fit:cover}
-.video-card>div{padding:20px 20px 24px}
-.video-card span{color:var(--green);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
-.video-card h4{margin:9px 0 7px;font-family:"Outfit",Arial,sans-serif;font-size:23px;line-height:1.1}
-.video-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+.video-card{overflow:hidden;border:3px solid var(--green);background:#111;box-shadow:0 14px 36px #1b1c2b20}
+.video-frame{position:relative;aspect-ratio:9/16;background:#111}
+.video-frame video{display:none;width:100%;height:100%;background:#111;object-fit:contain}
+.video-frame.is-playing video{display:block}
+.video-frame.is-playing .video-cover{display:none}
+.video-cover{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;overflow:hidden;background:#111;color:#fff;cursor:pointer;text-align:left}
+.video-cover>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.video-cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0000000d 22%,#00000042 52%,#05050be8 82%,#05050b 100%)}
+.video-cover:hover>img,.video-cover:focus-visible>img{transform:scale(1.025)}
+.video-cover:focus-visible{outline:4px solid #fff;outline-offset:-7px}
+.cover-series,.video-cover strong,.cover-name,.cover-topic,.cover-footer{position:absolute;z-index:1;left:9%;right:9%}
+.cover-series{top:5%;color:#9ddc63;font-size:14px;font-weight:800;text-align:center;letter-spacing:.12em}
+.video-cover strong{top:47%;font-family:"Outfit",Arial,sans-serif;font-size:clamp(25px,2.7vw,43px);line-height:.98;letter-spacing:-.035em;text-shadow:0 3px 18px #000;text-transform:uppercase}
+.cover-name{top:67%;right:0;padding:12px 14px;background:#474388;font-family:"Outfit",Arial,sans-serif;font-size:clamp(16px,1.5vw,24px);font-weight:700;letter-spacing:.01em;text-align:center}
+.cover-topic{top:77%;font-size:clamp(14px,1.35vw,20px);line-height:1.25}
+.cover-footer{bottom:4%;display:flex;align-items:center;gap:8px;width:max-content;max-width:82%;padding:7px 14px;border-radius:999px;background:var(--green);color:#fff;font-size:13px;font-style:normal;font-weight:800;letter-spacing:.06em}
+.cover-footer i{font-style:normal;font-size:11px}
 .talks{background:var(--deep);color:#fff}
 .talks-inner{padding:108px 0;display:grid;grid-template-columns:1fr .85fr;gap:42px 80px}
 .talks-title>p:not(.eyebrow){max-width:650px;margin:28px 0 0;color:#ffffffb5;line-height:1.75}
@@ -100,7 +111,9 @@ h1{font-size:clamp(40px,12vw,52px)}
 .resource-card h3{font-size:29px}
 .science-inner,.videos,.talks-inner{padding:64px 0}
 .video-gallery{grid-template-columns:1fr;gap:24px}
-.video-card h4{font-size:25px}
+.video-cover strong{font-size:clamp(34px,10vw,48px)}
+.cover-name{font-size:clamp(20px,6vw,28px)}
+.cover-topic{font-size:clamp(16px,4.7vw,21px)}
 .talks-inner{gap:34px}
 .event-card{padding:28px 24px}
 .event-card h3{font-size:27px}
