@@ -1,0 +1,22 @@
+.gallery-hero{padding:104px 0 88px;background:var(--deep);color:#fff}
+.gallery-hero h1{font-size:clamp(56px,8vw,96px)}
+.gallery-hero>div>p:not(.eyebrow){max-width:760px;margin:28px 0 36px;color:#ffffffbd;font-size:19px;line-height:1.7}
+.gallery-jumps{display:flex;flex-wrap:wrap;gap:12px}
+.gallery-jumps a{padding:14px 18px;border:1px solid #ffffff38;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;transition:background .2s ease,color .2s ease}
+.gallery-jumps a:hover,.gallery-jumps a:focus-visible{background:#fff;color:var(--deep);outline:0}
+.gallery-section{padding:96px 0;scroll-margin-top:20px}
+.gallery-band{background:var(--paper);scroll-margin-top:20px}
+.gallery-heading{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:end;margin-bottom:38px}
+.gallery-heading>div{display:grid;grid-template-columns:56px 1fr;align-items:center}
+.gallery-heading span{color:var(--green);font-size:20px;font-weight:700}
+.gallery-heading h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.04em}
+.gallery-heading>p{margin:0;color:var(--muted);font-size:17px;line-height:1.7}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.gallery-card{overflow:hidden;border:1px solid var(--line);border-top:3px solid var(--green);background:#fff;box-shadow:0 14px 36px #1b1c2b12}
+.gallery-card video{display:block;width:100%;aspect-ratio:9/16;background:#111;object-fit:cover}
+.gallery-card>div{padding:20px 20px 24px}
+.gallery-card span{color:var(--green);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.09em}
+.gallery-card h3{margin:9px 0 7px;font-size:24px;line-height:1.1}
+.gallery-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+@media(max-width:900px){.gallery-heading{grid-template-columns:1fr;gap:14px}.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.gallery-hero{padding:72px 0 62px}.gallery-hero h1{font-size:clamp(44px,14vw,60px)}.gallery-hero>div>p:not(.eyebrow){font-size:16px}.gallery-jumps{display:grid}.gallery-jumps a{text-align:center}.gallery-section{padding:68px 0}.gallery-heading>div{grid-template-columns:42px 1fr}.gallery-grid{grid-template-columns:1fr}.gallery-card h3{font-size:26px}}
