@@ -38,9 +38,17 @@ h1{font-size:clamp(54px,6vw,82px);letter-spacing:-.045em}
 .science-inner>div:last-child p{margin:0 0 24px;color:var(--muted);font-size:18px;line-height:1.75}
 .coming{display:inline-block;padding:13px 16px;border:1px solid var(--green);color:#537d33;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em}
 .videos{padding:106px 0;display:grid;gap:48px}
+.video-intro-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:80px;align-items:center}
 .video-copy{max-width:830px}
 .video-copy>p:not(.eyebrow){margin:28px 0 30px;color:var(--muted);font-size:18px;line-height:1.75}
+.video-topics{display:grid;gap:14px}
+.video-topics>a{min-height:116px;padding:22px 28px;border:1px solid var(--line);display:grid;grid-template-columns:48px 1fr;gap:18px;align-items:center;background:#fff;transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.video-topics>a:hover,.video-topics>a:focus-visible{border-color:var(--green);transform:translateY(-2px);box-shadow:0 12px 30px #1b1c2b12;outline:0}
+.video-topics span{color:var(--green);font-size:20px;font-weight:700}
+.video-topics strong{display:block;font-family:"Outfit",Arial,sans-serif;font-size:23px;line-height:1.15}
+.video-topics small{display:block;margin-top:7px;color:var(--muted);font-size:14px;line-height:1.45}
 .video-series{display:grid;gap:26px}
+.video-series,.video-card{scroll-margin-top:28px}
 .series-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end}
 .series-heading span{display:block;margin-bottom:10px;color:var(--green);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em}
 .series-heading h3{font-size:clamp(30px,4vw,46px);letter-spacing:-.035em}
@@ -84,6 +92,7 @@ footer{background:var(--purple);color:#fff}
 
 @media(max-width:900px){nav,.header-cta{display:none}
 .section-intro,.science-inner,.videos,.talks-inner,.contact{grid-template-columns:1fr;gap:36px}
+.video-intro-grid{grid-template-columns:1fr;gap:38px}
 .series-heading{grid-template-columns:1fr;gap:14px}
 .video-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
 .resource-grid{grid-template-columns:1fr}
@@ -111,6 +120,8 @@ h1{font-size:clamp(40px,12vw,52px)}
 .resource-card h3{font-size:29px}
 .science-inner,.videos,.talks-inner{padding:64px 0}
 .video-gallery{grid-template-columns:1fr;gap:24px}
+.video-topics>a{min-height:0;padding:20px;grid-template-columns:40px 1fr}
+.video-topics strong{font-size:21px}
 .video-cover strong{font-size:clamp(34px,10vw,48px)}
 .cover-name{font-size:clamp(20px,6vw,28px)}
 .cover-topic{font-size:clamp(16px,4.7vw,21px)}
