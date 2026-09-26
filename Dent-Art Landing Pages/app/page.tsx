@@ -1,9 +1,54 @@
-import { ArrowDown, ArrowRight, Download, Mail, MapPin, Menu, Phone } from 'lucide-react';
+import { ArrowDown, ArrowRight, Mail, MapPin, Menu, Phone } from 'lucide-react';
 
 const offers = [
-  { code: '01', title: 'iBar', lead: 'Egyedileg tervezett titán váz komplex implantációs esetekhez', text: 'Digitális tervezéssel, az adott klinikai helyzethez igazodva készítjük el az iBar vázat a tervezéstől egészen a gyártásig.', image: '/assets/implant-protetika.png', accent: 'blue' },
-  { code: '02', title: 'iBridge', lead: 'Egyedi megoldás teljes íves implantációs rehabilitációkhoz', text: 'A digitális tervezést és a gyártást egy komplex fogtechnikai megoldásban ötvözzük, az eset adottságaihoz és a végleges protetikai célokhoz igazodva.', image: '/assets/esztetika.png', accent: 'violet' },
-  { code: '03', title: 'Egyéni implantátumok', lead: 'Személyre szabott megoldás speciális anatómiai helyzetekhez', text: 'A páciens CBCT-felvétele alapján olyan egyedi implantátumot tervezünk, amely igazodik a rendelkezésre álló csontállományhoz és a sebészeti szempontokhoz.', image: '/assets/bernyomtatas.png', accent: 'teal' },
+  {
+    "code": "01",
+    "title": "iBar",
+    "kicker": "Implantációs protetika",
+    "lead": "Egyedileg tervezett titán váz komplex implantációs esetekhez.",
+    "text": "Az aktuális ajánlat frissítés alatt áll.",
+    "pdf": ""
+  },
+  {
+    "code": "02",
+    "title": "iBridge",
+    "kicker": "Implantációs protetika",
+    "lead": "Egyedi megoldás teljes íves implantációs rehabilitációkhoz.",
+    "text": "Az aktuális ajánlat frissítés alatt áll.",
+    "pdf": ""
+  },
+  {
+    "code": "03",
+    "title": "Subperiostealis implantátumok",
+    "kicker": "Egyéni implantátumok",
+    "lead": "Személyre szabott megoldások, digitális tervezéssel.",
+    "text": "A 2 és 4 pilléres konstrukciók tartalma és árai a részletes ajánlatban találhatók.",
+    "pdf": "subperiostealis-implantatumok"
+  },
+  {
+    "code": "04",
+    "title": "All-on-4",
+    "kicker": "Teljes íves rehabilitáció",
+    "lead": "4 implantátumra készülő, 12 tagú CoCr kerámia fogpótlás.",
+    "text": "A csomag árát, a külön fizetendő alkatrészeket és a feltételeket a PDF tartalmazza.",
+    "pdf": "all-on-4"
+  },
+  {
+    "code": "05",
+    "title": "All-on-6",
+    "kicker": "Teljes íves rehabilitáció",
+    "lead": "6 implantátumra készülő, 12 tagú CoCr kerámia fogpótlás.",
+    "text": "A csomag árát, a külön fizetendő alkatrészeket és a feltételeket a PDF tartalmazza.",
+    "pdf": "all-on-6"
+  },
+  {
+    "code": "06",
+    "title": "3D Resin",
+    "kicker": "D-Tech anyagok",
+    "lead": "Resinek a digitális fogtechnika különböző munkafolyamataihoz.",
+    "text": "Típusok, kiszerelések, nettó és bruttó árak egy helyen.",
+    "pdf": "3d-resin"
+  }
 ];
 
 export default function Home() {
@@ -32,14 +77,11 @@ export default function Home() {
     </section>
 
     <section className="offer-grid section" aria-label="Ajánlatok">
-      {offers.map((offer) => <article className={`offer-card ${offer.accent}`} key={offer.title}>
-        <div className="card-image-wrap"><img src={offer.image} alt="" className="card-image" /><span className="card-code">{offer.code}</span></div>
-        <div className="card-body"><p className="card-kicker">Implantációs protetika</p><h3>{offer.title}</h3><strong>{offer.lead}</strong><p>{offer.text}</p><a href={`mailto:labor@dentarttechnik.hu?subject=${encodeURIComponent(`${offer.title} ajánlat részletei`)}`}>Az ajánlat részletei <ArrowRight size={17} /></a></div>
+      {offers.map((offer) => <article className="offer-card" key={offer.code}>
+        <div className="card-body"><span className="offer-number">{offer.code}</span><p className="card-kicker">{offer.kicker}</p><h3>{offer.title}</h3><strong>{offer.lead}</strong><p>{offer.text}</p>
+        {offer.pdf ? <a href={`ajanlatok/${offer.pdf}.pdf`} target="_blank" rel="noopener" aria-label={`${offer.title} ajánlat megnyitása PDF-ben, új lapon`}>Ajánlat megnyitása · PDF ↗</a> : <><span className="offer-status">Frissítés alatt</span><a href={`mailto:labor@dentarttechnik.hu?subject=${encodeURIComponent(offer.title + ' ajánlat')}`}>Érdeklődöm →</a></>}
+        </div>
       </article>)}
-      <article className="wide-offer">
-        <div className="wide-copy"><p className="eyebrow light">04 · Teljes íves rehabilitáció</p><h3>All-on-X</h3><p className="wide-lead">Komplex fogtechnikai háttér a tervezéstől a végleges fogpótlásig.</p><p>Összehangoljuk a digitális tervezés, a váz és a protetikai felépítmény fogtechnikai szempontjait. Válaszd ki az esetedhez tartozó konstrukciót.</p></div>
-        <div className="download-options"><a href="mailto:labor@dentarttechnik.hu?subject=All-on-4 ajánlat"><span><b>All-on-4</b><small>4 implantátumra tervezve</small></span><Download size={21} /></a><a href="mailto:labor@dentarttechnik.hu?subject=All-on-6 ajánlat"><span><b>All-on-6</b><small>6 implantátumra tervezve</small></span><Download size={21} /></a></div>
-      </article>
     </section>
 
     <section className="help section" id="kapcsolat">

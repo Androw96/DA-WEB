@@ -5963,3 +5963,35 @@ body.home .da-home-services .elementor-element-e0435fe .elementor-heading-title 
 #wpforms-27-field_6-container input {
   visibility: hidden !important;
 }
+
+/* Landing-inspired neutral canvas: separate content through spacing and cards. */
+html body[class],
+html.da-prepaint body,
+html body #page,
+html body .site-content {
+  background: #fafaf8 !important;
+  box-shadow: none !important;
+}
+body.home .site-main > article,
+body.da-home-page .site-main > article,
+body.home .entry-content > .elementor > .e-con,
+body.da-home-page .entry-content > .elementor > .e-con {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+body.home .entry-content > .elementor > .e-con::before,
+body.da-home-page .entry-content > .elementor > .e-con::before {
+  background: none !important;
+  box-shadow: none !important;
+}
+body.home .bsg-item,
+body.home .da-partner-logo-card {
+  box-shadow: 0 4px 16px rgba(27,28,43,.04) !important;
+}
+.da-course-card img,
+.kurzus-hero-image {
+  object-fit: contain !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9;
+}

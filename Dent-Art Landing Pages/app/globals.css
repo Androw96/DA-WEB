@@ -81,3 +81,14 @@ footer { background:var(--purple); color:#fff; }
 @media (max-width:900px) { nav,.header-cta{display:none}.menu-button{display:block}.intro,.help,.final-cta,.wide-offer{grid-template-columns:1fr;gap:38px}.offer-grid{grid-template-columns:1fr 1fr}.wide-offer{grid-column:1/-1}.footer-main{grid-template-columns:1fr 1fr} }
 @media (max-width:640px) { .section,.hero-content{width:calc(100% - 32px)}.site-header{height:72px;padding:0 16px}.brand img{width:122px;height:54px}.hero{min-height:auto;align-items:end}.hero-image{background-position:62% center}.hero-overlay{background:linear-gradient(90deg,rgba(20,19,48,.96),rgba(41,38,83,.8) 72%,rgba(41,38,83,.42))}.hero-content{padding:72px 0 56px}.eyebrow{font-size:12px;line-height:1.5;letter-spacing:.12em;margin-bottom:14px}h1{max-width:100%;font-size:clamp(36px,10.5vw,46px);line-height:1.08;letter-spacing:-.035em}.hero-lead{font-size:16px;line-height:1.6;margin:24px 0 28px}.primary-button,.outline-button{width:100%;justify-content:center;text-align:center}.hero-index{display:none}.intro,.final-cta{padding:64px 0 42px}.intro,.help,.final-cta{gap:28px}.section-heading h2,.help h2,.knowledge h2,.final-cta h2{font-size:clamp(32px,9vw,42px);line-height:1.1;letter-spacing:-.035em}.section-copy,.help-copy p,.final-action p{font-size:16px;line-height:1.65}.offer-grid{grid-template-columns:1fr;gap:24px;padding-bottom:52px}.card-image-wrap{height:220px}.card-body{min-height:0;padding:28px 24px 30px}.card-body h3{font-size:36px}.card-body strong{font-size:16px}.card-body>p:not(.card-kicker){font-size:15px;margin-bottom:24px}.wide-offer{margin-top:4px;padding:34px 24px;gap:28px}.wide-copy h3{font-size:48px}.wide-copy .wide-lead{font-size:18px}.download-options a{padding:18px 16px}.help{padding:46px 0 58px}.knowledge-inner{padding:64px 0}.knowledge-inner>p:not(.eyebrow){font-size:16px;line-height:1.65}.footer-main{grid-template-columns:1fr;gap:34px;padding:56px 0 42px}.copyright{align-items:flex-start;flex-direction:column;gap:8px} }
 @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto}*,*::before,*::after{transition:none!important} }
+
+/* Text-only offer cards, with original PDF documents. */
+.offer-card{background:#fff;box-shadow:none;border:1px solid var(--line);border-bottom:3px solid var(--green)}
+.card-body{height:100%;min-height:410px;padding:32px;gap:0}
+.offer-number{color:var(--purple);font-size:14px;letter-spacing:.12em;margin-bottom:28px}
+.card-body h3{font-size:clamp(28px,2.5vw,38px);overflow-wrap:anywhere;line-height:1.12}
+.card-body>p:not(.card-kicker){margin-bottom:28px}
+.offer-status{font-size:12px;color:var(--muted);margin-top:auto;margin-bottom:14px}
+.card-body a{padding-top:18px;border-top:1px solid var(--line)}
+a:focus-visible{outline:3px solid var(--green);outline-offset:5px}
+@media(max-width:640px){.card-body{min-height:0;padding:28px 24px}.card-body a{margin-top:18px}}
