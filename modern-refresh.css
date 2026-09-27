@@ -5995,3 +5995,9 @@ body.home .da-partner-logo-card {
   height: auto !important;
   aspect-ratio: 16 / 9;
 }
+
+/* Flat typography on the homepage slideshow. */
+.dentart-slider .slide-title,
+.dentart-slider .slide-subtitle {
+  text-shadow: none !important;
+}
