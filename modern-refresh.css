@@ -6001,3 +6001,59 @@ body.home .da-partner-logo-card {
 .dentart-slider .slide-subtitle {
   text-shadow: none !important;
 }
+
+/* Quote page: quiet surfaces, clear form and sequential workflow. */
+body.da-quote-page .entry-header { display: none; }
+body.da-quote-page .site-main > article { background: transparent !important; padding: 0 !important; box-shadow: none !important; }
+body.da-quote-page .entry-content { max-width: 1180px !important; margin: 0 auto; padding: 64px 0 80px; }
+body.da-quote-page .da-section-kicker { color: #567d36 !important; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin: 0 0 18px; }
+.da-quote-heading { max-width: 850px; margin-bottom: 56px; }
+body.da-quote-page .da-quote-heading h1 { color: #292653; font-size: clamp(34px,4.3vw,60px); line-height: 1.1; letter-spacing: -.025em; text-transform: none; margin: 0 0 24px; font-weight: 600; }
+.da-quote-heading > p:last-child { max-width: 710px; font-size: 19px; line-height: 1.7; color: #626471; }
+.da-quote-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+body.da-quote-page .da-quote-layout h2, body.da-quote-page .da-quote-process h2 { font-size: clamp(28px,3vw,40px); line-height: 1.15; text-transform: none; color: #292653; font-weight: 600; margin: 0 0 24px; }
+body.da-quote-page .entry-content h2::after { content: none; }
+.da-quote-contact { padding: 24px 0; }
+.da-quote-contact > p { color: #626471; line-height: 1.7; }
+.da-quote-contact > a { display: block; color: #3d3b78; font-size: 20px; font-weight: 600; margin: 12px 0; overflow-wrap: anywhere; }
+.da-quote-contact .da-quote-email { margin-top: 28px; }
+.da-quote-hours { margin: 24px 0 32px; font-size: 15px; }
+.da-quote-docs { padding-top: 24px; border-top: 1px solid #dddde4; }
+body.da-quote-page .da-quote-docs h3 { font-size: 19px; text-transform: none; color: #292653; margin: 0 0 10px; }
+.da-quote-docs p { color: #626471; font-size: 15px; line-height: 1.65; }
+.da-quote-form-panel { background: #fff; border: 1px solid #e0e0e7; border-radius: 12px; padding: 36px; box-shadow: 0 8px 30px #29265305; }
+body.da-quote-page .da-quote-form-panel h2 { font-size: 28px; margin-bottom: 12px; }
+.da-quote-form-panel > p { color: #626471; margin-bottom: 28px; }
+.da-quote-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 18px; }
+.da-quote-fields label { display: block; color: #292653; font-size: 15px; font-weight: 600; }
+.da-quote-fields label > span { color: #626471; }
+body.da-quote-page #da-quote-form input, body.da-quote-page #da-quote-form textarea { display: block; width: 100%; max-width: 100%; margin-top: 8px; padding: 13px 14px; background: #fff; color: #242432; border: 1px solid #cfcfd9; border-radius: 6px; box-shadow: none; font-size: 16px; line-height: 1.5; font-family: inherit; }
+body.da-quote-page #da-quote-form input:focus, body.da-quote-page #da-quote-form textarea:focus { outline: 2px solid #3d3b78; outline-offset: 2px; }
+.da-quote-message { grid-column: 1/-1; }
+#da-quote-form textarea { resize: vertical; min-height: 150px; }
+.da-quote-form-note, .da-quote-privacy { color: #626471; font-size: 13px; line-height: 1.6; margin: 20px 0; }
+body.da-quote-page #da-quote-form button { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 17px 20px; border: 0; border-radius: 6px; background: #3d3b78; color: white; font-size: 16px; font-weight: 600; box-shadow: none; cursor: pointer; }
+body.da-quote-page #da-quote-form button:hover { background: #292653; }
+.da-quote-privacy { margin-bottom: 0; }
+.da-quote-privacy a { color: #626471; text-decoration: underline; }
+.da-quote-feedback { padding: 16px; margin-top: 20px; background: #f2f5ee; color: #303c28; font-size: 15px; }
+.da-quote-process { margin-top: 80px; padding-top: 48px; border-top: 1px solid #dddde4; }
+.da-quote-process-heading { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.da-quote-process-heading > p { color: #626471; line-height: 1.7; }
+.da-quote-process ol { list-style: none; margin: 24px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
+.da-quote-process li { padding: 24px; border: 1px solid #e0e0e7; border-radius: 8px; background: #fff; }
+.da-quote-step-number { display: block; color: #567d36; font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+body.da-quote-page .da-quote-process h3 { font-size: 20px; line-height: 1.2; color: #292653; text-transform: none; margin: 0 0 12px; }
+.da-quote-process li p { color: #626471; font-size: 15px; line-height: 1.6; margin: 0; }
+body.da-quote-page .da-floating-cta { display: none !important; }
+@media(max-width:921px) { .da-quote-layout { gap: 32px; grid-template-columns: 1fr; } .da-quote-contact { padding: 0; } .da-quote-process ol { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { body.da-quote-page .entry-content { padding-top: 36px; } .da-quote-heading { margin-bottom: 32px; } .da-quote-heading > p:last-child { font-size: 17px; } .da-quote-form-panel { padding: 24px 18px; } .da-quote-fields, .da-quote-process-heading, .da-quote-process ol { grid-template-columns: 1fr; } .da-quote-process { margin-top: 48px; padding-top: 32px; } .da-quote-process-heading { gap: 0; } }
+body.da-quote-page #da-quote-form button { border-radius: 6px !important; text-transform: none !important; letter-spacing: normal !important; box-shadow: none !important; }
+html:has(body.da-quote-page) .da-floating-layer { display: none !important; }
+body.da-quote-page .da-section-kicker { background: none; padding: 0; border: 0; border-radius: 0; }
+body.da-quote-page .da-section-kicker::before { content: none; }
+@media(max-width:921px) {
+  body.da-quote-page .site-content > .ast-container { padding-inline: 20px !important; }
+  .da-quote-form-panel { order: 0; }
+  .da-quote-contact { order: 1; }
+}

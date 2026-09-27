@@ -509,72 +509,56 @@
       ]));
     }
 
-    if (pageType === "quote" && !document.querySelector(".da-workflow")) {
-      document.querySelectorAll('img[src*="Fogtechnikai-munkafolyamat"], img[alt*="munkafolyamat" i]').forEach((image) => {
-        image.closest("p, figure, .wp-block-image, .elementor-widget-image")?.classList.add("da-hide-static-workflow");
-      });
-      const workflow = document.createElement("section");
-      workflow.className = "da-workflow da-reveal";
-      const steps = [
-        { title: "Lenyomatvétel", text: "Oral scan / analóg lenyomat", href: "#wpforms-27-field_1", icon: "tooth", tone: "blue", x: 14, y: 54, label: "top" },
-        { title: "Design I.", text: "Virtuális tervezés, 3D ellenőrzés, mock-up STL", href: "#wpforms-27-field_3", icon: "screen", tone: "purple", x: 28, y: 59, label: "bottom" },
-        { title: "Rendelői konzultáció", text: "Mock-up próba", href: "#wpforms-27-field_3", icon: "clipboard", tone: "blue", x: 42, y: 51, label: "top" },
-        { title: "Design II.", text: "Végleges design, 3D ellenőrzés, mock-up II., változtatások megbeszélése", href: "#wpforms-27-field_5", icon: "screen", tone: "purple", x: 56, y: 58, label: "bottom" },
-        { title: "Gyártás", text: "Kidolgozás, leplezés, ragasztás", href: "#wpforms-27-field_5", icon: "gear", tone: "blue", x: 70, y: 51, label: "top" },
-        { title: "Szállítás", text: "Biztonságos logisztika", href: "#wpforms-submit-27", icon: "palette", tone: "purple", x: 84, y: 58, label: "bottom" },
-        { title: "Átadás", text: "Kész munka átadása", href: "#wpforms-submit-27", icon: "pin", tone: "green", x: 96, y: 53, label: "top" },
-      ];
-      const workflowIcons = {
-        tooth: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M15.5 8.5c3.1-1.7 6 .5 8.5.5s5.4-2.2 8.5-.5c4.8 2.7 4.6 9.4 2.5 15.8-1.8 5.5-2 14.7-6.5 14.7-2.8 0-2.2-9.7-5-9.7s-2.2 9.7-5 9.7c-4.5 0-4.7-9.2-6.5-14.7-2.1-6.4-2.3-13.1 2.5-15.8Z"/></svg>',
-        screen: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 12h32v21H8zM18 39h12M15 33h18"/><path d="M28 27 39 16M35 14l5 5M24 31l-3 1 1-3 12-12 2 2Z"/></svg>',
-        clipboard: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M16 10h16v6H16z"/><path d="M13 13H9v29h30V13h-4M18 24h12M18 31h12M18 38h8"/><path d="M22 7h4"/></svg>',
-        gear: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 17a7 7 0 1 1 0 14 7 7 0 0 1 0-14Z"/><path d="M24 7v6M24 35v6M7 24h6M35 24h6M11.9 11.9l4.2 4.2M31.9 31.9l4.2 4.2M36.1 11.9l-4.2 4.2M16.1 31.9l-4.2 4.2"/></svg>',
-        palette: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8c-8.2 0-15 5.5-15 12.9 0 6.7 5.5 12.1 12.7 12.1h2.4c2 0 3.2 2.2 2.1 3.9-.9 1.4.1 3.1 1.8 3.1 6.2 0 11-6.5 11-14.8C39 15.7 32.2 8 24 8Z"/><path d="M16 21h.1M22 17h.1M30 18h.1M34 25h.1"/></svg>',
-        pin: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 43s13-11.7 13-23A13 13 0 0 0 11 20c0 11.3 13 23 13 23Z"/><path d="M24 25a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z"/></svg>',
-      };
-      const arrows = [
-        { x: 21, y: 55, r: 10, w: 72 },
-        { x: 35, y: 55, r: -12, w: 72 },
-        { x: 49, y: 54, r: 12, w: 72 },
-        { x: 63, y: 54, r: -12, w: 72 },
-        { x: 77, y: 54, r: 12, w: 72 },
-        { x: 90, y: 55, r: -5, w: 58 },
-      ];
-      workflow.innerHTML = `
-        <p class="da-section-kicker">Munkafolyamat</p>
-        <h2>Munkafolyamat fogászat és fogtechnika között</h2>
-        <div class="da-workflow-road da-workflow-map" aria-label="Fogtechnikai munkafolyamat">
-          <div class="da-workflow-steps">
-            ${arrows.map((arrow, index) => `
-              <span class="da-workflow-arrow" aria-hidden="true" style="--x:${arrow.x}%; --y:${arrow.y}%; --r:${arrow.r}deg; --w:${arrow.w}px; --da-card-index:${index};"></span>
-            `).join("")}
-            ${steps.map((step, index) => `
-              <a class="da-workflow-step is-${step.tone} is-${step.label}" href="${step.href}" style="--da-card-index:${index}; --x:${step.x}%; --y:${step.y}%;">
-                <b>${workflowIcons[step.icon]}</b>
-                <div class="da-workflow-copy">
-                  <h3>${step.title}</h3>
-                  <p>${step.text}</p>
-                </div>
-                <span class="da-workflow-action">${index === steps.length - 1 ? "Lezárás" : "Ugrás a ponthoz"}</span>
-              </a>
-            `).join("")}
-          </div>
-        </div>
-      `;
-      const entry = document.querySelector(".entry-content") || document.querySelector(".site-main");
+    if (pageType === "quote") {
+      const entry = document.querySelector(".entry-content");
       if (entry) {
-        if (!document.querySelector(".da-quote-intro")) {
-          const intro = document.createElement("section");
-          intro.className = "da-quote-intro da-reveal is-visible";
-          intro.innerHTML = `
-            <p class="da-section-kicker">Ajánlatkérés</p>
-            <h2>Személyre szabott szakmai válasz, átlátható lépésekben</h2>
-            <p>Írja meg, milyen munkához, anyaghoz vagy digitális folyamathoz kér támogatást. A beérkező információk alapján olyan ajánlatot készítünk, amely nem csak árat, hanem követhető szakmai útvonalat is ad.</p>
-          `;
-          entry.insertAdjacentElement("afterbegin", intro);
-        }
-        entry.appendChild(workflow);
-        activateInserted(workflow);
+        const steps = [
+          ["Lenyomatvétel", "Orális szkennelés vagy analóg lenyomat."],
+          ["Digitális tervezés", "Virtuális terv, 3D ellenőrzés és mock-up STL."],
+          ["Rendelői konzultáció", "Mock-up próba és közös egyeztetés."],
+          ["Véglegesítés", "A terv ellenőrzése és a változtatások megbeszélése."],
+          ["Gyártás", "Kidolgozás, leplezés és ragasztás."],
+          ["Szállítás", "A kész munka biztonságos eljuttatása a rendelőbe."],
+          ["Átadás", "Az elkészült fogpótlás átadása."]
+        ];
+        entry.innerHTML = `
+          <section class="da-quote-heading">
+            <p class="da-section-kicker">Dolgozzunk együtt</p>
+            <h1>Minden jó megoldás<br>egy egyeztetéssel kezdődik.</h1>
+            <p>Írja meg, milyen fogtechnikai munkához keres partnert. Segítünk átbeszélni a lehetőségeket és összeállítani a személyre szabott ajánlatot.</p>
+          </section>
+          <div class="da-quote-layout">
+            <aside class="da-quote-contact">
+              <p class="da-section-kicker">Ajánlatkérés</p>
+              <h2>Beszéljük át<br>az elképzelését.</h2>
+              <p>A pontos ajánlathoz írja le a munka típusát, a választott anyagot és a tervezett határidőt, ha már ismert.</p>
+              <a class="da-quote-email" href="mailto:labor@dentarttechnik.hu">labor@dentarttechnik.hu ↗</a>
+              <a href="tel:+36302273927">+36 30 227 3927</a>
+              <p class="da-quote-hours">Hétfő–péntek · 9:00–16:00<br>9024 Győr, Csokonai u. 10.</p>
+              <div class="da-quote-docs"><h3>Van már terve vagy fájlja?</h3><p>Csatolja a megnyíló e-mailhez a szükséges dokumentumokat, vagy illessze az üzenetbe a letöltési linket.</p></div>
+            </aside>
+            <section class="da-quote-form-panel" aria-labelledby="quote-form-title">
+              <h2 id="quote-form-title">Miben segíthetünk?</h2>
+              <p>Töltse ki az adatokat, majd nyissa meg az előkészített e-mailt.</p>
+              <form id="da-quote-form">
+                <div class="da-quote-fields">
+                  <label>Név <span>*</span><input name="name" autocomplete="name" required placeholder="Teljes név"></label>
+                  <label>E-mail <span>*</span><input name="email" type="email" autocomplete="email" required placeholder="nev@rendelo.hu"></label>
+                  <label>Telefonszám<input name="phone" type="tel" autocomplete="tel" placeholder="+36"></label>
+                  <label>Rendelő / cég<input name="company" autocomplete="organization" placeholder="Rendelő vagy cég neve"></label>
+                  <label class="da-quote-message">A tervezett munka <span>*</span><textarea name="message" required rows="6" maxlength="4000" placeholder="Milyen megoldást keres? Írja le röviden az elképzelését és a rendelkezésre álló információkat."></textarea></label>
+                </div>
+                <p class="da-quote-form-note">A *-gal jelölt mezők kitöltése szükséges. Az e-mailt a saját levelezőjében tudja ellenőrizni, csatolmányokkal kiegészíteni és elküldeni.</p>
+                <button type="submit">Ajánlatkérés e-mailben <span aria-hidden="true">↗</span></button>
+                <p class="da-quote-privacy"><a href="${siteUrl('/adatkezelesi-tajekoztato/')}">Adatkezelési tájékoztató</a></p>
+                <p class="da-quote-feedback" role="status" hidden></p>
+              </form>
+            </section>
+          </div>
+          <section class="da-quote-process" aria-labelledby="quote-process-title">
+            <div class="da-quote-process-heading"><div><p class="da-section-kicker">Az együttműködés menete</p><h2 id="quote-process-title">A lenyomattól az átadásig.</h2></div><p>Átlátható lépések, folyamatos egyeztetés a rendelő és a fogtechnika között.</p></div>
+            <ol>${steps.map((step, index) => `<li><span class="da-quote-step-number">${String(index + 1).padStart(2, '0')}</span><h3>${step[0]}</h3><p>${step[1]}</p></li>`).join('')}</ol>
+          </section>`;
       }
     }
 
@@ -1149,58 +1133,17 @@
     };
     renderCoursesOverview();
 
-    const captureQuoteRequests = () => {
-      if (pageType !== "quote") return;
-      const form = document.querySelector("#wpforms-form-27, .wpforms-form, .entry-content form");
-      if (!form || form.dataset.daQuoteCapture === "true") return;
-      form.dataset.daQuoteCapture = "true";
-
-      const getFieldLabel = (field) => {
-        if (field.id) {
-          const label = document.querySelector(`label[for="${field.id}"]`);
-          if (label) return label.textContent.trim();
-        }
-        return field.getAttribute("aria-label") || field.placeholder || field.name || "Adat";
-      };
-
-      form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const fields = Array.from(form.querySelectorAll("input, textarea, select"))
-          .filter((field) => !["hidden", "submit", "button"].includes(field.type))
-          .map((field) => {
-            const value = field.type === "file"
-              ? Array.from(field.files || []).map((file) => file.name).join(", ")
-              : field.value;
-            return {
-              label: getFieldLabel(field).replace(/\*/g, "").trim(),
-              value: String(value || "").trim(),
-            };
-          })
-          .filter((field) => field.value);
-
-        const requests = getStoredJson("dentart_quote_requests", []);
-        const nameField = fields.find((field) => /név|name/i.test(field.label));
-        requests.unshift({
-          id: Date.now(),
-          status: "new",
-          name: nameField?.value || "Új ajánlatkérés",
-          fields,
-          createdAt: new Date().toISOString(),
-          source: "Ajánlatkérés oldal",
-        });
-        localStorage.setItem("dentart_quote_requests", JSON.stringify(requests));
-
-        let notice = form.querySelector(".da-form-success");
-        if (!notice) {
-          notice = document.createElement("p");
-          notice.className = "da-form-success";
-          form.appendChild(notice);
-        }
-        notice.textContent = "Köszönjük, az ajánlatkérés mentésre került.";
-        form.reset();
-      });
-    };
-    captureQuoteRequests();
+    const quoteForm = document.querySelector("#da-quote-form");
+    quoteForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!quoteForm.reportValidity()) return;
+      const data = new FormData(quoteForm);
+      const body = ["Név: " + data.get("name"), "E-mail: " + data.get("email"), "Telefon: " + data.get("phone"), "Rendelő / cég: " + data.get("company"), "", data.get("message")].join("\n");
+      window.location.href = "mailto:labor@dentarttechnik.hu?subject=" + encodeURIComponent("Fogtechnikai ajánlatkérés") + "&body=" + encodeURIComponent(body);
+      const notice = quoteForm.querySelector(".da-quote-feedback");
+      notice.hidden = false;
+      notice.textContent = "Az ajánlatkérés elküldését a levelezőjében fejezheti be. Ha nem nyílt meg levelező, írjon közvetlenül a labor@dentarttechnik.hu címre. A megadott adatok itt megmaradnak.";
+    });
 
     const featuredTeamMembers = [
       {
