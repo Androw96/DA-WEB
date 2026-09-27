@@ -1065,7 +1065,6 @@
             ${services.map((service) => `
               <a class="da-service-link-card" href="${service.href}">
                 <img src="${service.image}" alt="${escapeHtml(service.title)}">
-                <span>Megnyitás</span>
                 <h3>${escapeHtml(service.title)}</h3>
                 <p>${escapeHtml(service.text)}</p>
               </a>
@@ -1126,7 +1125,6 @@
               <article class="da-course-card">
                 <img src="${course.image}" alt="${escapeHtml(course.title)}">
                 <div>
-                  <span>${escapeHtml(course.status)}</span>
                   <h3>${escapeHtml(course.title)}</h3>
                   <p>${escapeHtml(course.text)}</p>
                   <a href="${course.href}">Érdeklődöm</a>

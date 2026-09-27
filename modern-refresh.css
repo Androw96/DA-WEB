@@ -3550,7 +3550,7 @@ body.da-services-page .entry-content a {
 
 .da-course-card {
   display: grid;
-  grid-template-rows: 210px 1fr;
+  grid-template-rows: auto 1fr;
 }
 
 .da-course-card > div,
