@@ -1334,8 +1334,6 @@
         banner.classList.add("da-banner-open", "da-banner-compact");
         bannerPanel.style.display = "";
         bannerButton.style.display = "none";
-        localStorage.setItem("floatingBannerCompact", "true");
-        sessionStorage.setItem("floatingBannerCompact", "true");
         syncFloatingUi();
       };
 
@@ -1371,11 +1369,8 @@
         banner.classList.remove("da-banner-hover");
       });
 
-      if (localStorage.getItem("floatingBannerCompact") === "true" || sessionStorage.getItem("floatingBannerCompact") === "true") {
-        closeBanner();
-      } else {
-        openBanner();
-      }
+      // Start expanded on every page load; closing only affects this view.
+      openBanner();
       window.addEventListener("load", syncFloatingUi, { once: true });
     }
     normalizeSiteUrls();
