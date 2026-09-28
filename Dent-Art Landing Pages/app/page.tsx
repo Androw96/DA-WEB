@@ -6,16 +6,18 @@ const offers = [
     "title": "iBar",
     "kicker": "Implantációs protetika",
     "lead": "Egyedileg tervezett titán váz komplex implantációs esetekhez.",
-    "text": "Az aktuális ajánlat frissítés alatt áll.",
-    "pdf": ""
+    "text": "Ismerd meg az iBar és iBridge konstrukciókat a részletes szakmai kiadványban.",
+    "pdf": "",
+    "brochure": "ibar-ibridge-konstrukciok"
   },
   {
     "code": "02",
     "title": "iBridge",
     "kicker": "Implantációs protetika",
     "lead": "Egyedi megoldás teljes íves implantációs rehabilitációkhoz.",
-    "text": "Az aktuális ajánlat frissítés alatt áll.",
-    "pdf": ""
+    "text": "Ismerd meg az iBar és iBridge konstrukciókat a részletes szakmai kiadványban.",
+    "pdf": "",
+    "brochure": "ibar-ibridge-konstrukciok"
   },
   {
     "code": "03",
@@ -79,7 +81,7 @@ export default function Home() {
     <section className="offer-grid section" aria-label="Ajánlatok">
       {offers.map((offer) => <article className="offer-card" key={offer.code}>
         <div className="card-body"><span className="offer-number">{offer.code}</span><p className="card-kicker">{offer.kicker}</p><h3>{offer.title}</h3><strong>{offer.lead}</strong><p>{offer.text}</p>
-        {offer.pdf ? <a href={`ajanlatok/${offer.pdf}.pdf`} target="_blank" rel="noopener" aria-label={`${offer.title} ajánlat megnyitása PDF-ben, új lapon`}>Ajánlat megnyitása · PDF ↗</a> : <><span className="offer-status">Frissítés alatt</span><a href={`mailto:labor@dentarttechnik.hu?subject=${encodeURIComponent(offer.title + ' ajánlat')}`}>Érdeklődöm →</a></>}
+        {offer.brochure ? <a href={`szakmai-anyagok/${offer.brochure}.pdf`} target="_blank" rel="noopener">Konstrukciók megtekintése · PDF ↗</a> : offer.pdf ? <a href={`ajanlatok/${offer.pdf}.pdf`} target="_blank" rel="noopener" aria-label={`${offer.title} ajánlat megnyitása PDF-ben, új lapon`}>Ajánlat megnyitása · PDF ↗</a> : <><span className="offer-status">Frissítés alatt</span><a href={`mailto:labor@dentarttechnik.hu?subject=${encodeURIComponent(offer.title + ' ajánlat')}`}>Érdeklődöm →</a></>}
         </div>
       </article>)}
     </section>
