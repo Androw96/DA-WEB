@@ -135,3 +135,11 @@ h1{font-size:clamp(40px,12vw,52px)}
 .footer-main{grid-template-columns:1fr;gap:34px;padding:54px 0 40px}
 .copyright{flex-direction:column;gap:8px}
 }
+
+.talks-banner{grid-column:1/-1;margin:0;grid-row:2;overflow:hidden;border:1px solid #ffffff38}
+.talks-banner img{display:block;width:100%;height:auto}
+.talks-title{grid-column:1/-1}
+.talks-guests h3{font-size:28px;margin:0 0 20px}
+.talks-guests p{color:#ffffffc9;line-height:1.9;font-size:18px}
+a:focus-visible{outline:3px solid var(--green);outline-offset:5px}
+@media(max-width:900px){.talks-banner{grid-column:auto;grid-row:auto}.talks-title{grid-column:auto}}

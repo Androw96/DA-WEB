@@ -46,3 +46,15 @@ python3 tools/download_media.py public/media-manifest.json public/uploads
 ```
 
 Az exportban 186 médiaelem volt. Ebből 159 fájl letöltődött, 5 már meglévőként lett kihagyva, 22 URL az élő oldalon 404-et adott.
+
+## Landingoldalak – végleges, QR-kódhoz használható címek
+
+- Ajánlatok: https://androw96.github.io/DA-WEB/ajanlatok/
+- Szakmai anyagok: https://androw96.github.io/DA-WEB/szakmai-anyagok/
+- Kapcsolatfelvétel: https://androw96.github.io/DA-WEB/ajanlatkeres/
+
+A publikált landingoldalak forrása az `ajanlatok/index.html` és a
+`szakmai-anyagok/index.html`. A korábbi, szóközös URL-ek átirányítanak,
+megőrizve a query paramétereket és a szekcióhivatkozást. A közös CSS-ek,
+PDF-ek, képek és videók a meglévő `Dent-Art Landing Pages` mappában maradnak.
+A szakmai kiadvány és az iBar/iBridge árajánlat külön dokumentum.
